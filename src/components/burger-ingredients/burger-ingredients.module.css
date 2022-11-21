@@ -1,0 +1,19 @@
+.container {
+  max-width: 600px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow: overlay;
+}
+
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #8585AD;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: #2F2F37;
+}
