@@ -6,10 +6,11 @@ import AppHeader from '../app-header/app-header';
 import MainContainer from '../main-container/main-container';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
+import products from '../utils/data';
 
 function App() {
 
-  // Предполагаю, что ингредиенты в конструктор будут поподать с помощью
+  // Предполагаю, что ингредиенты в конструктор будут попадать с помощью
   // метода addProductToConstructor в сосотояние productsForConstructor
   // Изначально он будет пустым, сейчас для примера
   const [productsForConstructor, setProductsForConstructor] = React.useState({
@@ -106,7 +107,7 @@ function App() {
     <>
       <AppHeader />
       <MainContainer>
-        <BurgerIngredients />
+        <BurgerIngredients products={products} />
         <BurgerConstructor products={productsForConstructor} />
       </MainContainer>
     </>

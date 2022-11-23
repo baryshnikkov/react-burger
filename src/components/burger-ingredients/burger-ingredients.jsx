@@ -1,14 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './burger-ingredients.module.css';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import Cards from '../cards/cards';
-import products from '../utils/data';
 
-function BurgerIngredients() {
+function BurgerIngredients(props) {
   const [current, setCurrent] = React.useState('rolls');
-  const [ingredients, setIngredients] = React.useState(products);
+  const [ingredients, setIngredients] = React.useState(props.products);
 
   const rolls = [];
   const fillings = [];
@@ -72,6 +72,10 @@ function BurgerIngredients() {
 
     </div>
   );
+}
+
+BurgerIngredients.propTypes = {
+  products: PropTypes.array,
 }
 
 export default BurgerIngredients;
