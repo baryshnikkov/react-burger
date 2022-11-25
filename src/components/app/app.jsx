@@ -6,7 +6,7 @@ import AppHeader from '../app-header/app-header';
 import MainContainer from '../main-container/main-container';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import products from '../utils/data';
+import products from '../../utils/data';
 
 function App() {
 
@@ -79,19 +79,6 @@ function App() {
     "image": "https://code.s3.yandex.net/react/code/cheese.png",
     "image_mobile": "https://code.s3.yandex.net/react/code/cheese-mobile.png",
     "image_large": "https://code.s3.yandex.net/react/code/cheese-large.png",
-    "__v": 0
-  }, {
-    "_id": "60666c42cc7b410027a1a9b2",
-    "name": "Флюоресцентная булка R2-D3",
-    "type": "bun",
-    "proteins": 44,
-    "fat": 26,
-    "carbohydrates": 85,
-    "calories": 643,
-    "price": 988,
-    "image": "https://code.s3.yandex.net/react/code/bun-01.png",
-    "image_mobile": "https://code.s3.yandex.net/react/code/bun-01-mobile.png",
-    "image_large": "https://code.s3.yandex.net/react/code/bun-01-large.png",
     "__v": 0
   }]});
 

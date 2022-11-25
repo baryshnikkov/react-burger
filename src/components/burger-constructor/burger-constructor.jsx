@@ -27,10 +27,10 @@ function BurgerConstructor(props) {
 
       <div className={styles.ingredients}>
         {props.products.other.map(el => (
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }} key={el['_id']}>
+          <div className={styles.card} key={el['_id']}>
             <DragIcon type="primary" />
             <ConstructorElement
-              text="Краторная булка N-200i (верх)"
+              text={el['name']}
               price={el['price']}
               thumbnail={el['image']}
             />
@@ -61,7 +61,7 @@ function BurgerConstructor(props) {
 }
 
 BurgerConstructor.propTypes = {
-  products: PropTypes.object,
+  products: PropTypes.object.isRequired,
 }
 
 export default BurgerConstructor;

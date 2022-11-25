@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './cards.module.css';
 
@@ -12,6 +13,10 @@ function Cards(props) {
       ))}
     </div>
   );
+}
+
+Cards.propTypes = {
+  content: PropTypes.array.isRequired,
 }
 
 export default Cards;
