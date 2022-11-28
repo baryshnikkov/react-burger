@@ -17,13 +17,14 @@ function BurgerConstructor(props) {
 
   return (
     <div className={[styles.container, 'mt-25'].join(' ')}>
-      <ConstructorElement
-        type="top"
-        isLocked={true}
-        text={props.products.bun['name'] + ' (верх)'}
-        price={200}
-        thumbnail={props.products.bun['image']}
-      />
+      {props.products.bun &&
+        <ConstructorElement
+          type="top"
+          isLocked={true}
+          text={props.products.bun['name'] + ' (верх)'}
+          price={200}
+          thumbnail={props.products.bun['image']}
+        />}
 
       <div className={styles.ingredients}>
         {props.products.other.map(el => (
@@ -38,13 +39,14 @@ function BurgerConstructor(props) {
         ))}
       </div>
 
-      <ConstructorElement
-        type="bottom"
-        isLocked={true}
-        text={props.products.bun['name'] + ' (низ)'}
-        price={200}
-        thumbnail={props.products.bun['image']}
-      />
+      {props.products.bun &&
+        <ConstructorElement
+          type="bottom"
+          isLocked={true}
+          text={props.products.bun['name'] + ' (низ)'}
+          price={200}
+          thumbnail={props.products.bun['image']}
+        />}
 
       <div className={styles.oder}>
         <div className={styles.price}>

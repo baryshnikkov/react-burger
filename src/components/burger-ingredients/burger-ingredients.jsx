@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './burger-ingredients.module.css';
@@ -8,13 +8,17 @@ import Cards from '../cards/cards';
 
 function BurgerIngredients(props) {
   const [current, setCurrent] = React.useState('rolls');
-  const [ingredients, setIngredients] = React.useState(props.products);
+  const [ingredients, setIngredients] = React.useState([]);
 
   const rolls = [];
   const fillings = [];
   const sauces = [];
 
-  const filterIngredients = () => {
+  useEffect(() => {
+    setIngredients(props.products);
+  }, [props.products]);
+
+  useEffect(() => {
     ingredients.forEach(el => {
       switch (el['type']) {
         case 'bun':
@@ -30,8 +34,7 @@ function BurgerIngredients(props) {
           break;
       }
     });
-  };
-  filterIngredients();
+  }, [ingredients]);
 
   return (
     <div className={styles.container}>
