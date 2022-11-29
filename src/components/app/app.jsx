@@ -15,7 +15,7 @@ function App() {
     other: [],
   });
   const [products, setProducts] = React.useState([]);
-  const [details, setDetails] = React.useState();
+  const [details, setDetails] = React.useState({});
 
   const addProductToConstructor = (el) => {
     if (el['type'] === 'bun') {

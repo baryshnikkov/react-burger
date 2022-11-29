@@ -28,6 +28,7 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   __v: PropTypes.number.isRequired,
+  getDetails: PropTypes.func.isRequired,
 }
 
 export default Card;

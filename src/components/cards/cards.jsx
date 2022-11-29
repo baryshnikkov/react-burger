@@ -23,6 +23,7 @@ function Cards(props) {
 
 Cards.propTypes = {
   content: PropTypes.array.isRequired,
+  getDetails: PropTypes.func.isRequired,
 }
 
 export default Cards;

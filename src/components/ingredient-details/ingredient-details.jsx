@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './ingredient-details.module.css';
 
@@ -74,6 +75,10 @@ function IngredientDetails(props) {
       }
     </>
   );
+}
+
+IngredientDetails.propTypes = {
+  details: PropTypes.object.isRequired,
 }
 
 export default IngredientDetails;

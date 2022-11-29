@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import styles from './order-details.module.css';
 
@@ -6,15 +6,17 @@ import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-component
 import Modal from '../modal/modal';
 
 function OrderDetails() {
-  const [isOpened, setIsOpened] = React.useState(true);
+  const [isOpened, setIsOpened] = React.useState(false);
 
   const closeOrderDetails = () => {
     setIsOpened(false);
   };
 
-  document.querySelector('#checkout').addEventListener('click', () => {
-    setIsOpened(true);
-  });
+  useEffect(() => {
+    document.querySelector('#checkout').addEventListener('click', () => {
+      setIsOpened(true);
+    });
+  }, []);
 
   return (
     <>

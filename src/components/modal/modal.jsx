@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import styles from './modal.module.css';
 
@@ -14,7 +15,6 @@ function Modal(props) {
   };
 
   const closeModalByEsc = (evt) => {
-    console.log(evt.key);
     if (evt.key === 'Escape') {
       props.closeModal();
     }
@@ -41,6 +41,10 @@ function Modal(props) {
     ),
     modalRoot
   );
+}
+
+Modal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
 }
 
 export default Modal;
