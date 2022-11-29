@@ -15,7 +15,7 @@ function Cards(props) {
   return (
     <div className={styles.cards}>
       {ingredients.map(el => (
-        <Card {...el} key={el['_id']} />
+        <Card {...el} key={el['_id']} getDetails={props.getDetails} />
       ))}
     </div>
   );
