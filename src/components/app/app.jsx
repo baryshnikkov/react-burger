@@ -6,8 +6,8 @@ import AppHeader from '../app-header/app-header';
 import MainContainer from '../main-container/main-container';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import OrderDetails from '../order-details/order-details';
 
 function App() {
   const [productsForConstructor, setProductsForConstructor] = React.useState({
@@ -45,6 +45,7 @@ function App() {
         <BurgerConstructor products={productsForConstructor} />
       </MainContainer>
       <IngredientDetails details={details} />
+      <OrderDetails />
     </>
   );
 }

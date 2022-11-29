@@ -53,7 +53,7 @@ function BurgerConstructor(props) {
           <p className="text text_type_digits-medium">{totalCalculation()}</p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button htmlType="button" type="primary" size="medium">
+        <Button id="checkout" htmlType="button" type="primary" size="medium">
           Оформить заказ
         </Button>
       </div>
