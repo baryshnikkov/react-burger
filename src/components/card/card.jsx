@@ -4,22 +4,28 @@ import PropTypes from 'prop-types';
 import styles from './card.module.css';
 
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 
 function Card(props) {
+  const [details, setDetails] = React.useState({});
+
   const getDetails = () => {
-    props.getDetails(props);
+    setDetails(props);
   };
 
   return (
-    <div className={styles.card} onClickCapture={getDetails}>
-      {Boolean(props.__v) && <Counter count={props.__v} size="default" extraClass="m-1" />}
-      <img className={styles.img} src={props.image} alt={props.name} />
-      <div className={[styles.price, 'mt-2', 'mb-2'].join(' ')}>
-        <p className={['text', 'text_type_digits-default'].join(' ')}>{props.price}</p>
-        <CurrencyIcon type="primary" />
+    <>
+      <div className={styles.card} onClickCapture={getDetails}>
+        {Boolean(props.__v) && <Counter count={props.__v} size="default" extraClass="m-1" />}
+        <img className={styles.img} src={props.image} alt={props.name} />
+        <div className={[styles.price, 'mt-2', 'mb-2'].join(' ')}>
+          <p className={['text', 'text_type_digits-default'].join(' ')}>{props.price}</p>
+          <CurrencyIcon type="primary" />
+        </div>
+        <p className={[styles.description, 'text', 'text_type_main-default'].join(' ')}>{props.name}</p>
       </div>
-      <p className={[styles.description, 'text', 'text_type_main-default'].join(' ')}>{props.name}</p>
-    </div>
+      <IngredientDetails details={details} />
+    </>
   );
 }
 
@@ -28,7 +34,6 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   __v: PropTypes.number.isRequired,
-  getDetails: PropTypes.func.isRequired,
 }
 
 export default Card;

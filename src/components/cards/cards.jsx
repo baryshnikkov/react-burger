@@ -15,7 +15,7 @@ function Cards(props) {
   return (
     <div className={styles.cards}>
       {ingredients.map(el => (
-        <Card {...el} key={el['_id']} getDetails={props.getDetails} />
+        <Card {...el} key={el['_id']} />
       ))}
     </div>
   );
@@ -23,7 +23,6 @@ function Cards(props) {
 
 Cards.propTypes = {
   content: PropTypes.array.isRequired,
-  getDetails: PropTypes.func.isRequired,
 }
 
 export default Cards;

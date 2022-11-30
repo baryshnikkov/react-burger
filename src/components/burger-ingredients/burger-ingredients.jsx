@@ -60,19 +60,19 @@ function BurgerIngredients(props) {
           Булки
         </h2>
 
-        <Cards content={rolls} getDetails={props.getDetails} />
+        <Cards content={rolls} />
 
         <h2 className={['text', 'text_type_main-medium', 'mt-10', 'mb-6'].join(' ')}>
           Соусы
         </h2>
 
-        <Cards content={sauces} getDetails={props.getDetails} />
+        <Cards content={sauces} />
 
         <h2 className={['text', 'text_type_main-medium', 'mt-10', 'mb-6'].join(' ')}>
           Начинки
         </h2>
 
-        <Cards content={fillings} getDetails={props.getDetails} />
+        <Cards content={fillings} />
       </div>
 
     </div>
@@ -81,7 +81,6 @@ function BurgerIngredients(props) {
 
 BurgerIngredients.propTypes = {
   products: PropTypes.array.isRequired,
-  getDetails: PropTypes.func.isRequired,
 }
 
 export default BurgerIngredients;
