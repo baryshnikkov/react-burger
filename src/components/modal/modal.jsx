@@ -14,13 +14,13 @@ function Modal(props) {
     props.closeModal();
   };
 
-  const closeModalByEsc = (evt) => {
-    if (evt.key === 'Escape') {
-      props.closeModal();
-    }
-  };
-
   useEffect(() => {
+    const closeModalByEsc = (evt) => {
+      if (evt.key === 'Escape') {
+        props.closeModal();
+      }
+    };
+
     document.addEventListener('keydown', closeModalByEsc);
 
     return () => {
