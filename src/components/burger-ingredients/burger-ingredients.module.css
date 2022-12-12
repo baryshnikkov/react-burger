@@ -1,0 +1,27 @@
+.container {
+  max-width: 600px;
+  width: 100%;
+}
+
+.ingredients {
+  overflow-y: scroll;
+  overflow: overlay;
+  height: calc(100vh - 300px);
+}
+
+.ingredients::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ingredients::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #8585AD;
+}
+
+.ingredients::-webkit-scrollbar-track {
+  background-color: #2F2F37;
+}
+
+.tab {
+  display: flex;
+}
