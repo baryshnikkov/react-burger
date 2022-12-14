@@ -3,11 +3,14 @@ import React, { useCallback, useEffect } from 'react';
 import styles from './order-details.module.css';
 
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { productsForConstructorContext } from '../../services/app-context';
 
 function OrderDetails() {
+  const { productsForConstructorState } = React.useContext(productsForConstructorContext);
+
   return (
     <div className={styles.container}>
-      <p className="text text_type_digits-large">034536</p>
+      <p className="text text_type_digits-large">{productsForConstructorState.oderNumber}</p>
       <p className={['text', 'text_type_main-default', 'mt-8'].join(' ')}>
         идентификатор заказа
       </p>

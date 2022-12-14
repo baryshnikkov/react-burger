@@ -105,6 +105,8 @@ const productsForConstructor = {
       "image_large": "https://code.s3.yandex.net/react/code/sp_1-large.png",
       "__v": 0
     }],
+    totalPrice: 0,
+    oderNumber: 0,
   };
 
 export {productsForConstructor};
