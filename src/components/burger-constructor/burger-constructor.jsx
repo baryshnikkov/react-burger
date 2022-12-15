@@ -1,40 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import styles from './burger-constructor.module.css';
+import { reduserOfProductsForConstructor, productsForConstructorInitialState, apiOder } from '../../utils/utils';
+import { ProductsForConstructorContext } from '../../services/burger-constructor-context';
 
 import { ConstructorElement, Button, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
-import { productsForConstructorContext } from '../../services/app-context';
 
 function BurgerConstructor() {
-  const [isOpened, setIsOpened] = React.useState(false);
-  const { productsForConstructorState, productsForConstructorDispatcher } = React.useContext(productsForConstructorContext);
+  const [productsForConstructorState, productsForConstructorDispatcher] = React.useReducer(reduserOfProductsForConstructor,
+    productsForConstructorInitialState);
 
   const closeOrderDetails = () => {
-    setIsOpened(false);
+    productsForConstructorDispatcher({ type: 'closeModalWithOderNumber' });
   };
 
-  // error 400
   const openOrderDetails = () => {
-    const apiUrl = 'https://norma.nomoreparties.space/api/orders';
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "ingredients": ["609646e4dc916e00276b286e", "609646e4dc916e00276b2870"]
-      })
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
-      .then((data) => productsForConstructorDispatcher({ type: 'oderNumber', payload: 'data' }))
-      .then(() => setIsOpened(true))
+    apiOder(productsForConstructorState)
+      .then((data) => productsForConstructorDispatcher({ type: 'openModalWithOderNumber', payload: data }))
       .catch((err) => console.log(`Error: ${err}`));
   };
 
@@ -49,7 +33,7 @@ function BurgerConstructor() {
   }
 
   return (
-    <>
+    <ProductsForConstructorContext.Provider value={{ productsForConstructorState, productsForConstructorDispatcher }}>
       <div className={[styles.container, 'mt-25'].join(' ')}>
         {productsForConstructorState.bun &&
           <ConstructorElement
@@ -93,11 +77,11 @@ function BurgerConstructor() {
         </div>
 
       </div>
-      {isOpened &&
+      {productsForConstructorState.oderNumber &&
         <Modal closeModal={closeOrderDetails}>
           <OrderDetails />
         </Modal>}
-    </>
+    </ProductsForConstructorContext.Provider>
   );
 }
 

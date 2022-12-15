@@ -1,22 +1,23 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import styles from './burger-ingredients.module.css';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import Cards from '../cards/cards';
+import { ProductsContext } from '../../services/app-context';
 
-function BurgerIngredients(props) {
+function BurgerIngredients() {
   const [current, setCurrent] = React.useState('rolls');
   const [ingredients, setIngredients] = React.useState([]);
+  const {products} = React.useContext(ProductsContext);
 
   const rolls = [];
   const fillings = [];
   const sauces = [];
 
   useEffect(() => {
-    setIngredients(props.products);
-  }, [props.products]);
+    setIngredients(products);
+  }, [products]);
 
   useEffect(() => {
     ingredients.forEach(el => {
@@ -77,10 +78,6 @@ function BurgerIngredients(props) {
 
     </div>
   );
-}
-
-BurgerIngredients.propTypes = {
-  products: PropTypes.array.isRequired,
 }
 
 export default BurgerIngredients;

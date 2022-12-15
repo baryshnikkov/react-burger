@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 
 import styles from './order-details.module.css';
 
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { productsForConstructorContext } from '../../services/app-context';
+import { ProductsForConstructorContext } from '../../services/burger-constructor-context';
 
 function OrderDetails() {
-  const { productsForConstructorState } = React.useContext(productsForConstructorContext);
+  const { productsForConstructorState } = React.useContext(ProductsForConstructorContext);
 
   return (
     <div className={styles.container}>
