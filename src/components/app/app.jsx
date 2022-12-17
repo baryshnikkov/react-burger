@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 
 import styles from './app.module.css';
-import { productsForConstructor } from '../../utils/utils';
 
 import AppHeader from '../app-header/app-header';
 import MainContainer from '../main-container/main-container';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
+import { ProductsContext } from '../../services/app-context';
+import { apiUrlIngredients } from '../constants/constants';
 
 function App() {
   const [products, setProducts] = React.useState([]);
 
   useEffect(() => {
-    const apiUrl = 'https://norma.nomoreparties.space/api/ingredients';
-    fetch(apiUrl)
+    fetch(apiUrlIngredients)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -28,8 +28,10 @@ function App() {
     <>
       <AppHeader />
       <MainContainer>
-        <BurgerIngredients products={products} />
-        <BurgerConstructor products={productsForConstructor} />
+        <ProductsContext.Provider value={{products}}>
+          <BurgerIngredients />
+          <BurgerConstructor />
+        </ProductsContext.Provider>
       </MainContainer>
     </>
   );

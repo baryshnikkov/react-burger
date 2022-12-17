@@ -1,45 +1,51 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 import styles from './burger-constructor.module.css';
+import { reduserOfProductsForConstructor, productsForConstructorInitialState, apiOder } from '../../utils/utils';
+import { ProductsForConstructorContext } from '../../services/burger-constructor-context';
 
 import { ConstructorElement, Button, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 
-function BurgerConstructor(props) {
-  const [isOpened, setIsOpened] = React.useState(false);
+function BurgerConstructor() {
+  const [productsForConstructorState, productsForConstructorDispatcher] = React.useReducer(reduserOfProductsForConstructor,
+    productsForConstructorInitialState);
 
   const closeOrderDetails = () => {
-    setIsOpened(false);
+    productsForConstructorDispatcher({ type: 'closeModalWithOderNumber' });
   };
 
   const openOrderDetails = () => {
-    setIsOpened(true);
+    apiOder(productsForConstructorState)
+      .then((data) => productsForConstructorDispatcher({ type: 'openModalWithOderNumber', payload: data }))
+      .catch((err) => console.log(`Error: ${err}`));
   };
 
+  // временная функция
   const totalCalculation = () => {
     let count = 0;
-    props.products.other.forEach(el => {
+    productsForConstructorState.other.forEach(el => {
       count += el['price'];
     });
+    count += productsForConstructorState.bun['price'];
     return count;
   }
 
   return (
-    <>
+    <ProductsForConstructorContext.Provider value={{ productsForConstructorState, productsForConstructorDispatcher }}>
       <div className={[styles.container, 'mt-25'].join(' ')}>
-        {props.products.bun &&
+        {productsForConstructorState.bun &&
           <ConstructorElement
             type="top"
             isLocked={true}
-            text={props.products.bun['name'] + ' (верх)'}
-            price={200}
-            thumbnail={props.products.bun['image']}
+            text={productsForConstructorState.bun['name'] + ' (верх)'}
+            price={productsForConstructorState.bun['price']}
+            thumbnail={productsForConstructorState.bun['image']}
           />}
 
         <div className={styles.ingredients}>
-          {props.products.other.map(el => (
+          {productsForConstructorState.other.map(el => (
             <div className={styles.card} key={el['_id']}>
               <DragIcon type="primary" />
               <ConstructorElement
@@ -51,13 +57,13 @@ function BurgerConstructor(props) {
           ))}
         </div>
 
-        {props.products.bun &&
+        {productsForConstructorState.bun &&
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            text={props.products.bun['name'] + ' (низ)'}
-            price={200}
-            thumbnail={props.products.bun['image']}
+            text={productsForConstructorState.bun['name'] + ' (низ)'}
+            price={productsForConstructorState.bun['price']}
+            thumbnail={productsForConstructorState.bun['image']}
           />}
 
         <div className={styles.oder}>
@@ -71,16 +77,12 @@ function BurgerConstructor(props) {
         </div>
 
       </div>
-      {isOpened &&
-      <Modal closeModal={closeOrderDetails}>
-        <OrderDetails />
-      </Modal>}
-    </>
+      {productsForConstructorState.oderNumber &&
+        <Modal closeModal={closeOrderDetails}>
+          <OrderDetails />
+        </Modal>}
+    </ProductsForConstructorContext.Provider>
   );
-}
-
-BurgerConstructor.propTypes = {
-  products: PropTypes.object.isRequired,
 }
 
 export default BurgerConstructor;
