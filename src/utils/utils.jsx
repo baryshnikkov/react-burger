@@ -1,5 +1,3 @@
-import { INGREDIENTS_BUN, apiUrlOrders } from "../components/constants/constants";
-
 const productsForConstructor = {
   bun: {
     "_id": "60666c42cc7b410027a1a9b1",
@@ -111,42 +109,11 @@ const productsForConstructor = {
   oderNumber: null,
 };
 
-function reduserOfProductsForConstructor(state, action) {
-  switch (action.type) {
-    case 'add':
-      if (action.payload.type === INGREDIENTS_BUN) {
-        return { ...state, bun: action.payload, totalPrice: state.totalPrice + action.payload.price };
-      }
-      return { ...state, other: [...state.other, action.payload], totalPrice: state.totalPrice + action.payload.price };
-    case 'openModalWithOderNumber':
-      return { ...state, oderNumber: action.payload.order.number };
-    case 'closeModalWithOderNumber':
-      return { ...state, oderNumber: null };
-    default:
-      throw new Error(`Wrong type of action: ${action.type}`);
+export const checkResponse = (res) => {
+  if (res.ok) {
+    return res.json();
   }
-}
-
-// const productsForConstructorInitialState = { bun: {}, other: [], oderNumber: 0, totalPrice: 0 }
-const productsForConstructorInitialState = productsForConstructor;
-
-function apiOder(elements) {
-  const arr = [elements.bun].concat(elements.other);
-  return fetch(apiUrlOrders, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      "ingredients": arr
-    })
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка ${res.status}`);
-    })
+  return Promise.reject(`Ошибка: ${res.status}`);
 };
 
-export { productsForConstructor, reduserOfProductsForConstructor, productsForConstructorInitialState, apiOder };
+export { productsForConstructor };

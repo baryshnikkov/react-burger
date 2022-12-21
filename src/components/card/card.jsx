@@ -1,17 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import styles from './card.module.css';
 
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import { GET_DATA_ABOUT_INGREDIENT } from '../../services/actions/dataAboutIngredient';
 
 function Card(props) {
-  const getDetails = () => {
-    props.getDetails(props);
+  const dispatch = useDispatch();
+
+  const openIngredientDetails = () => {
+    dispatch({
+      type: GET_DATA_ABOUT_INGREDIENT,
+      data: props
+    });
   };
 
   return (
-    <div className={styles.card} onClickCapture={getDetails}>
+    <div className={styles.card} onClickCapture={openIngredientDetails}>
       {Boolean(props.__v) && <Counter count={props.__v} size="default" extraClass="m-1" />}
       <img className={styles.img} src={props.image} alt={props.name} />
       <div className={[styles.price, 'mt-2', 'mb-2'].join(' ')}>

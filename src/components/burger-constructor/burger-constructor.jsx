@@ -1,51 +1,43 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './burger-constructor.module.css';
-import { reduserOfProductsForConstructor, productsForConstructorInitialState, apiOder } from '../../utils/utils';
-import { ProductsForConstructorContext } from '../../services/burger-constructor-context';
 
 import { ConstructorElement, Button, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
+import { setOder } from '../../services/actions/oder';
+import { CLOSE_MODAL_ODER } from '../../services/actions/oder';
 
 function BurgerConstructor() {
-  const [productsForConstructorState, productsForConstructorDispatcher] = React.useReducer(reduserOfProductsForConstructor,
-    productsForConstructorInitialState);
+  const { constructorIngredients, totalPrice } = useSelector(store => store.constructorIngredients);
+  const { ingredientsOderIsOpened } = useSelector(store => store.oder);
+  const dispatch = useDispatch();
 
   const closeOrderDetails = () => {
-    productsForConstructorDispatcher({ type: 'closeModalWithOderNumber' });
+    dispatch({
+      type: CLOSE_MODAL_ODER
+    });
   };
 
   const openOrderDetails = () => {
-    apiOder(productsForConstructorState)
-      .then((data) => productsForConstructorDispatcher({ type: 'openModalWithOderNumber', payload: data }))
-      .catch((err) => console.log(`Error: ${err}`));
+    dispatch(setOder(constructorIngredients));
   };
 
-  // временная функция
-  const totalCalculation = () => {
-    let count = 0;
-    productsForConstructorState.other.forEach(el => {
-      count += el['price'];
-    });
-    count += productsForConstructorState.bun['price'];
-    return count;
-  }
-
   return (
-    <ProductsForConstructorContext.Provider value={{ productsForConstructorState, productsForConstructorDispatcher }}>
+    <>
       <div className={[styles.container, 'mt-25'].join(' ')}>
-        {productsForConstructorState.bun &&
+        {Object.keys(constructorIngredients.bun).length &&
           <ConstructorElement
             type="top"
             isLocked={true}
-            text={productsForConstructorState.bun['name'] + ' (верх)'}
-            price={productsForConstructorState.bun['price']}
-            thumbnail={productsForConstructorState.bun['image']}
+            text={constructorIngredients.bun['name'] + ' (верх)'}
+            price={constructorIngredients.bun['price']}
+            thumbnail={constructorIngredients.bun['image']}
           />}
 
         <div className={styles.ingredients}>
-          {productsForConstructorState.other.map(el => (
+          {constructorIngredients.other.map(el => (
             <div className={styles.card} key={el['_id']}>
               <DragIcon type="primary" />
               <ConstructorElement
@@ -57,31 +49,34 @@ function BurgerConstructor() {
           ))}
         </div>
 
-        {productsForConstructorState.bun &&
+        {Object.keys(constructorIngredients.bun).length &&
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            text={productsForConstructorState.bun['name'] + ' (низ)'}
-            price={productsForConstructorState.bun['price']}
-            thumbnail={productsForConstructorState.bun['image']}
+            text={constructorIngredients.bun['name'] + ' (низ)'}
+            price={constructorIngredients.bun['price']}
+            thumbnail={constructorIngredients.bun['image']}
           />}
 
         <div className={styles.oder}>
           <div className={styles.price}>
-            <p className="text text_type_digits-medium">{totalCalculation()}</p>
+            <p className="text text_type_digits-medium">{totalPrice}</p>
             <CurrencyIcon type="primary" />
           </div>
           <Button id="checkout" htmlType="button" type="primary" size="medium" onClick={openOrderDetails}>
             Оформить заказ
           </Button>
         </div>
-
       </div>
-      {productsForConstructorState.oderNumber &&
+
+      {
+        ingredientsOderIsOpened
+        &&
         <Modal closeModal={closeOrderDetails}>
           <OrderDetails />
-        </Modal>}
-    </ProductsForConstructorContext.Provider>
+        </Modal>
+      }
+    </>
   );
 }
 

@@ -1,68 +1,63 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from './ingredient-details.module.css';
 
-function IngredientDetails(props) {
+function IngredientDetails() {
+  const { aboutIngredients } = useSelector(store => store.dataAboutIngredient);
+
   return (
-    <>
-      <div className={styles.container}>
-        <p className={['text', 'text_type_main-large', styles.title].join(' ')}>
-          Детали ингредиента
-        </p>
+    <div className={styles.container}>
+      <p className={['text', 'text_type_main-large', styles.title].join(' ')}>
+        Детали ингредиента
+      </p>
 
-        <img className={styles.image} src={props.details?.image} alt={props.details?.name} />
+      <img className={styles.image} src={aboutIngredients.image} alt={aboutIngredients.name} />
 
-        <p className={['text', 'text_type_main-medium', styles.description].join(' ')}>
-          {props.details?.name}
-        </p>
+      <p className={['text', 'text_type_main-medium', styles.description].join(' ')}>
+        {aboutIngredients.name}
+      </p>
 
-        <div className={styles.compound}>
+      <div className={styles.compound}>
 
-          <div className={styles.bju}>
-            <p className="text text_type_main-default text_color_inactive">
-              Калории,ккал
-            </p>
-            <p className="text text_type_main-default text_color_inactive">
-              {props.details?.calories}
-            </p>
-          </div>
+        <div className={styles.bju}>
+          <p className="text text_type_main-default text_color_inactive">
+            Калории,ккал
+          </p>
+          <p className="text text_type_main-default text_color_inactive">
+            {aboutIngredients.calories}
+          </p>
+        </div>
 
-          <div className={styles.bju}>
-            <p className="text text_type_main-default text_color_inactive">
-              Белки, г
-            </p>
-            <p className="text text_type_main-default text_color_inactive">
-              {props.details?.proteins}
-            </p>
-          </div>
+        <div className={styles.bju}>
+          <p className="text text_type_main-default text_color_inactive">
+            Белки, г
+          </p>
+          <p className="text text_type_main-default text_color_inactive">
+            {aboutIngredients.proteins}
+          </p>
+        </div>
 
-          <div className={styles.bju}>
-            <p className="text text_type_main-default text_color_inactive">
-              Жиры, г
-            </p>
-            <p className="text text_type_main-default text_color_inactive">
-              {props.details?.fat}
-            </p>
-          </div>
+        <div className={styles.bju}>
+          <p className="text text_type_main-default text_color_inactive">
+            Жиры, г
+          </p>
+          <p className="text text_type_main-default text_color_inactive">
+            {aboutIngredients.fat}
+          </p>
+        </div>
 
-          <div className={styles.bju}>
-            <p className="text text_type_main-default text_color_inactive">
-              Углеводы, г
-            </p>
-            <p className="text text_type_main-default text_color_inactive">
-              {props.details?.carbohydrates}
-            </p>
-
-          </div>
+        <div className={styles.bju}>
+          <p className="text text_type_main-default text_color_inactive">
+            Углеводы, г
+          </p>
+          <p className="text text_type_main-default text_color_inactive">
+            {aboutIngredients.carbohydrates}
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
-}
-
-IngredientDetails.propTypes = {
-  details: PropTypes.object.isRequired,
 }
 
 export default IngredientDetails;
