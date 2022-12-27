@@ -1,4 +1,6 @@
 import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import styles from './app.module.css';
 
@@ -12,8 +14,10 @@ function App() {
     <>
       <AppHeader />
       <MainContainer>
-        <BurgerIngredients />
-        <BurgerConstructor />
+        <DndProvider backend={HTML5Backend}>
+          <BurgerIngredients />
+          <BurgerConstructor />
+        </DndProvider>
       </MainContainer>
     </>
   );

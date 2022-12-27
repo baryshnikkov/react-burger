@@ -13,9 +13,9 @@ export const setOder = (constructorIngredients) => {
     });
 
     const arrOder = [];
-    arrOder.push(constructorIngredients.bun['_id']);
+    arrOder.push(constructorIngredients.bun['_id']?.split('?')[0]);
     constructorIngredients.other.forEach(el => {
-      arrOder.push(el['_id']);
+      arrOder.push(el['_id'].split('?')[0]);
     });
 
     dispatch({
@@ -29,8 +29,7 @@ export const setOder = (constructorIngredients) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        ingredients: ["60d3b41abdacab0026a733c6", "60d3b41abdacab0026a733c9", "60d3b41abdacab0026a733c9", "60d3b41abdacab0026a733c9"]
-        // ingredients: arrOder
+        ingredients: arrOder
       })
     })
       .then(res => checkResponse(res))

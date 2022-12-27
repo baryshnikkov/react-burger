@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useDrag } from 'react-dnd';
 import PropTypes from 'prop-types';
 
 import styles from './card.module.css';
@@ -17,8 +18,16 @@ function Card(props) {
     });
   };
 
+  const [{ opacity }, refDrag] = useDrag({
+    type: 'ingredient',
+    item: { ...props },
+    collect: monitor => ({
+      opacity: monitor.isDragging() ? 0.5 : 1
+    })
+  });
+
   return (
-    <div className={styles.card} onClickCapture={openIngredientDetails}>
+    <div className={styles.card} onClickCapture={openIngredientDetails} ref={refDrag} style={{ opacity }}>
       {Boolean(props.__v) && <Counter count={props.__v} size="default" extraClass="m-1" />}
       <img className={styles.img} src={props.image} alt={props.name} />
       <div className={[styles.price, 'mt-2', 'mb-2'].join(' ')}>

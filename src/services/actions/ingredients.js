@@ -3,6 +3,8 @@ import { checkResponse } from '../../utils/utils';
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS__SUCCESS';
 export const GET_INGREDIENTS_FAILED = 'GET_INGREDIENT_FAILED';
+export const INCREMENT_INGREDIENT = 'INCREMENT_INGREDIENT';
+export const DECREMENT_INGREDIENT = 'DECREMENT_INGREDIENT';
 
 export const getIngredients = () => {
   return function (dispatch) {

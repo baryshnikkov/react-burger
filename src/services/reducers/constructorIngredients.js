@@ -1,35 +1,26 @@
-import { productsForConstructor } from '../../utils/utils'; //TODO delete
-
 import {
   SET_INGREDIENT_FOR_CONSTRUCTOR,
   DELETE_INGREDIENT_FOR_CONSTRUCTOR,
   SET_TOTAL_PRICE
 } from '../actions/constructorIngredients';
 
-// const initialState = {
-//   constructorIngredients: {
-//     bun: {},
-//     other: []
-//   },
-//   totalPrice: 0
-// };
-
 const initialState = {
-  constructorIngredients: productsForConstructor,
+  constructorIngredients: {
+    bun: {},
+    other: []
+  },
   totalPrice: 0
 };
 
-export const a = 1;
-
 export const inredientsInConstructor = (state = initialState, action) => {
   switch (action.type) {
-    case SET_INGREDIENT_FOR_CONSTRUCTOR: { //TODO: проверить пути
+    case SET_INGREDIENT_FOR_CONSTRUCTOR: {
       if (action.data.type === 'bun') {
         return {
           ...state,
           constructorIngredients: {
             ...state.constructorIngredients,
-            bun: action.data
+            bun: { ...action.data, _id: action.data._id + '?' + Math.random() }
           }
         };
       } else {
@@ -37,7 +28,7 @@ export const inredientsInConstructor = (state = initialState, action) => {
           ...state,
           constructorIngredients: {
             ...state.constructorIngredients,
-            other: [...state.constructorIngredients.other, action.data]
+            other: [...state.constructorIngredients.other, { ...action.data, _id: action.data._id + '?' + Math.random() }]
           }
         };
       }
@@ -47,13 +38,17 @@ export const inredientsInConstructor = (state = initialState, action) => {
         ...state,
         constructorIngredients: {
           ...state.constructorIngredients,
-          other: [state.constructorIngredients.other.filter(el => el['_id'] === action.id)] //TODO: разобраться с фильтром
+          other: [...state.constructorIngredients.other.filter(el => el['_id'] !== action.id)]
         }
       };
     case SET_TOTAL_PRICE:
+      let price = state.constructorIngredients.bun.price * 2 || 0;
+      state.constructorIngredients.other.map(el => {
+        price += el.price;
+      });
       return {
         ...state,
-        totalPrice: state.totalPrice + action.price
+        totalPrice: price
       }
     default:
       return state;
