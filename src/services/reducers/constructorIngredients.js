@@ -1,7 +1,8 @@
 import {
   SET_INGREDIENT_FOR_CONSTRUCTOR,
   DELETE_INGREDIENT_FOR_CONSTRUCTOR,
-  SET_TOTAL_PRICE
+  SET_TOTAL_PRICE,
+  MOVE_INGREDIENT
 } from '../actions/constructorIngredients';
 
 const initialState = {
@@ -43,13 +44,21 @@ export const inredientsInConstructor = (state = initialState, action) => {
       };
     case SET_TOTAL_PRICE:
       let price = state.constructorIngredients.bun.price * 2 || 0;
-      state.constructorIngredients.other.map(el => {
+      state.constructorIngredients.other.forEach(el => {
         price += el.price;
       });
       return {
         ...state,
         totalPrice: price
-      }
+      };
+    case MOVE_INGREDIENT:
+      return {
+        ...state,
+        constructorIngredients: {
+          ...state.constructorIngredients,
+          other: action.updatedIngredients
+        }
+      };
     default:
       return state;
   };

@@ -5,8 +5,7 @@
 }
 
 .nav {
-  max-width: 1280px;
-  width: 100%;
+  width: 1240px;
   display: grid;
   grid-template-columns: 1fr min-content 1fr;
   grid-template-rows: 1fr;

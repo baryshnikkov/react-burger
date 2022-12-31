@@ -1,11 +1,10 @@
 .content {
   max-width: 1240px;
-  width: 100%;
-  height: calc(100vh - 128px);
+  max-height: calc(100vh - 128px);
   overflow: hidden;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, min-content);
   grid-template-rows: 1fr;
   gap: 40px;
 }

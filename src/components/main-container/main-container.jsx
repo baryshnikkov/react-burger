@@ -4,7 +4,7 @@ import styles from './main-container.module.css'
 
 function MainContainer(props) {
   return (
-    <main className={[styles.content, 'pl-8', 'pr-8'].join(' ')}>
+    <main className={[styles.content].join(' ')}>
       {props.children}
     </main>
   );
