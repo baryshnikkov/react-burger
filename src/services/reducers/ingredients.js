@@ -30,7 +30,8 @@ export const ingredientList = (state = initialState, action) => {
       return {
         ...state,
         ingredientsRequest: false,
-        ingredientsFailed: true
+        ingredientsFailed: true,
+        ingredients: []
       };
     case INCREMENT_INGREDIENT:
       return {
@@ -39,21 +40,21 @@ export const ingredientList = (state = initialState, action) => {
           if (action.sort === 'bun' && action.id === el._id) {
             const newElement = {
               ...el,
-              __v: 1
+              count: 1
             };
             return newElement;
           }
           if (action.sort === 'bun' && el.type === 'bun' && action.id !== el._id) {
             const newElement = {
               ...el,
-              __v: 0
+              count: 0
             };
             return newElement;
           }
           if (action.id === el._id) {
             const newElement = {
               ...el,
-              __v: el.__v + 1
+              count: (el.count || 0) + 1
             };
             return newElement;
           }
@@ -67,7 +68,7 @@ export const ingredientList = (state = initialState, action) => {
           if (action.id.split('?')[0] === el._id) {
             const newElement = {
               ...el,
-              __v: el.__v - 1
+              count: el.count - 1
             };
             return newElement;
           }

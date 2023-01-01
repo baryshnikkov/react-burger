@@ -10,10 +10,13 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getIngredients } from '../../services/actions/ingredients';
 import { DELETE_DATA_ABOUT_INGREDIENT } from '../../services/actions/dataAboutIngredient';
 
+const getListOfIngredients = store => store.ingredients;
+const getDataAboutIngredients = store => store.dataAboutIngredient;
+
 function BurgerIngredients() {
   const [current, setCurrent] = React.useState('buns');
-  const { ingredients } = useSelector(store => store.ingredients);
-  const { ingredientDataModalIsOpened } = useSelector(store => store.dataAboutIngredient);
+  const { ingredients } = useSelector(getListOfIngredients);
+  const { ingredientDataModalIsOpened } = useSelector(getDataAboutIngredients);
   const dispatch = useDispatch();
 
   const container = useRef();
@@ -81,13 +84,13 @@ function BurgerIngredients() {
         </h1>
 
         <div className={styles.tab}>
-          <Tab value="buns" active={current === 'buns'} onClick={(e) => {setTab(e, buns)}}>
+          <Tab value="buns" active={current === 'buns'} onClick={(e) => { setTab(e, buns) }}>
             Булки
           </Tab>
-          <Tab value="sauces" active={current === 'sauces'} onClick={(e) => {setTab(e, sauces)}}>
+          <Tab value="sauces" active={current === 'sauces'} onClick={(e) => { setTab(e, sauces) }}>
             Соусы
           </Tab>
-          <Tab value="fillings" active={current === 'fillings'} onClick={(e) => {setTab(e, fillings)}}>
+          <Tab value="fillings" active={current === 'fillings'} onClick={(e) => { setTab(e, fillings) }}>
             Начинки
           </Tab>
         </div>

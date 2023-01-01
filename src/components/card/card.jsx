@@ -28,7 +28,7 @@ function Card(props) {
 
   return (
     <div className={styles.card} onClickCapture={openIngredientDetails} ref={refDrag} style={{ opacity }}>
-      {Boolean(props.__v) && <Counter count={props.__v} size="default" extraClass="m-1" />}
+      {Boolean(props.count) && <Counter count={props.count} size="default" extraClass="m-1" />}
       <img className={styles.img} src={props.image} alt={props.name} />
       <div className={[styles.price, 'mt-2', 'mb-2'].join(' ')}>
         <p className={['text', 'text_type_digits-default'].join(' ')}>{props.price}</p>

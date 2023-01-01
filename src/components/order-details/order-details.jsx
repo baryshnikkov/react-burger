@@ -5,8 +5,10 @@ import styles from './order-details.module.css';
 
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
+const getOder = store => store.oder;
+
 function OrderDetails() {
-  const { oderNumber } = useSelector(store => store.oder);
+  const { oderNumber } = useSelector(getOder);
 
   return (
     <div className={styles.container}>

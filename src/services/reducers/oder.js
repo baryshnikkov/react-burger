@@ -11,7 +11,7 @@ const initialState = {
   ingredientsOderRequest: false,
   ingredientsOderFailed: false,
   ingredientsOderIsOpened: false,
-  oderNumber: 0
+  oderNumber: null
 };
 
 export const oder = (state = initialState, action) => {
@@ -33,7 +33,8 @@ export const oder = (state = initialState, action) => {
       return {
         ...state,
         ingredientsOderRequest: false,
-        ingredientsOderFailed: true
+        ingredientsOderFailed: true,
+        oderNumber: null
       };
     case GET_ODER_INGREDIENTS:
       return {

@@ -13,9 +13,12 @@ import { CLOSE_MODAL_ODER } from '../../services/actions/oder';
 import { SET_INGREDIENT_FOR_CONSTRUCTOR, SET_TOTAL_PRICE, MOVE_INGREDIENT } from '../../services/actions/constructorIngredients';
 import { INCREMENT_INGREDIENT } from '../../services/actions/ingredients';
 
+const getConstructorIngredients = store => store.constructorIngredients;
+const getOder = store => store.oder;
+
 function BurgerConstructor() {
-  const { constructorIngredients, totalPrice } = useSelector(store => store.constructorIngredients);
-  const { ingredientsOderIsOpened, ingredientsOderRequest } = useSelector(store => store.oder);
+  const { constructorIngredients, totalPrice } = useSelector(getConstructorIngredients);
+  const { ingredientsOderIsOpened, ingredientsOderRequest } = useSelector(getOder);
   const dispatch = useDispatch();
 
   const closeOrderDetails = () => {
