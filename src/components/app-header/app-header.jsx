@@ -5,11 +5,11 @@ import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-dev
 
 function AppHeader() {
   return (
-    <header className={[styles.header, 'p-4'].join(' ')}>
+    <header className={[styles.header, 'pt-4', 'pb-4'].join(' ')}>
       <nav className={styles.nav}>
 
         <div className={styles.menu}>
-          <div className={[styles.link, 'pt-4', 'pr-5', 'pb-4', 'pl-5'].join(' ')}>
+          <div className={[styles.link, 'pt-4', 'pr-5', 'pb-4'].join(' ')}>
             <BurgerIcon type="primary" />
             <p className="text text_type_main-default">
               Конструктор
@@ -27,7 +27,7 @@ function AppHeader() {
           <Logo />
         </div>
 
-        <div className={[styles.link, 'pt-4', 'pr-5', 'pb-4', 'pl-5'].join(' ')}>
+        <div className={[styles.link, 'pt-4', 'pb-4', 'pl-5'].join(' ')}>
           <ProfileIcon type="secondary" />
           <p className="text text_type_main-default text_color_inactive">
             Личный кабинет

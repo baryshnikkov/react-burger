@@ -1,16 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from './order-details.module.css';
 
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ProductsForConstructorContext } from '../../services/burger-constructor-context';
+
+const getOder = store => store.oder;
 
 function OrderDetails() {
-  const { productsForConstructorState } = React.useContext(ProductsForConstructorContext);
+  const { oderNumber } = useSelector(getOder);
 
   return (
     <div className={styles.container}>
-      <p className="text text_type_digits-large">{productsForConstructorState.oderNumber}</p>
+      <p className="text text_type_digits-large">{oderNumber}</p>
       <p className={['text', 'text_type_main-default', 'mt-8'].join(' ')}>
         идентификатор заказа
       </p>
