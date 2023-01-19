@@ -1,12 +1,11 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useDrag, useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 
 import styles from './ingredient-card.module.css';
-
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { DELETE_INGREDIENT_FOR_CONSTRUCTOR, SET_TOTAL_PRICE } from '../../../services/actions/constructorIngredients';
-import { DECREMENT_INGREDIENT } from '../../../services/actions/ingredients';
+import { DELETE_INGREDIENT_FOR_CONSTRUCTOR, SET_TOTAL_PRICE } from '../../../../services/actions/constructorIngredients';
+import { DECREMENT_INGREDIENT } from '../../../../services/actions/ingredients';
 
 function IngredientCard(props) {
   const { index, moveIngredient, ...ingredient } = props;
@@ -59,10 +58,10 @@ function IngredientCard(props) {
   const ref = useRef(null)
   const dragDropRef = dragMoveRef(dropMoveRef(ref))
 
-  const className = `${styles.card} ${isDragging ? styles.drag : ''}`
+  const card = `${styles.card} ${isDragging ? styles.drag : ''}`
 
   return (
-    <div className={className} ref={dragDropRef}>
+    <div className={card} ref={dragDropRef}>
       <DragIcon type="primary" />
       <ConstructorElement
         text={ingredient.name}

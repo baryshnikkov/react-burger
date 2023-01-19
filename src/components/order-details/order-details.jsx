@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 import styles from './order-details.module.css';
@@ -13,15 +12,19 @@ function OrderDetails() {
   return (
     <div className={styles.container}>
       <p className="text text_type_digits-large">{oderNumber}</p>
-      <p className={['text', 'text_type_main-default', 'mt-8'].join(' ')}>
+
+      <p className={'text text_type_main-default mt-8'}>
         идентификатор заказа
       </p>
-      <div className={['mt-15', 'mb-15'].join(' ')}>
+
+      <div className={'mt-15 mb-15'}>
         <CheckMarkIcon type="primary" />
       </div>
-      <p className={['text', 'text_type_main-small', 'mb-2'].join(' ')}>
+
+      <p className={'text text_type_main-small mb-2'}>
         Ваш заказ начали готовить
       </p>
+
       <p className="text text_type_main-small text_color_inactive">
         Дождитесь готовности на орбитальной станции
       </p>

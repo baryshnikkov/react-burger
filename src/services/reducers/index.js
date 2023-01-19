@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import { ingredientList } from './ingredients';
-import { inredientsInConstructor } from './constructorIngredients';
+import { ingredientList } from './ingredientList';
+import { constructorIngredients } from './constructorIngredients';
 import { dataAboutIngredient } from './dataAboutIngredient';
 import { oder } from './oder';
 
 export const rootReducer = combineReducers({
-  ingredients: ingredientList,
-  constructorIngredients: inredientsInConstructor,
+  ingredientList,
+  constructorIngredients,
   dataAboutIngredient,
   oder
 });

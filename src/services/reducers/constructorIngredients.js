@@ -13,9 +13,9 @@ const initialState = {
   totalPrice: 0
 };
 
-export const inredientsInConstructor = (state = initialState, action) => {
+export const constructorIngredients = (state = initialState, action) => {
   switch (action.type) {
-    case SET_INGREDIENT_FOR_CONSTRUCTOR: {
+    case SET_INGREDIENT_FOR_CONSTRUCTOR:
       if (action.data.type === 'bun') {
         return {
           ...state,
@@ -33,7 +33,6 @@ export const inredientsInConstructor = (state = initialState, action) => {
           }
         };
       }
-    };
     case DELETE_INGREDIENT_FOR_CONSTRUCTOR:
       return {
         ...state,

@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './burger-ingredients.module.css';
 
-import Cards from '../cards/cards';
-import Modal from '../modal/modal';
+import Cards from './components/cards/cards';
+import ModalContainer from '../modal-container/modal-container';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getIngredients } from '../../services/actions/ingredients';
 import { DELETE_DATA_ABOUT_INGREDIENT } from '../../services/actions/dataAboutIngredient';
 
-const getListOfIngredients = store => store.ingredients;
+const getListOfIngredients = store => store.ingredientList;
 const getDataAboutIngredients = store => store.dataAboutIngredient;
 
 function BurgerIngredients() {
@@ -18,7 +18,6 @@ function BurgerIngredients() {
   const { ingredients } = useSelector(getListOfIngredients);
   const { ingredientDataModalIsOpened } = useSelector(getDataAboutIngredients);
   const dispatch = useDispatch();
-
   const container = useRef();
   const buns = useRef();
   const sauces = useRef();
@@ -60,10 +59,6 @@ function BurgerIngredients() {
     element.current.scrollIntoView();
   };
 
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, []);
-
   const handleScroll = () => {
     if (container.current.getBoundingClientRect().top + 1 > buns.current.getBoundingClientRect().top) {
       setCurrent('buns');
@@ -76,10 +71,14 @@ function BurgerIngredients() {
     }
   };
 
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
+
   return (
     <>
       <div className={styles.container}>
-        <h1 className={['text', 'text_type_main-large', 'mt-10', 'mb-5'].join(' ')}>
+        <h1 className={`${styles.title} text text_type_main-large`}>
           Соберите бургер
         </h1>
 
@@ -96,29 +95,18 @@ function BurgerIngredients() {
         </div>
 
         <div className={styles.ingredients} ref={container} onScroll={handleScroll}>
-          <h2 className={['text', 'text_type_main-medium', 'mt-10', 'mb-6'].join(' ')} ref={buns}>
-            Булки
-          </h2>
-          <Cards content={filteredIngredientsByType.buns} />
-
-          <h2 className={['text', 'text_type_main-medium', 'mt-10', 'mb-6'].join(' ')} ref={sauces}>
-            Соусы
-          </h2>
-          <Cards content={filteredIngredientsByType.sauces} />
-
-          <h2 className={['text', 'text_type_main-medium', 'mt-10', 'mb-6'].join(' ')} ref={fillings}>
-            Начинки
-          </h2>
-          <Cards content={filteredIngredientsByType.fillings} />
+          <Cards title='Булки' content={filteredIngredientsByType.buns} ref={buns} />
+          <Cards title='Соусы' content={filteredIngredientsByType.sauces} ref={sauces} />
+          <Cards title='Начинки' content={filteredIngredientsByType.fillings} ref={fillings} />
         </div>
       </div>
 
       {
         ingredientDataModalIsOpened
         &&
-        <Modal closeModal={closeIngredientDetails}>
+        <ModalContainer closeModal={closeIngredientDetails}>
           <IngredientDetails />
-        </Modal>
+        </ModalContainer>
       }
     </>
   );
