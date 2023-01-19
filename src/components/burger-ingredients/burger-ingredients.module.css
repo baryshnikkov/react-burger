@@ -1,5 +1,10 @@
 .container {
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.title {
+  margin: 40px 0 20px;
 }
 
 .ingredients {

@@ -1,14 +1,13 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
 import styles from './burger-constructor.module.css';
-
-import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import Modal from '../modal/modal';
-import IngredientCard from './components/ingredient-card';
+import ModalContainer from '../modal-container/modal-container';
+import IngredientCard from './components/ingredient-card/ingredient-card';
 import OrderDetails from '../order-details/order-details';
-import { setOder } from '../../services/actions/oder';
+import BunCard from './components/bun-card/bun-card';
+import Oder from './components/oder/oder';
 import { CLOSE_MODAL_ODER } from '../../services/actions/oder';
 import { SET_INGREDIENT_FOR_CONSTRUCTOR, SET_TOTAL_PRICE, MOVE_INGREDIENT } from '../../services/actions/constructorIngredients';
 import { INCREMENT_INGREDIENT } from '../../services/actions/ingredients';
@@ -17,18 +16,14 @@ const getConstructorIngredients = store => store.constructorIngredients;
 const getOder = store => store.oder;
 
 function BurgerConstructor() {
-  const { constructorIngredients, totalPrice } = useSelector(getConstructorIngredients);
-  const { ingredientsOderIsOpened, ingredientsOderRequest } = useSelector(getOder);
+  const { constructorIngredients } = useSelector(getConstructorIngredients);
+  const { ingredientsOderIsOpened } = useSelector(getOder);
   const dispatch = useDispatch();
 
   const closeOrderDetails = () => {
     dispatch({
       type: CLOSE_MODAL_ODER
     });
-  };
-
-  const openOrderDetails = () => {
-    dispatch(setOder(constructorIngredients));
   };
 
   const [{ isHover }, dropTarget] = useDrop({
@@ -69,28 +64,36 @@ function BurgerConstructor() {
     [constructorIngredients, dispatch],
   );
 
-  const className = `${styles.container} mt-25 ${isHover ? styles.drop : ''}`;
+  const container = `${styles.container} mt-25 ${isHover ? styles.drop : ''}`;
+
+  const displayOfBunIfAvailable = (type) => {
+    return (
+      Boolean(Object.keys(constructorIngredients.bun).length) &&
+      <BunCard content={constructorIngredients.bun} type={type} />
+    );
+  }
+
+  const displayPromptWhileThereAreNoSelectedIngredients = (text) => {
+    return (
+      (
+        !Boolean(Object.keys(constructorIngredients.bun).length) ||
+        !Boolean(constructorIngredients.other.length)
+      )
+      &&
+      <p className={`${styles.text} text text_type_main-medium`}>
+        {text}
+      </p>
+    );
+  };
 
   return (
     <>
-      <div className={className} ref={dropTarget}>
-        {Boolean(Object.keys(constructorIngredients.bun).length) &&
-          <div className='pr-5'>
-            <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={constructorIngredients.bun['name'] + ' (верх)'}
-              price={constructorIngredients.bun['price']}
-              thumbnail={constructorIngredients.bun['image']}
-            />
-          </div>}
+      <div className={container} ref={dropTarget}>
+        {displayOfBunIfAvailable('top')}
 
-        {(!Boolean(Object.keys(constructorIngredients.bun).length) ||
-          !Boolean(constructorIngredients.other.length)) &&
-          <p className={['text', 'text_type_main-medium', styles.text].join(' ')}>
-            Пожалуйста, перенесите сюда булку, соусы и начинку для создания заказа
-          </p>
-        }
+        {displayPromptWhileThereAreNoSelectedIngredients(
+          'Пожалуйста, перенесите сюда булку, соусы и начинку для создания заказа'
+        )}
 
         <div className={styles.ingredients}>
           {constructorIngredients.other.map((el, index) => (
@@ -98,35 +101,17 @@ function BurgerConstructor() {
           ))}
         </div>
 
-        {Boolean(Object.keys(constructorIngredients.bun).length) &&
-          <div className='pr-5'>
-            <ConstructorElement
-              type="bottom"
-              isLocked={true}
-              text={constructorIngredients.bun['name'] + ' (низ)'}
-              price={constructorIngredients.bun['price']}
-              thumbnail={constructorIngredients.bun['image']}
-            />
-          </div>}
+        {displayOfBunIfAvailable('bottom')}
 
-        <div className={styles.oder}>
-          <div className={styles.price}>
-            <p className="text text_type_digits-medium">{totalPrice}</p>
-            <CurrencyIcon type="primary" />
-          </div>
-          <Button id="checkout" htmlType="button" type="primary" size="medium" onClick={openOrderDetails}>
-            {ingredientsOderRequest && 'Загрузка...'}
-            {!ingredientsOderRequest && 'Оформить заказ'}
-          </Button>
-        </div>
+        <Oder />
       </div>
 
       {
         ingredientsOderIsOpened
         &&
-        <Modal closeModal={closeOrderDetails}>
+        <ModalContainer closeModal={closeOrderDetails}>
           <OrderDetails />
-        </Modal>
+        </ModalContainer>
       }
     </>
   );

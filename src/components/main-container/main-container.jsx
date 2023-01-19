@@ -1,11 +1,9 @@
-import React from 'react';
-
 import styles from './main-container.module.css'
 
-function MainContainer(props) {
+function MainContainer({children}) {
   return (
-    <main className={[styles.content].join(' ')}>
-      {props.children}
+    <main className={styles.content}>
+      {children}
     </main>
   );
 }

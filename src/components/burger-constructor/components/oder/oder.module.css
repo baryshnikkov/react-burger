@@ -1,0 +1,12 @@
+.oder {
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

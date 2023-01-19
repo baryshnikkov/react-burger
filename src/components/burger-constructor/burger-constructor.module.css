@@ -36,19 +36,6 @@
   background-color: #2F2F37;
 }
 
-.oder {
-  display: flex;
-  justify-content: flex-end;
-  gap: 40px;
-  margin-top: 40px;
-}
-
-.price {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .text {
   text-align: center;
   margin-top: 25px;

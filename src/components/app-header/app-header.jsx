@@ -1,38 +1,21 @@
-import React from 'react';
-import styles from './app.module.css';
-
-import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import styles from './app-header.module.css';
+import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import NavigationLink from './components/navigation-link';
 
 function AppHeader() {
   return (
-    <header className={[styles.header, 'pt-4', 'pb-4'].join(' ')}>
+    <header className={styles.header}>
       <nav className={styles.nav}>
 
         <div className={styles.menu}>
-          <div className={[styles.link, 'pt-4', 'pr-5', 'pb-4'].join(' ')}>
-            <BurgerIcon type="primary" />
-            <p className="text text_type_main-default">
-              Конструктор
-            </p>
-          </div>
-          <div className={[styles.link, 'pt-4', 'pr-5', 'pb-4', 'pl-5'].join(' ')}>
-            <ListIcon type="secondary" />
-            <p className="text text_type_main-default text_color_inactive">
-              Лента заказов
-            </p>
-          </div>
+          <NavigationLink Icon={BurgerIcon} text='Конструктор' isActive={true} />
+
+          <NavigationLink Icon={ListIcon} text='Лента заказов' isActive={false} />
         </div>
 
-        <div className={styles.link}>
-          <Logo />
-        </div>
+        <div className={styles.logo}> <Logo /> </div>
 
-        <div className={[styles.link, 'pt-4', 'pb-4', 'pl-5'].join(' ')}>
-          <ProfileIcon type="secondary" />
-          <p className="text text_type_main-default text_color_inactive">
-            Личный кабинет
-          </p>
-        </div>
+        <NavigationLink Icon={ProfileIcon} text='Личный кабинет' isActive={false} />
 
       </nav>
     </header>
