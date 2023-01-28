@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './navigation-link.module.css';
 
-function NavigationLink({ Icon, text, isActive }) {
+function NavigationLink({ Icon, text, pathName }) {
+  const pathLocation = useLocation();
+  const navigate = useNavigate();
 
   return (
-    <div className={styles.link}>
-      <Icon type={isActive ? 'primary' : 'secondary'} />
+    <div className={styles.link} onClick={() => navigate(`${pathName}`)}>
+      <Icon type={pathName === pathLocation.pathname ? 'primary' : 'secondary'} />
 
-      <p className={`text text_type_main-default ${isActive ? '' : 'text_color_inactive'}`}>
+      <p className={`text text_type_main-default ${pathName === pathLocation.pathname ? '' : 'text_color_inactive'}`}>
         {text}
       </p>
     </div>
@@ -20,5 +23,5 @@ export default NavigationLink;
 NavigationLink.propTypes = {
   Icon: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired
+  pathName: PropTypes.string.isRequired
 };

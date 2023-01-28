@@ -8,14 +8,14 @@ function AppHeader() {
       <nav className={styles.nav}>
 
         <div className={styles.menu}>
-          <NavigationLink Icon={BurgerIcon} text='Конструктор' isActive={true} />
+          <NavigationLink Icon={BurgerIcon} text='Конструктор' pathName={'/'} />
 
-          <NavigationLink Icon={ListIcon} text='Лента заказов' isActive={false} />
+          <NavigationLink Icon={ListIcon} text='Лента заказов' pathName={'/empty'} />
         </div>
 
         <div className={styles.logo}> <Logo /> </div>
 
-        <NavigationLink Icon={ProfileIcon} text='Личный кабинет' isActive={false} />
+        <NavigationLink Icon={ProfileIcon} text='Личный кабинет' pathName={'/profile'} />
 
       </nav>
     </header>

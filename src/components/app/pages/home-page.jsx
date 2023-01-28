@@ -4,7 +4,6 @@ import BurgerConstructor from "../../burger-constructor/burger-constructor";
 import BurgerIngredients from "../../burger-ingredients/burger-ingredients";
 import MainContainer from "../../main-container/main-container";
 
-
 const HomePage = () => {
   return (
     <MainContainer>

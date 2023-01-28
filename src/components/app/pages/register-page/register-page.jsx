@@ -1,15 +1,19 @@
 import styles from './register-page.module.css';
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate } from 'react-router-dom';
+import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useState } from 'react';
+import { registerUser } from '../../../../services/actions/userProcessing';
+import { useDispatch, useSelector } from 'react-redux';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const dispath = useDispatch();
+  const { isRegisteredRequest, isLoginSuccess } = useSelector(store => store.userProcessing)
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [nameValue, setNameValue] = useState('');
 
-  return (
+  const page = (
     <div className={`${styles.container} mt-30`}>
       <p className="text text_type_main-medium">
         Регистрация
@@ -32,17 +36,15 @@ const RegisterPage = () => {
           onChange={e => setEmailValue(e.target.value)}
           name={'email'}
         />
-        <Input
-          type={'password'}
+        <PasswordInput
           placeholder={'Пароль'}
-          icon={'HideIcon'}
           size={'default'}
           value={passwordValue}
           onChange={e => setPasswordValue(e.target.value)}
           name={'password'}
         />
-        <Button htmlType="button" type="primary" size="medium">
-          Зарегистрироваться
+        <Button htmlType="button" type="primary" size="medium" onClick={(() => dispath(registerUser(emailValue, passwordValue, nameValue)))}>
+          {isRegisteredRequest ? 'Регистрация...' : 'Зарегистрироваться'}
         </Button>
       </form>
 
@@ -50,6 +52,10 @@ const RegisterPage = () => {
         Уже зарегистрированы? <span className={styles.link} onClick={() => navigate('/login')}>Войти</span>
       </p>
     </div>
+  );
+
+  return (
+    isLoginSuccess ? <Navigate to='/' replace /> : page
   );
 };
 

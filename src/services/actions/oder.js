@@ -1,4 +1,4 @@
-import { checkResponse } from '../../utils/utils';
+import { BASE_URL, checkResponse, ENDPOINT } from '../../utils/api';
 
 export const GET_ODER_REQUEST = 'GER_ODER_REQUEST';
 export const GET_ODER_SUCCESS = 'GET_ODER_SUCCESS';
@@ -23,7 +23,7 @@ export const setOder = (constructorIngredients) => {
       ingredients: arrOder
     });
 
-    fetch('https://norma.nomoreparties.space/api/orders', {
+    fetch(BASE_URL + ENDPOINT.ORDERS, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

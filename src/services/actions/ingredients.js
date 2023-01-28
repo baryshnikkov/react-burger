@@ -1,4 +1,4 @@
-import { checkResponse } from '../../utils/utils';
+import { BASE_URL, checkResponse, ENDPOINT } from '../../utils/api';
 
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS__SUCCESS';
@@ -11,7 +11,7 @@ export const getIngredients = () => (dispatch) => {
     type: GET_INGREDIENTS_REQUEST
   });
 
-  fetch('https://norma.nomoreparties.space/api/ingredients')
+  fetch(BASE_URL + ENDPOINT.INGREDIENTS)
     .then(res => checkResponse(res))
     .then(data => {
       if (data && data.success) {

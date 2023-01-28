@@ -1,15 +1,17 @@
 import styles from './forgot-password-page.module.css';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setEmail, fetchForgotPassword } from '../../../../services/actions/resetPassword';
+import { useState } from 'react';
+import { forgotPassword } from '../../../../services/actions/userProcessing';
 
 const ForgotPasswordPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { email, request } = useSelector(store => store.resetPassword);
+  const { forgotPasswordRequest, isLoginSuccess } = useSelector(store => store.userProcessing);
+  const [emailValue, setEmailValue] = useState('');
 
-  return (
+  const page = (
     <div className={`${styles.container} mt-30`}>
       <p className="text text_type_main-medium">
         Восстановление пароля
@@ -20,12 +22,12 @@ const ForgotPasswordPage = () => {
           type={'email'}
           placeholder={'Укажите e-mail'}
           size={'default'}
-          value={email}
-          onChange={e => dispatch(setEmail(e.target.value))}
+          value={emailValue}
+          onChange={e => setEmailValue(e.target.value)}
           name={'email'}
         />
-        <Button htmlType="button" type="primary" size="medium" onClick={() => dispatch(fetchForgotPassword(email))}>
-          {request ? 'Загрузка...' : 'Восстановить'}
+        <Button htmlType="button" type="primary" size="medium" onClick={() => dispatch(forgotPassword(emailValue))}>
+          {forgotPasswordRequest ? 'Загрузка...' : 'Восстановить'}
         </Button>
       </form>
 
@@ -33,6 +35,10 @@ const ForgotPasswordPage = () => {
         Вспомнили пароль? <span className={styles.link} onClick={() => navigate('/login')}>Войти</span>
       </p>
     </div>
+  );
+
+  return (
+    isLoginSuccess ? <Navigate to='/' replace /> : page
   );
 };
 
