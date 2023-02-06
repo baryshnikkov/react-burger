@@ -1,11 +1,24 @@
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import styles from './ingredient-details.module.css';
+import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
+import {DELETE_DATA_ABOUT_INGREDIENT} from "../../services/actions/dataAboutIngredient";
 
 const getAboutIngredient = store => store.dataAboutIngredient;
 
 function IngredientDetails() {
   const { aboutIngredients } = useSelector(getAboutIngredient);
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      dispatch({
+        type: DELETE_DATA_ABOUT_INGREDIENT
+      });
+    }
+  }, []);
 
   const displayEnergyValue = (type, value) => {
     return (

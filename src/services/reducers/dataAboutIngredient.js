@@ -13,7 +13,7 @@ export const dataAboutIngredient = (state = initialState, action) => {
     case GET_DATA_ABOUT_INGREDIENT:
       return {
         ...state,
-        aboutIngredients: action.data, //TODO: возсожно другой путь
+        aboutIngredients: action.data,
         ingredientDataModalIsOpened: true
       };
     case DELETE_DATA_ABOUT_INGREDIENT:

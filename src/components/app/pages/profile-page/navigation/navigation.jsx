@@ -1,7 +1,11 @@
 import styles from './navigation.module.css';
 import { NavLink } from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {LOGOUT_USER} from "../../../../../services/actions/userProcessing";
 
 const Navigation = () => {
+  const dispath = useDispatch();
+
   const link = {
     textDecoration: 'none',
     cursor: 'pointer',
@@ -14,6 +18,12 @@ const Navigation = () => {
   const linkInactive = {
     ...link,
     color: '#8585AD'
+  };
+
+  const handleClickExit = () => {
+    dispath({
+      type: LOGOUT_USER
+    });
   };
 
   return (
@@ -35,7 +45,7 @@ const Navigation = () => {
         >
           История заказов
         </NavLink>
-        <div style={linkInactive}>
+        <div style={linkInactive} onClick={handleClickExit}>
           Выход
         </div>
       </nav>

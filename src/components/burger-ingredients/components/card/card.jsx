@@ -1,19 +1,15 @@
-import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import PropTypes from 'prop-types';
 
 import styles from './card.module.css';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import { GET_DATA_ABOUT_INGREDIENT } from '../../../../services/actions/dataAboutIngredient';
+import {useNavigate} from "react-router-dom";
 
 function Card(props) {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const openIngredientDetails = () => {
-    dispatch({
-      type: GET_DATA_ABOUT_INGREDIENT,
-      data: props
-    });
+    navigate(`ingredients/${props['_id']}`, {state: {ingredient: props, background: 'home'}});
   };
 
   const [{ opacity }, refDrag] = useDrag({

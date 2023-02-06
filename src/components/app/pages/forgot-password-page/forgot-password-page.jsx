@@ -26,7 +26,10 @@ const ForgotPasswordPage = () => {
           onChange={e => setEmailValue(e.target.value)}
           name={'email'}
         />
-        <Button htmlType="button" type="primary" size="medium" onClick={() => dispatch(forgotPassword(emailValue))}>
+        <Button htmlType="button" type="primary" size="medium" onClick={() => {
+          dispatch(forgotPassword(emailValue));
+          navigate('/reset-password', {replace: true});
+        }}>
           {forgotPasswordRequest ? 'Загрузка...' : 'Восстановить'}
         </Button>
       </form>

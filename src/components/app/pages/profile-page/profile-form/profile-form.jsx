@@ -1,13 +1,15 @@
 import styles from './profile-form.module.css';
-import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useEffect, useState } from 'react';
-import { getCookie } from '../../../../../utils/utils';
-import { BASE_URL, checkResponse, ENDPOINT } from '../../../../../utils/api';
+import {PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
+import {useEffect, useState} from 'react';
+import {getCookie} from '../../../../../utils/utils';
+import {BASE_URL, checkResponse, ENDPOINT} from '../../../../../utils/api';
+import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
 const ProfileForm = () => {
   const [nameValue, setNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [isChangeValue, setIsChangeValue] = useState(false);
 
   const getUserData = () => {
     fetch(BASE_URL + ENDPOINT.DATA_USER, {
@@ -21,6 +23,7 @@ const ProfileForm = () => {
         setNameValue(data.user.name);
         setEmailValue(data.user.email);
         setPasswordValue('');
+        setIsChangeValue(false);
       })
       .catch((error) => {
         console.log(`Ошибка ${error}`);
@@ -32,7 +35,10 @@ const ProfileForm = () => {
   }, []);
 
   const handleClickSave = () => {
-    const values = passwordValue ? { name: nameValue, email: emailValue, password: passwordValue } : { name: nameValue, email: emailValue }
+    const values = passwordValue ? {name: nameValue, email: emailValue, password: passwordValue} : {
+      name: nameValue,
+      email: emailValue
+    }
 
     fetch(BASE_URL + ENDPOINT.DATA_USER, {
       method: 'PATCH',
@@ -49,6 +55,7 @@ const ProfileForm = () => {
         setNameValue(data.user.name);
         setEmailValue(data.user.email);
         setPasswordValue('');
+        setIsChangeValue(false);
       })
       .catch((error) => {
         console.log(`Ошибка ${error}`);
@@ -62,7 +69,10 @@ const ProfileForm = () => {
         placeholder={'Имя'}
         type={'text'}
         error={false}
-        onChange={(e) => { setNameValue(e.target.value) }}
+        onChange={(e) => {
+          setNameValue(e.target.value)
+          setIsChangeValue(true);
+        }}
         value={nameValue}
         name={'name'}
         icon="EditIcon"
@@ -72,21 +82,34 @@ const ProfileForm = () => {
         placeholder={'Логин'}
         type={'text'}
         error={false}
-        onChange={(e) => { setEmailValue(e.target.value) }}
+        onChange={(e) => {
+          setEmailValue(e.target.value)
+          setIsChangeValue(true);
+        }}
         value={emailValue}
         name={'email'}
         icon="EditIcon"
       />
 
       <PasswordInput
-        onChange={(e) => { setPasswordValue(e.target.value) }}
+        onChange={(e) => {
+          setPasswordValue(e.target.value)
+          setIsChangeValue(true);
+        }}
         value={passwordValue}
         name={'password'}
         icon="EditIcon"
       />
 
-      <button onClick={handleClickSave}>Save</button>
-      <button onClick={getUserData}>Reject</button>
+      {isChangeValue &&
+        <div className={styles.buttons}>
+          <Button htmlType="button" type="secondary" size="small" onClick={getUserData}>
+            Отмена
+          </Button>
+          <Button htmlType="button" type="primary" size="small" extraClass="ml-2" onClick={handleClickSave}>
+            Сохранить
+          </Button>
+        </div>}
     </div>
   );
 };
