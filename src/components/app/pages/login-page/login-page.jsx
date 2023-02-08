@@ -1,23 +1,24 @@
 import styles from './login-page.module.css';
-import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate, Navigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../../../services/actions/userProcessing';
+import {Input, Button, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
+import {useNavigate} from 'react-router-dom';
+import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {loginUser} from '../../../../services/actions/userProcessing';
+
+const getUserData = store => store.userProcessing;
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoginRequest, isLoginSuccess } = useSelector(store => store.userProcessing);
+  const {isLoginRequest} = useSelector(getUserData);
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
   const authorizationUser = () => {
-    dispatch(loginUser(emailValue, passwordValue));
-    navigate('/', { replace: true })
+    dispatch(loginUser(emailValue, passwordValue, () => {navigate('/', {replace: true})}));
   };
 
-  const page = (
+  return (
     <div className={`${styles.container} mt-30`}>
       <p className="text text_type_main-medium">
         Вход
@@ -45,17 +46,15 @@ const LoginPage = () => {
       </form>
 
       <p className="text text_type_main-default text_color_inactive">
-        Вы – новый пользователь? <span className={styles.link} onClick={() => navigate('/register')}>Зарегистрироваться</span>
+        Вы – новый пользователь? <span className={styles.link}
+                                       onClick={() => navigate('/register')}>Зарегистрироваться</span>
       </p>
 
       <p className="text text_type_main-default text_color_inactive">
-        Забыли пароль? <span className={styles.link} onClick={() => navigate('/forgot-password')}>Восстановить пароль</span>
+        Забыли пароль? <span className={styles.link}
+                             onClick={() => navigate('/forgot-password')}>Восстановить пароль</span>
       </p>
     </div>
-  );
-
-  return (
-    isLoginSuccess ? <Navigate to='/' replace /> : page
   );
 };
 

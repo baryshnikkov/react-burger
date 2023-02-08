@@ -1,19 +1,21 @@
 import styles from './register-page.module.css';
-import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate, Navigate } from 'react-router-dom';
-import { useState } from 'react';
-import { registerUser } from '../../../../services/actions/userProcessing';
-import { useDispatch, useSelector } from 'react-redux';
+import {Input, Button, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
+import {useNavigate} from 'react-router-dom';
+import {useState} from 'react';
+import {registerUser} from '../../../../services/actions/userProcessing';
+import {useDispatch, useSelector} from 'react-redux';
+
+const getUserData = store => store.userProcessing;
 
 const RegisterPage = () => {
   const navigate = useNavigate();
   const dispath = useDispatch();
-  const { isRegisteredRequest, isLoginSuccess } = useSelector(store => store.userProcessing)
+  const {isRegisteredRequest} = useSelector(getUserData);
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [nameValue, setNameValue] = useState('');
 
-  const page = (
+  return (
     <div className={`${styles.container} mt-30`}>
       <p className="text text_type_main-medium">
         Регистрация
@@ -43,7 +45,8 @@ const RegisterPage = () => {
           onChange={e => setPasswordValue(e.target.value)}
           name={'password'}
         />
-        <Button htmlType="button" type="primary" size="medium" onClick={(() => dispath(registerUser(emailValue, passwordValue, nameValue)))}>
+        <Button htmlType="button" type="primary" size="medium"
+                onClick={(() => dispath(registerUser(emailValue, passwordValue, nameValue)))}>
           {isRegisteredRequest ? 'Регистрация...' : 'Зарегистрироваться'}
         </Button>
       </form>
@@ -52,10 +55,6 @@ const RegisterPage = () => {
         Уже зарегистрированы? <span className={styles.link} onClick={() => navigate('/login')}>Войти</span>
       </p>
     </div>
-  );
-
-  return (
-    isLoginSuccess ? <Navigate to='/' replace /> : page
   );
 };
 

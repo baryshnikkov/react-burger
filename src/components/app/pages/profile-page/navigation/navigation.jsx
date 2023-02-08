@@ -1,7 +1,7 @@
 import styles from './navigation.module.css';
 import { NavLink } from 'react-router-dom';
 import {useDispatch} from "react-redux";
-import {LOGOUT_USER} from "../../../../../services/actions/userProcessing";
+import {logoutUser} from "../../../../../services/actions/userProcessing";
 
 const Navigation = () => {
   const dispath = useDispatch();
@@ -21,9 +21,7 @@ const Navigation = () => {
   };
 
   const handleClickExit = () => {
-    dispath({
-      type: LOGOUT_USER
-    });
+    dispath(logoutUser(localStorage.getItem('refreshToken')));
   };
 
   return (

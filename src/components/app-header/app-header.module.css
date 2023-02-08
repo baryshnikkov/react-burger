@@ -24,3 +24,15 @@
 .logo {
   cursor: pointer;
 }
+
+.link {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  padding: 16px 20px;
+}
+
+.link:last-child {
+  justify-self: flex-end;
+}
+

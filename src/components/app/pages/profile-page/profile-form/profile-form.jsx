@@ -4,12 +4,15 @@ import {useEffect, useState} from 'react';
 import {getCookie} from '../../../../../utils/utils';
 import {BASE_URL, checkResponse, ENDPOINT} from '../../../../../utils/api';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
+import {setUserData, updateToken} from "../../../../../services/actions/userProcessing";
+import {useDispatch} from "react-redux";
 
 const ProfileForm = () => {
   const [nameValue, setNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [isChangeValue, setIsChangeValue] = useState(false);
+  const dispatch = useDispatch();
 
   const getUserData = () => {
     fetch(BASE_URL + ENDPOINT.DATA_USER, {
@@ -40,18 +43,24 @@ const ProfileForm = () => {
       email: emailValue
     }
 
-    fetch(BASE_URL + ENDPOINT.DATA_USER, {
-      method: 'PATCH',
-      headers: {
-        "Content-Type": "application/json",
-        authorization: getCookie('accessToken')
-      },
-      body: JSON.stringify({
-        ...values
-      })
-    })
-      .then(res => checkResponse(res))
+    setUserData(values)
+      .then(res => res.json())
       .then((data) => {
+        if (data.message === 'jwt expired' || data.message === 'jwt malformed') {
+          dispatch(updateToken(localStorage.getItem('refreshToken'), () => {
+            setUserData(values)
+              .then(res => res.json())
+              .then((data) => {
+                setNameValue(data.user.name);
+                setEmailValue(data.user.email);
+                setPasswordValue('');
+                setIsChangeValue(false);
+              })
+              .catch((error) => {
+                console.log(`Ошибка ${error}`);
+              });
+          }));
+        }
         setNameValue(data.user.name);
         setEmailValue(data.user.email);
         setPasswordValue('');

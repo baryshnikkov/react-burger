@@ -1,14 +1,16 @@
 import styles from './reset-password-page.module.css';
-import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useNavigate, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { resetPassword } from '../../../../services/actions/userProcessing';
+import {Input, PasswordInput, Button} from '@ya.praktikum/react-developer-burger-ui-components';
+import {useNavigate, Navigate} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {useState} from 'react';
+import {resetPassword} from '../../../../services/actions/userProcessing';
+
+const getUserData = store => store.userProcessing;
 
 const ResetPasswordPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { resetPasswordRequest, isLoginSuccess, forgotPasswordSuccess } = useSelector(store => store.userProcessing);
+  const {resetPasswordRequest, forgotPasswordSuccess} = useSelector(getUserData);
   const [passwordValue, setPasswordValue] = useState('');
   const [tokenValue, setTokenValue] = useState('');
 
@@ -33,7 +35,8 @@ const ResetPasswordPage = () => {
           onChange={e => setTokenValue(e.target.value)}
           name={'name'}
         />
-        <Button htmlType="button" type="primary" size="medium" onClick={() => dispatch(resetPassword(passwordValue, tokenValue))}>
+        <Button htmlType="button" type="primary" size="medium"
+                onClick={() => dispatch(resetPassword(passwordValue, tokenValue, () => navigate('/', {replace: true})))}>
           {resetPasswordRequest ? 'Загрузка...' : 'Сохранить'}
         </Button>
       </form>
@@ -45,8 +48,7 @@ const ResetPasswordPage = () => {
   );
 
   return (
-    isLoginSuccess ? <Navigate to='/' replace /> :
-      forgotPasswordSuccess ? page : <Navigate to='/forgot-password' replace />
+    forgotPasswordSuccess ? page : <Navigate to='/forgot-password' replace/>
   );
 };
 

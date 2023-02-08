@@ -7,6 +7,8 @@ function NavigationLink({ Icon, text, pathName }) {
   const pathLocation = useLocation();
   const navigate = useNavigate();
 
+  console.log(pathLocation);
+
   return (
     <div className={styles.link} onClick={() => navigate(`${pathName}`)}>
       <Icon type={pathName === pathLocation.pathname ? 'primary' : 'secondary'} />

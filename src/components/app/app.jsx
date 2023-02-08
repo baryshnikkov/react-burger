@@ -12,25 +12,26 @@ import ProfilePage from './pages/profile-page/profile-page';
 import ProfileForm from './pages/profile-page/profile-form/profile-form';
 import ProtectedRouteElement from '../protected-route-element/protected-route-element';
 import IngredientsPage from "./pages/ingredients-page/ingredients-page";
+import OnlyUnAuthRoute from "../only-un-auth-route-element/only-un-auth-route-element";
 
 function App() {
   return (
     <>
-        <AppHeader/>
-        <Routes>
-          <Route path='/' element={<HomePage/>}/>
-          <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/register' element={<RegisterPage/>}/>
-          <Route path='/forgot-password' element={<ForgotPasswordPage/>}/>
-          <Route path='/reset-password' element={<ResetPasswordPage/>}/>
-          <Route path='/profile' element={<ProtectedRouteElement element={<ProfilePage/>}/>}>
-            <Route path='' element={<ProtectedRouteElement element={<ProfileForm/>}/>}/>
-            {/* <Route path='/orders' element={<ProtectedRouteElement element={<ProfileForm />} />} /> */}
-            {/* <Route path='/orders/:id' element={<ProtectedRouteElement element={<ProfileForm />} />} /> */}
-          </Route>
-          <Route path='/ingredients/:id' element={<IngredientsPage/>}/>
-          <Route path='*' element={<NotFound404/>}/>
-        </Routes>
+      <AppHeader/>
+      <Routes>
+        <Route path='/' element={<HomePage/>}/>
+        <Route path='/login' element={<OnlyUnAuthRoute element={<LoginPage/>}/>}/>
+        <Route path='/register' element={<OnlyUnAuthRoute element={<RegisterPage/>}/>}/>
+        <Route path='/forgot-password' element={<OnlyUnAuthRoute element={<ForgotPasswordPage/>}/>}/>
+        <Route path='/reset-password' element={<OnlyUnAuthRoute element={<ResetPasswordPage/>}/>}/>
+        <Route path='/profile' element={<ProtectedRouteElement element={<ProfilePage/>}/>}>
+          <Route path='' element={<ProtectedRouteElement element={<ProfileForm/>}/>}/>
+          {/* <Route path='/orders' element={<ProtectedRouteElement element={<ProfileForm />} />} /> */}
+          {/* <Route path='/orders/:id' element={<ProtectedRouteElement element={<ProfileForm />} />} /> */}
+        </Route>
+        <Route path='/ingredients/:id' element={<IngredientsPage/>}/>
+        <Route path='*' element={<NotFound404/>}/>
+      </Routes>
     </>
   );
 }

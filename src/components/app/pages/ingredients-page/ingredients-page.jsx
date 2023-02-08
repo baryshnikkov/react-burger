@@ -6,11 +6,13 @@ import {useDispatch, useSelector} from "react-redux";
 import { GET_DATA_ABOUT_INGREDIENT } from '../../../../services/actions/dataAboutIngredient';
 import HomePage from "../home-page";
 
+const getIngredientsList = store => store.ingredientList;
+
 const IngredientsPage = () => {
   const {id} = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
-  const {ingredients} = useSelector(store => store.ingredientList);
+  const {ingredients} = useSelector(getIngredientsList);
   const [ingredient, setIngredient] = useState({});
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { BASE_URL, checkResponse, ENDPOINT } from "../../utils/api";
-import { setCookie } from "../../utils/utils";
+import {getCookie, setCookie} from "../../utils/utils";
 
 export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
@@ -18,7 +18,7 @@ export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
 export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
 export const RESET_PASSWORD_FAILED = 'RESET_PASSWORD_FAILED';
 
-export const loginUser = (email, password) => (dispatch) => {
+export const loginUser = (email, password, callBack) => (dispatch) => {
   dispatch({ type: LOGIN_USER_REQUEST });
 
   fetch(BASE_URL + ENDPOINT.LOGIN, {
@@ -36,6 +36,7 @@ export const loginUser = (email, password) => (dispatch) => {
       setCookie('accessToken', data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
       dispatch({ type: LOGIN_USER_SUCCESS });
+      callBack();
     })
     .catch((error) => {
       dispatch({ type: LOGIN_USER_FAILED });
@@ -86,7 +87,7 @@ export const logoutUser = (refreshToken) => (dispatch) => {
     })
 };
 
-export const updateToken = (refreshToken) => (dispatch) => {
+export const updateToken = (refreshToken, callBack) => (dispatch) => {
   dispatch({ type: UPDATE_TOKEN_REQUEST });
 
   fetch(BASE_URL + ENDPOINT.TOKEN, {
@@ -103,6 +104,7 @@ export const updateToken = (refreshToken) => (dispatch) => {
       setCookie('accessToken', data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
       dispatch({ type: UPDATE_TOKEN_SUCCESS });
+      callBack();
     })
     .catch((error) => {
       dispatch({ type: UPDATE_TOKEN_FAILED });
@@ -110,7 +112,20 @@ export const updateToken = (refreshToken) => (dispatch) => {
     });
 };
 
-export const forgotPassword = (email) => (dispatch) => {
+export const setUserData = (values) =>{
+  return fetch(BASE_URL + ENDPOINT.DATA_USER, {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": "application/json",
+      authorization: getCookie('accessToken')
+    },
+    body: JSON.stringify({
+      ...values
+    })
+  })
+}
+
+export const forgotPassword = (email, callBack) => (dispatch) => {
   dispatch({ type: FORGOT_PASSWORD_REQUEST });
 
   fetch(BASE_URL + ENDPOINT.PASSWORD_FORGOT, {
@@ -125,6 +140,7 @@ export const forgotPassword = (email) => (dispatch) => {
     .then(res => checkResponse(res))
     .then(() => {
       dispatch({ type: FORGOT_PASSWORD_SUCCESS });
+      callBack();
     })
     .catch((error) => {
       dispatch({ type: FORGOT_PASSWORD_REQUEST });
@@ -132,7 +148,7 @@ export const forgotPassword = (email) => (dispatch) => {
     });
 };
 
-export const resetPassword = (password, token) => (dispatch) => {
+export const resetPassword = (password, token, callBack) => (dispatch) => {
   dispatch({ type: RESET_PASSWORD_REQUEST });
 
   fetch(BASE_URL + ENDPOINT.PASSWORD_RESET, {
@@ -147,10 +163,11 @@ export const resetPassword = (password, token) => (dispatch) => {
   })
     .then(res => checkResponse(res))
     .then(() => {
-      dispatch({ type: REGISTER_USER_SUCCESS });
+      dispatch({ type: RESET_PASSWORD_SUCCESS });
+      callBack();
     })
     .catch((error) => {
-      dispatch({ type: REGISTER_USER_SUCCESS });
+      dispatch({ type: RESET_PASSWORD_FAILED });
       console.log(`Ошибка ${error}`);
     });
 };
