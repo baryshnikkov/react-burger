@@ -1,12 +1,13 @@
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { compose, createStore, applyMiddleware } from 'redux';
+import {compose, createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 
 import App from './components/app/app';
-import { rootReducer } from './services/reducers';
+import {rootReducer} from './services/reducers';
 
 const composeEnhancers =
   typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -22,9 +23,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </BrowserRouter>
 );
 
 reportWebVitals();

@@ -9,6 +9,7 @@ import IngredientDetails from '../ingredient-details/ingredient-details';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getIngredients } from '../../services/actions/ingredients';
 import { DELETE_DATA_ABOUT_INGREDIENT } from '../../services/actions/dataAboutIngredient';
+import {useNavigate} from "react-router-dom";
 
 const getListOfIngredients = store => store.ingredientList;
 const getDataAboutIngredients = store => store.dataAboutIngredient;
@@ -18,6 +19,7 @@ function BurgerIngredients() {
   const { ingredients } = useSelector(getListOfIngredients);
   const { ingredientDataModalIsOpened } = useSelector(getDataAboutIngredients);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const container = useRef();
   const buns = useRef();
   const sauces = useRef();
@@ -53,6 +55,7 @@ function BurgerIngredients() {
     dispatch({
       type: DELETE_DATA_ABOUT_INGREDIENT
     });
+    navigate('/', {replace: true});
   };
 
   const setTab = (state, element) => {
