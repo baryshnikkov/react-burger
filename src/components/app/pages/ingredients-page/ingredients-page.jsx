@@ -83,7 +83,6 @@ const IngredientsPage = () => {
     return (
       <>
         <HomePage />
-
       </>
     );
   }

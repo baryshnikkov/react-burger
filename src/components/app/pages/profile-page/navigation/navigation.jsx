@@ -1,49 +1,47 @@
 import styles from './navigation.module.css';
-import { NavLink } from 'react-router-dom';
+import {NavLink, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {logoutUser} from "../../../../../services/actions/userProcessing";
 
 const Navigation = () => {
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
+  const pathLocation = useLocation();
+  const navigate = useNavigate();
 
-  const link = {
-    textDecoration: 'none',
-    cursor: 'pointer',
-    width: 'max-content',
-  };
-  const linkActive = {
-    ...link,
-    color: '#F2F2F3'
-  };
-  const linkInactive = {
-    ...link,
-    color: '#8585AD'
+  const cursor = {
+    cursor: 'pointer'
   };
 
   const handleClickExit = () => {
-    dispath(logoutUser(localStorage.getItem('refreshToken')));
+    dispatch(logoutUser(localStorage.getItem('refreshToken')));
   };
 
   return (
     <>
       <nav className={`${styles.nav} text text_type_main-medium`}>
-        <NavLink
-          to={{ pathname: `/profile` }}
-          style={({ isActive }) =>
-            isActive ? linkActive : linkInactive
+        <p
+          className={
+            `text text_type_main-medium ${styles.link}
+            ${'/profile' === pathLocation.pathname ?
+              '' :
+              'text_color_inactive'}`
           }
+          onClick={() => navigate('/profile')}
         >
           Профиль
-        </NavLink>
-        <NavLink
-          to={{ pathname: `/profile/orders` }}
-          style={({ isActive }) =>
-            isActive ? linkActive : linkInactive
+        </p>
+        <p
+          className={
+            `text text_type_main-medium ${styles.link}
+            ${'/profile/orders' === pathLocation.pathname ?
+              '' :
+              'text_color_inactive'}`
           }
+          onClick={() => navigate('/profile/orders')}
         >
           История заказов
-        </NavLink>
-        <div style={linkInactive} onClick={handleClickExit}>
+        </p>
+        <div className={`${styles.link} text_color_inactive`} onClick={handleClickExit}>
           Выход
         </div>
       </nav>

@@ -18,18 +18,18 @@ function AppHeader() {
             </p>
           </div>
 
-          <div className={styles.link} onClick={() => navigate('/empty')}>
+          <div className={styles.link} onClick={() => navigate('/feed')}>
             <ListIcon
               type={
-                '/empty' === pathLocation.pathname ||
-                pathLocation.pathname.includes('/empty') ?
+                '/feed' === pathLocation.pathname ||
+                pathLocation.pathname.includes('/feed') ?
                 'primary' :
                 'secondary'
               }/>
             <p
               className={
-                `text text_type_main-default ${'/empty' === pathLocation.pathname ||
-                pathLocation.pathname.includes('/empty') ?
+                `text text_type_main-default ${'/feed' === pathLocation.pathname ||
+                pathLocation.pathname.includes('/feed') ?
                 '' :
                 'text_color_inactive'}`
               }>
