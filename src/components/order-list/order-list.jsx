@@ -3,26 +3,32 @@ import styles from './order-list.module.css';
 import OrderCard from "./components/order-card";
 import PropTypes from "prop-types";
 import {useLocation} from "react-router-dom";
-import {WS_CONNECTION_START} from "../../services/actions/webSocket";
-import {WS_OWN_ORDERS} from "../../utils/webSocket";
+import {WS_CONNECTION_START_AUTH_USER} from "../../services/actions/webSocket";
 import {useDispatch, useSelector} from "react-redux";
-import {getCookie} from "../../utils/utils";
+import {getIngredients} from "../../services/actions/ingredients";
 
 const getOrders = store => store.wsReducer;
+const getIngredientsList = store => store.ingredientList;
 
 const OrderList = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const {messages} = useSelector(getOrders);
+  const {ownMessages, isAuth} = useSelector(getOrders);
+  const {ingredients} = useSelector(getIngredientsList);
 
   useEffect(() => {
-    if (location.pathname === '/profile/orders') {
-      const accessToken = getCookie('accessToken').split(' ')[1];
-      dispatch({type: WS_CONNECTION_START, payload: `${WS_OWN_ORDERS}?token=${accessToken}`});
+    if (ingredients.length === 0) {
+      dispatch(getIngredients());
     }
-  }, []);
+  }, [ingredients]);
 
-  const data = props.orders || messages[messages.length - 1]?.orders;
+  useEffect(() => {
+    if (location.pathname.includes('/profile/orders')) {
+      dispatch({type: WS_CONNECTION_START_AUTH_USER});
+    }
+  }, [isAuth]);
+
+  const data = props.orders || ownMessages[ownMessages.length - 1]?.orders;
 
   return (
     <div className={styles.orderList}>

@@ -1,54 +1,33 @@
-import React, {useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import styles from "./order-card.module.css";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useLocation, useNavigate} from "react-router-dom";
 import PropTypes from "prop-types";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import IngredientPictures from "./ingredient-pictures";
+import {calculateDate} from "../../../utils/utils";
 
-const getIngredients = store => store.ingredientList;
+const getIngredientsList = store => store.ingredientList;
 
 const OrderCard = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {ingredients} = useSelector(getIngredients);
+  const {ingredients} = useSelector(getIngredientsList);
+  const [dataOrder, setDataOrder] = useState({images: [], price: 0})
 
   const handleClickOnCard = () => {
     if (location.pathname === '/feed') {
-      navigate('/feed/123', {state: {ingredient: 'moc-data', background: 'feed'}});
+      navigate(`/feed/${props['_id']}`, {state: {ingredient: 'moc-data', background: 'feed'}});
     } else {
-      navigate('/profile/orders/123', {state: {ingredient: 'moc-data', background: 'orders'}});
+      navigate(`/profile/orders/${props['_id']}`, {state: {ingredient: 'moc-data', background: 'orders'}});
     }
   };
 
   const date = useMemo(() => {
-    const currentDateObj = new Date;
-    const currentGMT = currentDateObj.getTimezoneOffset() / 60;
-    const currentTime = currentDateObj.getTime();
-
-    const orderDate = new Date(
-      props.createdAt.slice(0, 4),
-      props.createdAt.slice(5, 7) - 1,
-      props.createdAt.slice(8, 10)
-    );
-    const orderTime = props.createdAt.slice(11, 16);
-
-    const differenceOfDays = Math.ceil(Math.abs(currentTime - orderDate.getTime()) / (1000 * 3600 * 24));
-
-    let interval;
-
-    if (differenceOfDays <= 1) {
-      interval = 'Сегодня';
-    } else if (differenceOfDays <= 2) {
-      interval = 'Вчера';
-    } else {
-      interval = `${differenceOfDays - 1} суток назад`
-    }
-
-    return {interval, time: orderTime, gmt: currentGMT};
+    return calculateDate(props);
   }, [props]);
 
-  const dataOrder = useMemo(() => {
+  const getDataOrder = useCallback(() => {
     const arrImages = [];
     const arrPrice = [];
 
@@ -64,9 +43,13 @@ const OrderCard = (props) => {
       price = arrPrice.reduce((a, b) => a + b);
     }
 
-    return {images: arrImages, price};
-  }, [props]);
+    setDataOrder({images: arrImages, price});
 
+  }, [props.ingredients]);
+
+  useEffect(() => {
+    getDataOrder();
+  }, [ingredients]);
 
   return (
     <div className={styles.orderCard} onClick={handleClickOnCard}>

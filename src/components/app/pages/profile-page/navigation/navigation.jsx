@@ -14,6 +14,7 @@ const Navigation = () => {
 
   const handleClickExit = () => {
     dispatch(logoutUser(localStorage.getItem('refreshToken')));
+    navigate('/', {replace: true})
   };
 
   return (

@@ -7,8 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import OrderModal from "../../../order-modal/order-modal";
 import {useNavigate} from "react-router-dom";
 import {DELETE_DATA_ABOUT_ORDER_DETAILS} from "../../../../services/actions/orderDetails";
-import {WS_CONNECTION_START} from "../../../../services/actions/webSocket";
-import {WS_ALL_ORDERS} from "../../../../utils/webSocket";
+import {WS_CONNECTION_START_UNAUTH_USER} from "../../../../services/actions/webSocket";
 
 const getOrderDetails = store => store.orderDetails;
 const getOrders = store => store.wsReducer;
@@ -20,7 +19,7 @@ const OrderFeedPage = () => {
   const {wsConnected, messages} = useSelector(getOrders);
 
   useEffect(() => {
-      dispatch({type: WS_CONNECTION_START, payload: WS_ALL_ORDERS});
+      dispatch({type: WS_CONNECTION_START_UNAUTH_USER});
   }, []);
 
   const closeIngredientDetails = () => {

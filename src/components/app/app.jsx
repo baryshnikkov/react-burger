@@ -16,8 +16,31 @@ import OnlyUnAuthRoute from "../only-un-auth-route-element/only-un-auth-route-el
 import OrderFeedPage from "./pages/order-feed-page/order-feed-page";
 import OrderPage from "./pages/order-page/order-page";
 import OrderList from "../order-list/order-list";
+import {useDispatch, useSelector} from "react-redux";
+import {WS_CLOSE_CONNECTION_BY_USER_SIDE} from '../../services/actions/webSocket';
+import {UPDATE_TOKEN_SUCCESS} from "../../services/actions/userProcessing";
+import {getCookie} from "../../utils/utils";
+import {useEffect} from "react";
+
+const getWsIsConnected = store => store.wsReducer;
+const getUserIsAuth = store => store.userProcessing;
 
 function App() {
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const {wsConnected} = useSelector(getWsIsConnected);
+  const {isLoginSuccess} = useSelector(getUserIsAuth);
+
+  if (wsConnected && location.pathname.slice(0, 5) !== '/feed' && location.pathname.slice(0, 15) !== '/profile/orders') {
+    dispatch({type: WS_CLOSE_CONNECTION_BY_USER_SIDE})
+  }
+
+  useEffect(() => {
+    if (isLoginSuccess === false && !!getCookie('accessToken')) {
+      dispatch({ type: UPDATE_TOKEN_SUCCESS });
+    }
+  }, []);
+
   return (
     <>
       <AppHeader/>

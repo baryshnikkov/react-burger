@@ -21,8 +21,14 @@ const ProfileForm = () => {
         authorization: getCookie('accessToken')
       }
     })
-      .then(res => checkResponse(res))
+      .then(res => res.json())
       .then((data) => {
+        if (data.message === 'jwt expired' || data.message === 'jwt malformed') {
+          dispatch(updateToken(localStorage.getItem('refreshToken'), () => {
+            getUserData();
+          }));
+          return;
+        }
         setNameValue(data.user.name);
         setEmailValue(data.user.email);
         setPasswordValue('');
