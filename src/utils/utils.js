@@ -26,7 +26,9 @@ export const getCookie = (name) => {
     new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
   );
 
-  return matches.input.includes(';') ? decodeURIComponent(matches.input.split(';')[matches.input.split(';').length - 1]) : decodeURIComponent(matches[1]);
+  const matchesOne = matches ? decodeURIComponent(matches[1]) : matches;
+
+  return matches?.input.includes(';') ? decodeURIComponent(matches?.input.split(';')[matches?.input.split(';').length - 1]) : matchesOne;
 };
 
 export const calculateDate = (objData) => {

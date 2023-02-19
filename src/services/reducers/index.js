@@ -7,6 +7,7 @@ import { oder } from './oder';
 import { userProcessing } from './userProcessing';
 import { orderDetails } from "./orderDetails";
 import {wsReducer} from "./webSocket";
+import {wsReducerAuth} from "./webSocketAuth";
 
 export const rootReducer = combineReducers({
   ingredientList,
@@ -15,5 +16,6 @@ export const rootReducer = combineReducers({
   oder,
   userProcessing,
   orderDetails,
-  wsReducer
+  wsReducer,
+  wsReducerAuth
 });

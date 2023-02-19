@@ -7,7 +7,7 @@ const getUserData = store => store.userProcessing;
 const ProtectedRouteElement = ({ element }) => {
   const { isLoginSuccess } = useSelector(getUserData);
 
-  return getCookie('accessToken').length ? element : <Navigate to="/login" replace />;
+  return getCookie('accessToken')?.length ? element : <Navigate to="/login" replace />;
 }
 
 export default ProtectedRouteElement;

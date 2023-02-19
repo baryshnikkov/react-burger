@@ -7,17 +7,19 @@ import {useLocation} from "react-router-dom";
 import OrderFeedPage from "../order-feed-page/order-feed-page";
 import OrderList from "../../../order-list/order-list";
 import ProfilePage from "../profile-page/profile-page";
-import {WS_CONNECTION_START_UNAUTH_USER} from "../../../../services/actions/webSocket";
-import { getIngredients } from '../../../../services/actions/ingredients';
+import {getIngredients} from '../../../../services/actions/ingredients';
 import {calculateDate} from "../../../../utils/utils";
+import {WS_CONNECTION_START_USER} from "../../../../services/actions/webSocket";
 
 const getOrders = store => store.wsReducer;
+const getOrdersAuth = store => store.wsReducerAuth;
 const getIngredientsList = store => store.ingredientList;
 
 const OrderPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const {messages, ownMessages} = useSelector(getOrders);
+  const {messages} = useSelector(getOrders);
+  const {ownMessages} = useSelector(getOrdersAuth);
   const {ingredients} = useSelector(getIngredientsList);
   const [orderData, setOrderData] = useState({
     _id: '',
@@ -34,8 +36,10 @@ const OrderPage = () => {
   const getSelectedOrder = useCallback(() => {
     const idOrder = location.pathname.split('/').pop();
     const listOrder = location.pathname.includes('profile')
-      ? ownMessages.pop()?.orders
-      : messages.pop()?.orders
+      ? ownMessages?.pop()?.orders
+      : messages?.pop()?.orders
+
+
 
     selectedOrder = listOrder?.find(el => {
       return el['_id'] === idOrder;
@@ -51,25 +55,13 @@ const OrderPage = () => {
       type: GET_DATA_ABOUT_ORDER_DETAILS,
       data: selectedOrder
     });
-  }, []);
-
-  useEffect(() => {
-    dispatch({type: WS_CONNECTION_START_UNAUTH_USER});
-  }, []);
-
+  }, [messages]);
 
   useEffect(() => {
     if (location.state?.background === 'feed' || location.state?.background === 'orders') {
       openModal();
     }
   }, []);
-
-  useEffect(() => {
-    if (location.state?.background !== 'feed' || location.state?.background !== 'orders') {
-      dispatch(getIngredients());
-      getSelectedOrder();
-    }
-  }, [messages]);
 
   const date = useMemo(() => {
     return calculateDate(orderData);
@@ -140,13 +132,13 @@ const OrderPage = () => {
   if (location.state?.background === 'feed') {
     return (
       <>
-        <OrderFeedPage />
+        <OrderFeedPage/>
       </>
     );
   } else if (location.state?.background === 'orders') {
     return (
       <>
-        <ProfilePage element={<OrderList/>} />
+        <ProfilePage element={<OrderList/>}/>
       </>
     );
   } else {

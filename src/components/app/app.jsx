@@ -21,25 +21,32 @@ import {WS_CLOSE_CONNECTION_BY_USER_SIDE} from '../../services/actions/webSocket
 import {UPDATE_TOKEN_SUCCESS} from "../../services/actions/userProcessing";
 import {getCookie} from "../../utils/utils";
 import {useEffect} from "react";
+import {WS_AUTH_CLOSE_CONNECTION_BY_USER_SIDE} from "../../services/actions/webSocketAuth";
 
 const getWsIsConnected = store => store.wsReducer;
+const getWsAuthIsConnected = store => store.wsReducerAuth;
 const getUserIsAuth = store => store.userProcessing;
 
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   const {wsConnected} = useSelector(getWsIsConnected);
+  const {wsAuthConnected} = useSelector(getWsAuthIsConnected);
   const {isLoginSuccess} = useSelector(getUserIsAuth);
-
-  if (wsConnected && location.pathname.slice(0, 5) !== '/feed' && location.pathname.slice(0, 15) !== '/profile/orders') {
-    dispatch({type: WS_CLOSE_CONNECTION_BY_USER_SIDE})
-  }
 
   useEffect(() => {
     if (isLoginSuccess === false && !!getCookie('accessToken')) {
       dispatch({ type: UPDATE_TOKEN_SUCCESS });
     }
-  }, []);
+
+    if (wsConnected && location.pathname.slice(0, 5) !== '/feed') {
+      dispatch({type: WS_CLOSE_CONNECTION_BY_USER_SIDE})
+    }
+
+    if (wsAuthConnected && location.pathname.slice(0, 15) !== '/profile/orders') {
+      dispatch({type: WS_AUTH_CLOSE_CONNECTION_BY_USER_SIDE})
+    }
+  });
 
   return (
     <>
