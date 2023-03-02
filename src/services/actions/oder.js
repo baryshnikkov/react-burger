@@ -1,4 +1,5 @@
 import { BASE_URL, checkResponse, ENDPOINT } from '../../utils/api';
+import {getCookie} from "../../utils/utils";
 
 export const GET_ODER_REQUEST = 'GER_ODER_REQUEST';
 export const GET_ODER_SUCCESS = 'GET_ODER_SUCCESS';
@@ -26,7 +27,8 @@ export const setOder = (constructorIngredients) => {
     fetch(BASE_URL + ENDPOINT.ORDERS, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        authorization: getCookie('accessToken')
       },
       body: JSON.stringify({
         ingredients: arrOder

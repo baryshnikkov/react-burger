@@ -1,6 +1,12 @@
 .nav {
   display: flex;
   flex-direction: column;
-  height: 192px;
+  /*height: 192px;*/
+  gap: 16px;
   justify-content: space-around;
+}
+
+.link {
+  cursor: pointer;
+  width: fit-content;
 }
