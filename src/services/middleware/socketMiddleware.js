@@ -1,4 +1,4 @@
-import {WS_ALL_ORDERS, WS_OWN_ORDERS} from "../../utils/webSocket";
+import {WsAddresses} from "../../utils/webSocket";
 import {getCookie} from "../../utils/utils";
 
 export const socketMiddleware = wsUrl => {
@@ -11,12 +11,12 @@ export const socketMiddleware = wsUrl => {
       const { type, payload } = action;
 
       if (type === 'WS_CONNECTION_START_USER') {
-        socket = new WebSocket(`${WS_ALL_ORDERS}`);
+        socket = new WebSocket(`${WsAddresses.WS_ALL_ORDERS}`);
       }
 
       if (type === 'WS_CONNECTION_START_AUTH_USER') {
         const accessToken = getCookie('accessToken').split(' ')[getCookie('accessToken').split(' ').length - 1];
-        socketAuth = new WebSocket(`${WS_OWN_ORDERS}?token=${accessToken}`);
+        socketAuth = new WebSocket(`${WsAddresses.WS_OWN_ORDERS}?token=${accessToken}`);
       }
 
       if (socket) {
