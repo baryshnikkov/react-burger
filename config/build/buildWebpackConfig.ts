@@ -1,45 +1,29 @@
-import { BuildOptions } from "./types/config";
-import path from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
 import "webpack-dev-server";
+import { Configuration } from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { BuildOptions } from "./types/config";
+import { buildDevServer } from "./buildDevServer";
+import { buildPlugins } from "./buildPlugins";
+import { buildLoaders } from "./buildLoaders";
+import { buildResolvers } from "./buildResolvers";
 
-export function buildWebpackConfig(options: BuildOptions) {
-	const { mode, port } = options;
+export function buildWebpackConfig(options: BuildOptions): Configuration {
+	const { mode, paths } = options;
 
 	return {
 		mode,
-		entry: path.resolve(__dirname, "src", "index.ts"),
+		entry: paths.entry,
 		output: {
 			filename: "[name].[contenthash].js",
-			path: path.resolve(__dirname, "dist"),
+			path: paths.output,
 			clean: true,
 			publicPath: "/",
 		},
-		plugins: [
-			new HtmlWebpackPlugin({
-				template: path.resolve(__dirname, "public", "index.html"),
-			}),
-		],
+		plugins: buildPlugins(options),
 		module: {
-			rules: [
-				{
-					test: /\.tsx?$/,
-					use: "ts-loader",
-					exclude: /node_modules/,
-				},
-			],
+			rules: buildLoaders(),
 		},
-		resolve: {
-			extensions: [".tsx", ".ts", ".js"],
-		},
-		devServer: {
-			port,
-			open: true,
-			historyApiFallback: true,
-			hot: true,
-			client: {
-				overlay: false,
-			},
-		},
+		resolve: buildResolvers(),
+		devServer: buildDevServer(options),
 	};
 }
