@@ -1,11 +1,13 @@
 import { RuleSetRule } from "webpack";
+import { BuildOptions } from "./types/config";
+import { buildTsLoader } from "./loaders/buildTsLoader";
+import { buildCssLoaders } from "./loaders/buildCssLoader";
 
-export function buildLoaders(): RuleSetRule[] {
-	const tsLoader = {
-		test: /\.tsx?$/,
-		use: "ts-loader",
-		exclude: /node_modules/,
-	};
+export function buildLoaders(options: BuildOptions): RuleSetRule[] {
+	const { isDev } = options;
 
-	return [tsLoader];
+	const tsLoader = buildTsLoader();
+	const cssLoader = buildCssLoaders(isDev);
+
+	return [tsLoader, cssLoader];
 }

@@ -1,6 +1,5 @@
 import "webpack-dev-server";
 import { Configuration } from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
 import { BuildOptions } from "./types/config";
 import { buildDevServer } from "./buildDevServer";
 import { buildPlugins } from "./buildPlugins";
@@ -8,7 +7,7 @@ import { buildLoaders } from "./buildLoaders";
 import { buildResolvers } from "./buildResolvers";
 
 export function buildWebpackConfig(options: BuildOptions): Configuration {
-	const { mode, paths } = options;
+	const { mode, paths, isDev } = options;
 
 	return {
 		mode,
@@ -21,7 +20,7 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
 		},
 		plugins: buildPlugins(options),
 		module: {
-			rules: buildLoaders(),
+			rules: buildLoaders(options),
 		},
 		resolve: buildResolvers(),
 		devServer: buildDevServer(options),
