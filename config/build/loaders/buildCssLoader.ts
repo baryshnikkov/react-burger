@@ -3,7 +3,6 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 export function buildCssLoaders(isDev: boolean) {
 	return {
 		test: /\.css$/i,
-		exclude: /node_modules/,
 		use: [
 			isDev ? "style-loader" : MiniCssExtractPlugin.loader,
 			{
