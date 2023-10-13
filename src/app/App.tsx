@@ -1,11 +1,13 @@
-// import "./style2.css";
-import cls from "./style.module.css";
+import { Navbar } from "@/widgets/Navbar";
+import { AppRouter } from "./providers/Router/ui/AppRouter";
+import "./styles/index.css";
 
 function App() {
 	return (
-		<div>
-			<h1 className={cls.qwerty}>welcome</h1>
-		</div>
+		<>
+			<Navbar />
+			<AppRouter />
+		</>
 	);
 }
 
