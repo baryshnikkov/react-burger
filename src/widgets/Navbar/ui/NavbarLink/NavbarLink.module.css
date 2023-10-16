@@ -1,0 +1,29 @@
+.NavbarLink {
+    width: fit-content;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: #8585AD;
+}
+
+.NavbarLink:not(.active):hover {
+    color: #F2F2F3;
+}
+
+.NavbarLink:not(.active):hover svg {
+    fill: #F2F2F3;
+}
+
+.NavbarLink svg {
+    fill: #8585AD;
+}
+
+.active {
+    color: #F2F2F3;
+}
+
+.NavbarLink,.active svg {
+    fill: #F2F2F3;
+}

@@ -1,3 +1,26 @@
-.Navbar {
+.header {
     background-color: var(--bg-main-color);
+    padding: 16px 0;
+}
+
+.Navbar {
+    width: var(--width-page);
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+}
+
+.logo {
+    justify-self: center;
+    position: relative;
+    top: 5px;
+}
+
+.profile {
+    justify-self: end;
 }
