@@ -1,0 +1,26 @@
+.container {
+    max-width: var(--width-page);
+    min-width: 1060px;
+    width: 100%;
+    height: calc(100vh - var(--navbar-height));
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+  }
+  
+  .error {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 600px;
+    justify-content: center;
+  }
+  
+  .link {
+    color: var(--accent-color);
+    cursor: pointer;
+    border-bottom: 3px solid var(--accent-color);
+  }
