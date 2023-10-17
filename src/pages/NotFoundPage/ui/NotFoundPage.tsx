@@ -2,6 +2,7 @@ import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import ImageError404 from "../assets/error404.svg";
 import cls from "./NotFoundPage.module.css";
+import { getRouteMain } from "@/shared/const/router";
 
 const NotFoundPage = memo(() => {
 	const navigate = useNavigate();
@@ -16,7 +17,9 @@ const NotFoundPage = memo(() => {
 					вы набрали неверный адрес. Перейдите на нашу{" "}
 					<span
 						className={cls.link}
-						onClick={() => navigate("/", { replace: true })}
+						onClick={() =>
+							navigate(getRouteMain(), { replace: true })
+						}
 					>
 						главную страницу
 					</span>{" "}
