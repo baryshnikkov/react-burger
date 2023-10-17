@@ -1,6 +1,10 @@
 :root {
     --bg-body-color: #131316;
     --bg-main-color: #1C1C21;
+    --text-color-primary: #F2F2F3;
+    --text-color-secondary: #8585AD;
+    --accent-color: #4C4CFF;
     
     --width-page: 1280px;
+    --navbar-height: 88px;
 }

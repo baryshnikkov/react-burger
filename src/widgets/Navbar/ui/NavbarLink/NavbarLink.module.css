@@ -5,25 +5,25 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    color: #8585AD;
+    color: var(--text-color-secondary);
 }
 
 .NavbarLink:not(.active):hover {
-    color: #F2F2F3;
+    color: var(--text-color-primary);
 }
 
 .NavbarLink:not(.active):hover svg {
-    fill: #F2F2F3;
+    fill: var(--text-color-primary);
 }
 
 .NavbarLink svg {
-    fill: #8585AD;
+    fill: var(--text-color-secondary);
 }
 
 .active {
-    color: #F2F2F3;
+    color: var(--text-color-primary);
 }
 
 .NavbarLink,.active svg {
-    fill: #F2F2F3;
+    fill: var(--text-color-primary);
 }
