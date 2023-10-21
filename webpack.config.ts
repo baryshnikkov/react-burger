@@ -14,7 +14,7 @@ export default (env: BuildEnv) => {
 	const mode = env.mode || "development";
 	const port = env.port || 3000;
 	const isDev = mode === "development";
-	const apiUrl = "url"; //TODO
+	const apiUrl = "https://norma.nomoreparties.space/api/";
 
 	const config: Configuration = buildWebpackConfig({
 		mode,

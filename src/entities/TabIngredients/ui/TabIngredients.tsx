@@ -32,9 +32,9 @@ export const TabIngredients = memo(() => {
 				Соусы
 			</Tab>
 			<Tab
-				value="fillings"
-				active={currentTabIngredient === "fillings"}
-				onClick={setCurrentTabIngredient("fillings")}
+				value="main"
+				active={currentTabIngredient === "main"}
+				onClick={setCurrentTabIngredient("main")}
 			>
 				Начинки
 			</Tab>

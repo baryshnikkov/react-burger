@@ -1,4 +1,4 @@
-export type TabIngredientVariants = "buns" | "sauces" | "fillings";
+export type TabIngredientVariants = "buns" | "sauces" | "main";
 
 export interface TabIngredientsSchema {
 	currentTabIngredient: TabIngredientVariants;
