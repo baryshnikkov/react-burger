@@ -1,6 +1,6 @@
 import "./Loader.css";
 import { memo } from "react";
-import { cn } from "@/shared/lib/classNames/classNames";
+import { cn } from "@/shared/lib/helpers/classNames";
 
 interface LoaderProps {
 	className?: string;

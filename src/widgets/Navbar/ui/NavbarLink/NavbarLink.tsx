@@ -1,6 +1,6 @@
 import { ReactNode, memo } from "react";
 import { NavLink } from "react-router-dom";
-import { cn } from "@/shared/lib/classNames";
+import { cn } from "@/shared/lib/helpers/classNames";
 import cls from "./NavbarLink.module.css";
 
 interface NavbarLinkProps {
