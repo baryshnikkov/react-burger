@@ -1,0 +1,31 @@
+.CardsIngredients {
+    height: calc(100vh - var(--navbar-height) - 180px);
+    overflow-y: scroll;
+    overflow: overlay;
+}
+
+.CardsIngredients::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+.CardsIngredients::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: var(--bg-scrollbar-thumb);
+}
+  
+.CardsIngredients::-webkit-scrollbar-track {
+    background-color: var(--bg-scrollbar-track);
+}
+
+.title {
+    margin: 40px 0 24px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 24px;
+    margin: 0 16px;
+}

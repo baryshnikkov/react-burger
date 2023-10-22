@@ -1,0 +1,7 @@
+.Page {
+    width: var(--width-page);
+    height: calc(100vh - var(--navbar-height));
+    margin: auto;
+    padding: 40px 20px;
+    overflow: hidden;
+}
