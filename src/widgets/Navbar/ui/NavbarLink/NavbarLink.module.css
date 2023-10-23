@@ -6,6 +6,11 @@
     align-items: center;
     gap: 8px;
     color: var(--text-color-secondary);
+    transition: all 0.2s linear;
+}
+
+.NavbarLink svg{
+    transition: all 0.2s linear;
 }
 
 .NavbarLink:not(.active):hover {
