@@ -6,7 +6,12 @@
     --text-color-primary: #F2F2F3;
     --text-color-secondary: #8585AD;
     --accent-color: #4C4CFF;
+    --overlay-color: #00000099;
     
     --width-page: 1280px;
     --navbar-height: 88px;
+
+    --hidden-modal-z-index: -1;
+    --modal-z-index: 1;
+    --overlay-z-index: 2;
 }

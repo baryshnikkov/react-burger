@@ -46,6 +46,10 @@ export const CardsIngredients = memo(() => {
 						name={el.name}
 						image={el.image}
 						price={el.price}
+						calories={el.calories}
+						carbohydrates={el.carbohydrates}
+						fat={el.fat}
+						proteins={el.proteins}
 					/>
 				))}
 			</div>
@@ -61,6 +65,10 @@ export const CardsIngredients = memo(() => {
 						name={el.name}
 						image={el.image}
 						price={el.price}
+						calories={el.calories}
+						carbohydrates={el.carbohydrates}
+						fat={el.fat}
+						proteins={el.proteins}
 					/>
 				))}
 			</div>
@@ -76,6 +84,10 @@ export const CardsIngredients = memo(() => {
 						name={el.name}
 						image={el.image}
 						price={el.price}
+						calories={el.calories}
+						carbohydrates={el.carbohydrates}
+						fat={el.fat}
+						proteins={el.proteins}
 					/>
 				))}
 			</div>
