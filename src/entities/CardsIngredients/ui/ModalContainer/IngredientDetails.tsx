@@ -1,9 +1,8 @@
 import { cn } from "@/shared/lib/helpers/classNames";
 import { memo } from "react";
-import cls from "./ModalContainer.module.css";
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import cls from "./IngredientDetails.module.css";
 
-export interface ModalContainerProps {
+export interface IngredientDetailsProps {
 	className?: string;
 	proteins: number;
 	fat: number;
@@ -11,11 +10,20 @@ export interface ModalContainerProps {
 	calories: number;
 	name: string;
 	image: string;
+	isModal?: boolean;
 }
 
-const ModalContainer = memo((props: ModalContainerProps) => {
-	const { className, proteins, fat, carbohydrates, calories, image, name } =
-		props;
+const IngredientDetails = memo((props: IngredientDetailsProps) => {
+	const {
+		className,
+		proteins,
+		fat,
+		carbohydrates,
+		calories,
+		image,
+		name,
+		isModal = true,
+	} = props;
 
 	const displayEnergyValue = (text: string, value: number) => {
 		return (
@@ -31,7 +39,13 @@ const ModalContainer = memo((props: ModalContainerProps) => {
 	};
 
 	return (
-		<div className={cn(cls.ModalContainer, {}, [className])}>
+		<div
+			className={cn(
+				cls.IngredientDetails,
+				{ [cls.modal]: isModal, [cls.card]: !isModal },
+				[className]
+			)}
+		>
 			<p className={`${cls.title} text text_type_main-large`}>
 				Детали ингредиента
 			</p>
@@ -42,12 +56,12 @@ const ModalContainer = memo((props: ModalContainerProps) => {
 
 			<div className={cls.compound}>
 				{displayEnergyValue("Калории,ккал", calories)}
-				{displayEnergyValue("Белки, г", proteins)}
-				{displayEnergyValue("Жиры, г", fat)}
-				{displayEnergyValue("Углеводы, г", carbohydrates)}
+				{displayEnergyValue("Белки,г", proteins)}
+				{displayEnergyValue("Жиры,г", fat)}
+				{displayEnergyValue("Углеводы,г", carbohydrates)}
 			</div>
 		</div>
 	);
 });
 
-export default ModalContainer;
+export default IngredientDetails;

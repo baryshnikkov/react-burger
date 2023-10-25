@@ -5,6 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import cls from "./CardIngredient.module.css";
 import { ModalIngredientData } from "../ModalIngredientData/ModalIngredientData";
+import { getRouteIngredients } from "@/shared/const/router";
 
 interface CardIngredientProps {
 	image: string;
@@ -15,6 +16,7 @@ interface CardIngredientProps {
 	fat: number;
 	carbohydrates: number;
 	calories: number;
+	id: string;
 }
 
 export const CardIngredient = memo((props: CardIngredientProps) => {
@@ -27,15 +29,18 @@ export const CardIngredient = memo((props: CardIngredientProps) => {
 		fat,
 		carbohydrates,
 		calories,
+		id,
 	} = props;
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	const onOpenModal = useCallback(() => {
 		setIsOpenModal(true);
+		window.history.pushState(null, "", getRouteIngredients(id));
 	}, []);
 
 	const onCloseModal = useCallback(() => {
 		setIsOpenModal(false);
+		window.history.back();
 	}, []);
 
 	return (

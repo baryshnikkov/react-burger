@@ -1,4 +1,14 @@
-.ModalContainer {
+.IngredientDetails {
+    position: relative;
+    z-index: var(--modal-z-index);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 40px 60px;
+}
+
+.modal {
     background-color: #1C1C21;
     border: 1px solid rgba(76, 76, 255, 0.2);
     box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
@@ -6,14 +16,10 @@
     border-radius: 40px;
     min-width: 720px;
     min-height: 300px;
-    position: relative;
-    z-index: var(--modal-z-index);
+}
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 50px 40px 60px;
+.card .title {
+    text-align: center;
 }
   
 .title {

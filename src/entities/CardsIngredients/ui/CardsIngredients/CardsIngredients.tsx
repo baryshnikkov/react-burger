@@ -3,9 +3,10 @@ import { CardIngredient } from "../CardIngredient/CardIngredient";
 import { Ingredient, useIngredients } from "@/entities/ListIngredients";
 import cls from "./CardsIngredients.module.css";
 import { cn } from "@/shared/lib/helpers/classNames";
+import { PageLoader } from "@/widgets/PageLoader";
 
 export const CardsIngredients = memo(() => {
-	const { data: ingredients } = useIngredients(null);
+	const { data: ingredients, isLoading } = useIngredients(null);
 	const [buns, setBuns] = useState<Ingredient[]>([]);
 	const [main, setMain] = useState<Ingredient[]>([]);
 	const [sauces, setSauces] = useState<Ingredient[]>([]);
@@ -28,8 +29,12 @@ export const CardsIngredients = memo(() => {
 		}
 	}, [ingredients]);
 
+	if (isLoading) {
+		return <PageLoader />;
+	}
+
 	if (!ingredients?.data) {
-		return null;
+		return null; //TOTO заменить null на ошибку
 	}
 
 	return (
@@ -43,6 +48,7 @@ export const CardsIngredients = memo(() => {
 				{buns.map((el) => (
 					<CardIngredient
 						key={el._id}
+						id={el._id}
 						name={el.name}
 						image={el.image}
 						price={el.price}
@@ -62,6 +68,7 @@ export const CardsIngredients = memo(() => {
 				{sauces.map((el) => (
 					<CardIngredient
 						key={el._id}
+						id={el._id}
 						name={el.name}
 						image={el.image}
 						price={el.price}
@@ -81,6 +88,7 @@ export const CardsIngredients = memo(() => {
 				{main.map((el) => (
 					<CardIngredient
 						key={el._id}
+						id={el._id}
 						name={el.name}
 						image={el.image}
 						price={el.price}

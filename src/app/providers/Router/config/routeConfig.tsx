@@ -1,10 +1,12 @@
 import { FeedPage } from "@/pages/FeedPage";
+import { IngredientsPage } from "@/pages/IngredientsPage";
 import { MainPage } from "@/pages/MainPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ProfilePage } from "@/pages/ProfilePage";
 import {
 	AppRoutes,
 	getRouteFeed,
+	getRouteIngredients,
 	getRouteMain,
 	getRouteNotFound,
 	getRouteProfile,
@@ -23,6 +25,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.PROFILE]: {
 		path: getRouteProfile(),
 		element: <ProfilePage />,
+	},
+	[AppRoutes.INGREDIENTS]: {
+		path: getRouteIngredients(":id"),
+		element: <IngredientsPage />,
 	},
 	[AppRoutes.NOT_FOUND]: {
 		path: getRouteNotFound(),

@@ -2,7 +2,7 @@ import { memo, Suspense } from "react";
 import { cn } from "@/shared/lib/helpers/classNames";
 import { Loader } from "@/shared/ui/Loader";
 import { Modal } from "@/shared/ui/Modal";
-import { ModalContainerAsync } from "../ModalContainer/ModalContainer.async";
+import { IngredientDetailsAsync } from "../ModalContainer/IngredientDetails.async";
 
 interface ModalIngredientDataProps {
 	className?: string;
@@ -41,7 +41,7 @@ export const ModalIngredientData = memo((props: ModalIngredientDataProps) => {
 			lazy
 		>
 			<Suspense fallback={<Loader />}>
-				<ModalContainerAsync
+				<IngredientDetailsAsync
 					calories={calories}
 					carbohydrates={carbohydrates}
 					fat={fat}
