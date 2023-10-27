@@ -71,6 +71,7 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 						carbohydrates={el.carbohydrates}
 						fat={el.fat}
 						proteins={el.proteins}
+						isBun={true}
 					/>
 				))}
 			</div>

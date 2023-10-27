@@ -29,6 +29,7 @@
 		"@types/react": "^18.2.28",
 		"@types/react-dom": "^18.2.13",
 		"@types/react-router-dom": "^5.3.3",
+		"@types/uuid": "^9.0.6",
 		"@types/webpack": "^5.28.3",
 		"@types/webpack-dev-server": "^4.7.2",
 		"core-js": "^3.33.0",
@@ -49,8 +50,11 @@
 		"@reduxjs/toolkit": "^1.9.7",
 		"@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
 		"react": "^18.2.0",
+		"react-dnd": "^16.0.1",
+		"react-dnd-html5-backend": "^16.0.1",
 		"react-dom": "^18.2.0",
 		"react-redux": "^8.1.3",
-		"react-router-dom": "^6.16.0"
+		"react-router-dom": "^6.16.0",
+		"uuid": "^9.0.1"
 	}
 }

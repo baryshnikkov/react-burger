@@ -1,4 +1,6 @@
 import { memo, useCallback, useState } from "react";
+import { useDrag } from "react-dnd";
+import { v4 as uuidv4 } from "uuid";
 import {
 	Counter,
 	CurrencyIcon,
@@ -17,6 +19,7 @@ interface CardIngredientProps {
 	carbohydrates: number;
 	calories: number;
 	id: string;
+	isBun?: boolean;
 }
 
 export const CardIngredient = memo((props: CardIngredientProps) => {
@@ -30,6 +33,7 @@ export const CardIngredient = memo((props: CardIngredientProps) => {
 		carbohydrates,
 		calories,
 		id,
+		isBun = false,
 	} = props;
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -43,9 +47,29 @@ export const CardIngredient = memo((props: CardIngredientProps) => {
 		window.history.back();
 	}, []);
 
+	const [{ opacity }, refDrag] = useDrag({
+		type: "ingredient",
+		item: {
+			name,
+			image,
+			price,
+			_id: id,
+			idKey: uuidv4(),
+			isBun,
+		},
+		collect: (monitor) => ({
+			opacity: monitor.isDragging() ? 0.5 : 1,
+		}),
+	});
+
 	return (
 		<>
-			<div className={cls.card} onClick={onOpenModal}>
+			<div
+				className={cls.card}
+				onClick={onOpenModal}
+				ref={refDrag}
+				style={{ opacity }}
+			>
 				{Boolean(count) && (
 					<Counter count={count} size="default" extraClass="m-1" />
 				)}

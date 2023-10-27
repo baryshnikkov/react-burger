@@ -1,9 +1,11 @@
 import { ReducersMapObject, configureStore } from "@reduxjs/toolkit";
 import { StateSchema } from "./StateSchema";
 import { rtkApi } from "@/shared/api/rtkApi";
+import { orderReducer } from "@/entities/Order";
 
 export function createReduxStore(initialState?: StateSchema) {
 	const rootReducer: ReducersMapObject<StateSchema> = {
+		order: orderReducer,
 		[rtkApi.reducerPath]: rtkApi.reducer,
 	};
 
