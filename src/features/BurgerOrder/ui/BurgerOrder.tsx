@@ -68,7 +68,9 @@ export const BurgerOrder = memo(() => {
 
 	return (
 		<div className={cn(cls.BurgerOrder, {}, [cls.cards])} ref={dropTarget}>
-			<div className={cls.ingredients}>
+			<div
+				className={cn(cls.ingredients, { [cls.isHover]: isHover }, [])}
+			>
 				{displayBun("top")}
 				<div className={cls.toppings}>
 					{toppings.map((el) => (
