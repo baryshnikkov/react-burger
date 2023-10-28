@@ -74,10 +74,12 @@ export const BurgerOrder = memo(() => {
 				{displayBun("top")}
 				<div className={cls.toppings}>
 					{toppings.map((el) => (
-						<div className={cn(cls.dragIngredient, {}, [])}>
+						<div
+							className={cn(cls.dragIngredient, {}, [])}
+							key={el.idKey}
+						>
 							<DragIcon type="primary" />
 							<ConstructorElement
-								key={el.idKey}
 								text={el.name}
 								price={el.price}
 								thumbnail={el.image}
