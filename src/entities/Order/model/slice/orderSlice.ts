@@ -21,6 +21,20 @@ export const orderSlice = createSlice({
 				state.isEmpty = false;
 			}
 		},
+		deleteIngredient: (state, action) => {
+			const idToRemove = action.payload;
+			const array = state.toppings;
+
+			const index = state.toppings.findIndex(
+				(obj) => obj._id === idToRemove
+			);
+
+			if (index !== -1) {
+				array.splice(index, 1);
+			}
+
+			state.toppings = array;
+		},
 	},
 });
 

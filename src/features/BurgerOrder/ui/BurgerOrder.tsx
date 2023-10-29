@@ -23,6 +23,10 @@ export const BurgerOrder = memo(() => {
 	const toppings = useSelector(getToppings);
 	const dispatch = useAppDispatch();
 
+	const deleteIngredient = useCallback((id: string) => {
+		dispatch(orderActions.deleteIngredient(id));
+	}, []);
+
 	const [{ isHover }, dropTarget] = useDrop({
 		accept: "ingredient",
 		collect: (monitor) => ({
@@ -83,6 +87,9 @@ export const BurgerOrder = memo(() => {
 								text={el.name}
 								price={el.price}
 								thumbnail={el.image}
+								handleClose={() => {
+									deleteIngredient(el._id);
+								}}
 							/>
 						</div>
 					))}
