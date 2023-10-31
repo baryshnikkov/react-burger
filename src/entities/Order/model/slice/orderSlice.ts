@@ -35,6 +35,9 @@ export const orderSlice = createSlice({
 
 			state.toppings = array;
 		},
+		updateToppings: (state, action) => {
+			state.toppings = action.payload;
+		},
 	},
 });
 

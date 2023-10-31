@@ -8,12 +8,6 @@
     width: 600px;
 }
 
-.dragIngredient {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
 .toppings {
     max-height: calc(100vh - var(--navbar-height) - 375px);
     overflow-y: scroll;
@@ -21,6 +15,7 @@
     flex-direction: column;
     gap: 10px;
     padding-right: 10px;
+    width: 100%;
 }
 
 .toppings::-webkit-scrollbar {
@@ -62,7 +57,7 @@
     gap: 10px;
     padding: 10px;
     border: 2px solid var(--bg-body-color);
-    
+    width: 100%;    
 }
 
 .isHover {

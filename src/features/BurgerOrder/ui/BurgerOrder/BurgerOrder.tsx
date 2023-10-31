@@ -1,10 +1,7 @@
 import { memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useDrop } from "react-dnd";
-import {
-	ConstructorElement,
-	DragIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import {
 	OrderButton,
 	getBun,
@@ -16,16 +13,13 @@ import BurgerIcon from "@/shared/assets/burger.svg";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
 import cls from "./BurgerOrder.module.css";
 import { cn } from "@/shared/lib/helpers/classNames";
+import { ToppingCard } from "../ToppingCard/ToppingCard";
 
 export const BurgerOrder = memo(() => {
 	const isEmpty = useSelector(getIsEmpty);
 	const bun = useSelector(getBun);
 	const toppings = useSelector(getToppings);
 	const dispatch = useAppDispatch();
-
-	const deleteIngredient = useCallback((id: string) => {
-		dispatch(orderActions.deleteIngredient(id));
-	}, []);
 
 	const [{ isHover }, dropTarget] = useDrop({
 		accept: "ingredient",
@@ -36,6 +30,18 @@ export const BurgerOrder = memo(() => {
 			dispatch(orderActions.addIngredient(item));
 		},
 	});
+
+	const moveToppingCard = useCallback(
+		(dragIndex: number, hoverIndex: number) => {
+			const dragCard = toppings[dragIndex];
+			const hoverCard = toppings[hoverIndex];
+			const updatedToppings = [...toppings];
+			updatedToppings[dragIndex] = hoverCard;
+			updatedToppings[hoverIndex] = dragCard;
+			dispatch(orderActions.updateToppings(updatedToppings));
+		},
+		[toppings]
+	);
 
 	const displayBun = useCallback(
 		(type: "top" | "bottom" | undefined) => {
@@ -77,21 +83,16 @@ export const BurgerOrder = memo(() => {
 			>
 				{displayBun("top")}
 				<div className={cls.toppings}>
-					{toppings.map((el) => (
-						<div
-							className={cn(cls.dragIngredient, {}, [])}
+					{toppings.map((el, index) => (
+						<ToppingCard
 							key={el.idKey}
-						>
-							<DragIcon type="primary" />
-							<ConstructorElement
-								text={el.name}
-								price={el.price}
-								thumbnail={el.image}
-								handleClose={() => {
-									deleteIngredient(el._id);
-								}}
-							/>
-						</div>
+							name={el.name}
+							price={el.price}
+							image={el.image}
+							_id={el._id}
+							index={index}
+							moveCard={moveToppingCard}
+						/>
 					))}
 				</div>
 				{displayBun("bottom")}
