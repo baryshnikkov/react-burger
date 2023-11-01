@@ -5,6 +5,9 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import cls from "./OrderButton.module.css";
 import { cn } from "@/shared/lib/helpers/classNames";
+import { useSelector } from "react-redux";
+import { getPrice } from "../model/selectors/getPrice";
+import { getIsEmpty } from "../model/selectors/getIsEmpty";
 
 interface OrderButtonProps {
 	className?: string;
@@ -12,11 +15,13 @@ interface OrderButtonProps {
 
 export const OrderButton = memo((props: OrderButtonProps) => {
 	const { className } = props;
+	const price = useSelector(getPrice);
+	const isEmpty = useSelector(getIsEmpty);
 
 	return (
 		<div className={cn(cls.OrderButton, {}, [className])}>
 			<div className={cls.price}>
-				<p className="text text_type_digits-medium">mock price</p>
+				<p className="text text_type_digits-medium">{price}</p>
 				<CurrencyIcon type="primary" />
 			</div>
 
@@ -26,8 +31,9 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 				type="primary"
 				size="medium"
 				onClick={() => console.log("click zakaz")}
+				disabled={isEmpty}
 			>
-				mock text
+				Оформить заказ
 			</Button>
 		</div>
 	);

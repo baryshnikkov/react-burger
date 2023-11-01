@@ -11,4 +11,5 @@ export interface OrderSchema {
 	isEmpty: boolean;
 	bun?: OrderIngredient;
 	toppings: OrderIngredient[];
+	price: number;
 }

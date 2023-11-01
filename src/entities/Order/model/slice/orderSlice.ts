@@ -4,6 +4,7 @@ import { OrderSchema } from "../types/order";
 const initialState: OrderSchema = {
 	toppings: [],
 	isEmpty: true,
+	price: 0,
 };
 
 export const orderSlice = createSlice({
@@ -12,8 +13,15 @@ export const orderSlice = createSlice({
 	reducers: {
 		addIngredient: (state, action) => {
 			if (action.payload.isBun) {
+				if (state.bun?.price) {
+					state.price = state.price - state.bun?.price * 2;
+				}
+				state.price = state.price + action.payload.price * 2;
+
 				state.bun = action.payload;
 			} else {
+				state.price = state.price + action.payload.price;
+
 				state.toppings = [action.payload, ...state.toppings];
 			}
 
@@ -29,11 +37,17 @@ export const orderSlice = createSlice({
 				(obj) => obj._id === idToRemove
 			);
 
+			state.price = state.price - array[index].price;
+
 			if (index !== -1) {
 				array.splice(index, 1);
 			}
 
 			state.toppings = array;
+
+			if (!state.isEmpty && !state.toppings.length && !state.bun) {
+				state.isEmpty = true;
+			}
 		},
 		updateToppings: (state, action) => {
 			state.toppings = action.payload;
