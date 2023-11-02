@@ -13,6 +13,7 @@ import {
 	useDrag,
 	useDrop,
 } from "react-dnd";
+import { amountIngredientsActions } from "@/entities/CardsIngredients";
 
 interface ToppingCardProps {
 	className?: string;
@@ -30,6 +31,7 @@ export const ToppingCard = memo((props: ToppingCardProps) => {
 
 	const deleteIngredient = useCallback((id: string) => {
 		dispatch(orderActions.deleteIngredient(id));
+		dispatch(amountIngredientsActions.minusAmountIngredient(id));
 	}, []);
 
 	const [{ isDragging }, dragRef] = useDrag({

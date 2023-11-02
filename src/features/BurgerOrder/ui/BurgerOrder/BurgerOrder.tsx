@@ -14,6 +14,7 @@ import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
 import cls from "./BurgerOrder.module.css";
 import { cn } from "@/shared/lib/helpers/classNames";
 import { ToppingCard } from "../ToppingCard/ToppingCard";
+import { amountIngredientsActions } from "@/entities/CardsIngredients";
 
 export const BurgerOrder = memo(() => {
 	const isEmpty = useSelector(getIsEmpty);
@@ -26,8 +27,10 @@ export const BurgerOrder = memo(() => {
 		collect: (monitor) => ({
 			isHover: monitor.isOver(),
 		}),
-		drop(item) {
+		// TODO исправить any
+		drop(item: any) {
 			dispatch(orderActions.addIngredient(item));
+			dispatch(amountIngredientsActions.plusAmountIngredient(item._id));
 		},
 	});
 
