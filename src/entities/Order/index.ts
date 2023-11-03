@@ -4,7 +4,7 @@ import { getPrice } from "./model/selectors/getPrice";
 import { getToppings } from "./model/selectors/getToppings";
 import { orderActions, orderReducer } from "./model/slice/orderSlice";
 import { OrderSchema } from "./model/types/order";
-import { OrderButton } from "./ui/OrderButton";
+import { OrderButton } from "./ui/OrderButton/OrderButton";
 
 export {
 	orderActions,
