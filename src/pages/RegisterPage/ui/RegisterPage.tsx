@@ -7,12 +7,27 @@ import { InputMail } from "@/shared/ui/InputMail";
 import { InputText } from "@/shared/ui/InputText";
 import { InputPassword } from "@/shared/ui/InputPassword";
 import cls from "@/shared/const/styles/FormPage.module.css";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
+import { authByMail, getIsLoadingAuthByMail } from "@/features/AuthUser";
+import { useSelector } from "react-redux";
 
 const RegisterPage = memo(() => {
 	const [emailValue, setEmailValue] = useState<string>("");
 	const [passwordValue, setPasswordValue] = useState<string>("");
 	const [nameValue, setNameValue] = useState<string>("");
+	const isLoading = useSelector(getIsLoadingAuthByMail);
 	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+
+	const onRegister = () => {
+		dispatch(
+			authByMail({
+				name: nameValue,
+				password: passwordValue,
+				email: emailValue,
+			})
+		);
+	};
 
 	return (
 		<Page className={cls.container}>
@@ -34,10 +49,9 @@ const RegisterPage = memo(() => {
 					htmlType="button"
 					type="primary"
 					size="medium"
-					onClick={() => console.log("register")}
+					onClick={onRegister}
 				>
-					{/* TODO */}
-					{false ? "Регистрация..." : "Зарегистрироваться"}
+					{isLoading ? "Регистрация..." : "Зарегистрироваться"}
 				</Button>
 			</form>
 
