@@ -14,4 +14,7 @@
     --hidden-modal-z-index: -1;
     --modal-z-index: 1;
     --overlay-z-index: 2;
+
+    --opacity-hover: 0.7;
+    --transition-time-hover: 0.2s;
 }
