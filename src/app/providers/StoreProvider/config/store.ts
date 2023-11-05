@@ -5,6 +5,7 @@ import { orderReducer } from "@/entities/Order";
 import { amountIngredientsReducer } from "@/entities/CardsIngredients";
 import { userReducer } from "@/entities/User";
 import { authUserReducer } from "@/features/AuthUser";
+import { loginUserReducer } from "@/features/LoginUser";
 
 export function createReduxStore(initialState?: StateSchema) {
 	const rootReducer: ReducersMapObject<StateSchema> = {
@@ -12,6 +13,7 @@ export function createReduxStore(initialState?: StateSchema) {
 		amountIngredients: amountIngredientsReducer,
 		user: userReducer,
 		authUser: authUserReducer,
+		loginUser: loginUserReducer,
 		[rtkApi.reducerPath]: rtkApi.reducer,
 	};
 

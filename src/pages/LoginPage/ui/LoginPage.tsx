@@ -9,11 +9,25 @@ import {
 	getRouteForgotPassword,
 	getRouteRegister,
 } from "@/shared/const/router";
+import { useSelector } from "react-redux";
+import { getIsLoadingLoginUser, loginUser } from "@/features/LoginUser";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
 
 const LoginPage = memo(() => {
 	const [emailValue, setEmailValue] = useState("");
 	const [passwordValue, setPasswordValue] = useState("");
 	const navigate = useNavigate();
+	const isLoading = useSelector(getIsLoadingLoginUser);
+	const dispatch = useAppDispatch();
+
+	const onLogin = () => {
+		dispatch(
+			loginUser({
+				password: passwordValue,
+				email: emailValue,
+			})
+		);
+	};
 
 	return (
 		<Page className={cls.container}>
@@ -29,10 +43,9 @@ const LoginPage = memo(() => {
 					htmlType="button"
 					type="primary"
 					size="medium"
-					onClick={() => console.log("login")}
+					onClick={onLogin}
 				>
-					{/* TODO */}
-					{false ? "Загрузка..." : "Войти"}
+					{isLoading ? "Загрузка..." : "Войти"}
 				</Button>
 			</form>
 
