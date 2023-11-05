@@ -7,4 +7,6 @@ export interface User {
 export interface UserSchema extends User {
 	isAuth: boolean;
 	inited: boolean;
+	isLoading: boolean;
+	error?: string;
 }

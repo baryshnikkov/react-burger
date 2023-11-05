@@ -1,4 +1,5 @@
 import { userActions } from "@/entities/User";
+import { getApiRegister } from "@/shared/const/api";
 import { USER_LOCALSTORAGE_KEY } from "@/shared/const/localstorage";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -28,7 +29,7 @@ export const authByMail = createAsyncThunk<
 	async ({ name, password, email }: AuthByMailProps, thunkAPI) => {
 		try {
 			const response = await axios.post<AuthByMailAnswer>(
-				__API__ + "auth/register",
+				__API__ + getApiRegister(),
 				{
 					name,
 					password,
