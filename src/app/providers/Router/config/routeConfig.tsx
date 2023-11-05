@@ -33,6 +33,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.PROFILE]: {
 		path: getRouteProfile(),
 		element: <ProfilePage />,
+		isAuth: true,
 	},
 	[AppRoutes.INGREDIENTS]: {
 		path: getRouteIngredients(":id"),
@@ -41,18 +42,22 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.LOGIN]: {
 		path: getRouteLogin(),
 		element: <LoginPage />,
+		isAuth: false,
 	},
 	[AppRoutes.REGISTER]: {
 		path: getRouteRegister(),
 		element: <RegisterPage />,
+		isAuth: false,
 	},
 	[AppRoutes.FORGOT_PASSWORD]: {
 		path: getRouteForgotPassword(),
 		element: <ForgotPasswordPage />,
+		isAuth: false,
 	},
 	[AppRoutes.RESET_PASSWORD]: {
 		path: getRouteResetPassword(),
 		element: <ResetPasswordPage />,
+		isAuth: false,
 	},
 	[AppRoutes.NOT_FOUND]: {
 		path: getRouteNotFound(),

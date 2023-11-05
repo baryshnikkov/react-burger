@@ -49,6 +49,7 @@ export const InputMail = memo((props: InputMailProps) => {
 			name={"email"}
 			error={!isValid && !isFocused}
 			errorText={errorText}
+			autoComplete="email"
 		/>
 	);
 });

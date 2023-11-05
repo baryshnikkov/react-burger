@@ -60,6 +60,7 @@ export const InputPassword = memo((props: InputPasswordProps) => {
 			errorText={errorText}
 			maxLength={24}
 			minLength={6}
+			autoComplete="current-password"
 		/>
 	);
 });

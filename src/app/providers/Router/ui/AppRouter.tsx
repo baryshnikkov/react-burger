@@ -3,6 +3,7 @@ import { memo, Suspense, useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
 import { routeConfig } from "../config/routeConfig";
 import { PageLoader } from "@/widgets/PageLoader";
+import { ProtectedRoutes } from "./protectedRoutes";
 
 export const AppRouter = memo(() => {
 	const renderWithWrapper = useCallback((route: AppRoutesProps) => {
@@ -10,7 +11,21 @@ export const AppRouter = memo(() => {
 			<Suspense fallback={<PageLoader />}>{route.element}</Suspense>
 		);
 
-		return <Route key={route.path} path={route.path} element={element} />;
+		return (
+			<Route
+				key={route.path}
+				path={route.path}
+				element={
+					route.isAuth !== undefined ? (
+						<ProtectedRoutes isAuthRoute={route.isAuth}>
+							{element}
+						</ProtectedRoutes>
+					) : (
+						element
+					)
+				}
+			/>
+		);
 	}, []);
 
 	return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
