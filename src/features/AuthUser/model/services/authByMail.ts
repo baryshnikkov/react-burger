@@ -51,6 +51,7 @@ export const authByMail = createAsyncThunk<
 					accessToken: response.data.accessToken,
 				})
 			);
+			thunkAPI.dispatch(userActions.initAuth());
 
 			return response.data;
 		} catch (e) {
