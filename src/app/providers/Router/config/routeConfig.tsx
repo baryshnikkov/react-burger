@@ -16,6 +16,7 @@ import {
 	getRouteMain,
 	getRouteNotFound,
 	getRouteProfile,
+	getRouteProfileOrders,
 	getRouteRegister,
 	getRouteResetPassword,
 } from "@/shared/const/router";
@@ -32,6 +33,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	},
 	[AppRoutes.PROFILE]: {
 		path: getRouteProfile(),
+		element: <ProfilePage />,
+		isAuth: true,
+	},
+	[AppRoutes.PROFILE_ORDERS]: {
+		path: getRouteProfileOrders(),
 		element: <ProfilePage />,
 		isAuth: true,
 	},

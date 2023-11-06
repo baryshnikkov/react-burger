@@ -6,10 +6,10 @@ import { Page } from "@/widgets/Page";
 import { InputMail } from "@/shared/ui/InputMail";
 import { InputText } from "@/shared/ui/InputText";
 import { InputPassword } from "@/shared/ui/InputPassword";
-import cls from "@/shared/const/styles/FormPage.module.css";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
 import { authByMail, getIsLoadingAuthByMail } from "@/features/AuthUser";
 import { useSelector } from "react-redux";
+import cls from "@/shared/const/styles/FormPage.module.css";
 
 const RegisterPage = memo(() => {
 	const [emailValue, setEmailValue] = useState<string>("");

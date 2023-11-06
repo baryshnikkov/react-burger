@@ -4,13 +4,15 @@ import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 interface InputMailProps {
 	value: string;
 	onChange: (newValue: string) => void;
+	isEdit?: boolean;
 }
 
 export const InputMail = memo((props: InputMailProps) => {
-	const { value, onChange } = props;
+	const { value, onChange, isEdit } = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(true);
 	const [errorText, setErrorText] = useState<string | undefined>(undefined);
+	const [isViewValue, setIsViewValue] = useState<boolean>(false);
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		onChange(e.target.value);
@@ -50,6 +52,10 @@ export const InputMail = memo((props: InputMailProps) => {
 			error={!isValid && !isFocused}
 			errorText={errorText}
 			autoComplete="email"
+			// @ts-ignore
+			icon={isEdit && (isViewValue ? "CloseIcon" : "EditIcon")}
+			onIconClick={() => setIsViewValue((prev) => !prev)}
+			disabled={isEdit && !isViewValue}
 		/>
 	);
 });

@@ -4,16 +4,35 @@ import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 interface InputPasswordProps {
 	value: string;
 	onChange: (newValue: string) => void;
+	isEdit?: boolean;
 }
 
 export const InputPassword = memo((props: InputPasswordProps) => {
-	const { value, onChange } = props;
+	const { value, onChange, isEdit } = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(true);
 	const [errorText, setErrorText] = useState<string | undefined>(undefined);
 	const [isViewPassword, setIsViewPassword] = useState<"password" | "text">(
 		"password"
 	);
+	const [isViewValue, setIsViewValue] = useState<boolean>(false);
+
+	const iconPassword =
+		isViewPassword === "password" ? "HideIcon" : "ShowIcon";
+
+	const iconEdit = isViewValue ? "CloseIcon" : "EditIcon";
+
+	const onViewPassword = () => {
+		if (isViewPassword === "password") {
+			setIsViewPassword("text");
+		} else {
+			setIsViewPassword("password");
+		}
+	};
+
+	const onViewValue = () => {
+		setIsViewValue((prev) => !prev);
+	};
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		onChange(e.target.value);
@@ -47,12 +66,9 @@ export const InputPassword = memo((props: InputPasswordProps) => {
 			size={"default"}
 			value={value}
 			onChange={handleInputChange}
-			icon={isViewPassword === "password" ? "HideIcon" : "ShowIcon"}
-			onIconClick={() => {
-				isViewPassword === "password"
-					? setIsViewPassword("text")
-					: setIsViewPassword("password");
-			}}
+			icon={isEdit ? iconEdit : iconPassword}
+			onIconClick={isEdit ? onViewValue : onViewPassword}
+			disabled={isEdit && !isViewValue}
 			name={"password"}
 			onBlur={handleBlur}
 			onFocus={handleFocus}

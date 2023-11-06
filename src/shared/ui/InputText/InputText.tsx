@@ -6,13 +6,15 @@ interface InputTextProps {
 	onChange: (newValue: string) => void;
 	placeholder: string;
 	name: string;
+	isEdit?: boolean;
 }
 
 export const InputText = memo((props: InputTextProps) => {
-	const { value, onChange, placeholder, name } = props;
+	const { value, onChange, placeholder, name, isEdit } = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(true);
 	const [errorText, setErrorText] = useState<string | undefined>(undefined);
+	const [isViewValue, setIsViewValue] = useState<boolean>(false);
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		onChange(e.target.value);
@@ -53,6 +55,10 @@ export const InputText = memo((props: InputTextProps) => {
 			errorText={errorText}
 			maxLength={24}
 			minLength={3}
+			// @ts-ignore
+			icon={isEdit && (isViewValue ? "CloseIcon" : "EditIcon")}
+			onIconClick={() => setIsViewValue((prev) => !prev)}
+			disabled={isEdit && !isViewValue}
 		/>
 	);
 });

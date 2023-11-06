@@ -16,5 +16,6 @@
     --overlay-z-index: 2;
 
     --opacity-hover: 0.7;
+    --opacity-text: 0.5;
     --transition-time-hover: 0.2s;
 }

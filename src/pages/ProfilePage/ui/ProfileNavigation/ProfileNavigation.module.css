@@ -1,0 +1,19 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 400px;
+    justify-content: space-around;
+    padding-top: 90px;
+}
+  
+.link {
+    cursor: pointer;
+    width: fit-content;
+}
+
+.description {
+    width: 320px;
+    margin-top: 130px;
+    opacity: var(--opacity-text);
+}

@@ -2,6 +2,7 @@ export enum AppRoutes {
 	MAIN = "main",
 	FEED = "feed",
 	PROFILE = "profile",
+	PROFILE_ORDERS = "profile_orders",
 	INGREDIENTS = "ingredients",
 	LOGIN = "login",
 	REGISTER = "register",
@@ -13,6 +14,7 @@ export enum AppRoutes {
 export const getRouteMain = () => "/";
 export const getRouteFeed = () => "/feed";
 export const getRouteProfile = () => "/profile";
+export const getRouteProfileOrders = () => "/profile/orders";
 export const getRouteIngredients = (id: string) => `/ingredients/${id}`;
 export const getRouteLogin = () => "/login";
 export const getRouteRegister = () => "/register";
