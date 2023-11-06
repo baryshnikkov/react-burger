@@ -12,4 +12,7 @@ export interface OrderSchema {
 	bun?: OrderIngredient;
 	toppings: OrderIngredient[];
 	price: number;
+	isLoading: boolean;
+	error?: string;
+	numberOrder?: number;
 }

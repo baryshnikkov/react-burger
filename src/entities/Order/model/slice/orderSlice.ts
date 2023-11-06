@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { OrderSchema } from "../types/order";
+import { setOrder } from "../services/setOrder";
 
 const initialState: OrderSchema = {
 	toppings: [],
 	isEmpty: true,
 	price: 0,
+	isLoading: false,
 };
 
 export const orderSlice = createSlice({
@@ -52,6 +54,28 @@ export const orderSlice = createSlice({
 		updateToppings: (state, action) => {
 			state.toppings = action.payload;
 		},
+		setNumberOrder: (state, action) => {
+			state.numberOrder = action.payload;
+		},
+		clearIngredients: (state) => {
+			state.bun = undefined;
+			state.toppings = [];
+			state.isEmpty = true;
+		},
+	},
+	extraReducers: (builder) => {
+		builder
+			.addCase(setOrder.pending, (state) => {
+				state.error = undefined;
+				state.isLoading = true;
+			})
+			.addCase(setOrder.fulfilled, (state) => {
+				state.isLoading = false;
+			})
+			.addCase(setOrder.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			});
 	},
 });
 

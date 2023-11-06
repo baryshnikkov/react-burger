@@ -5,6 +5,8 @@ import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-component
 import BGLarge from "@/shared/assets/order-bg-large.svg";
 import BGMedium from "@/shared/assets/order-bg-medium.svg";
 import BGSmall from "@/shared/assets/order-bg-small.svg";
+import { useSelector } from "react-redux";
+import { getNumberOrder } from "../../model/selectors/getNumberOrder";
 
 export interface OrderDetailsProps {
 	className?: string;
@@ -12,10 +14,11 @@ export interface OrderDetailsProps {
 
 const OrderDetails = memo((props: OrderDetailsProps) => {
 	const { className } = props;
+	const numberOrder = useSelector(getNumberOrder);
 
 	return (
 		<div className={cn(cls.OrderDetails, {}, [className])}>
-			<p className="text text_type_digits-large">1212mock</p>
+			<p className="text text_type_digits-large">{numberOrder}</p>
 
 			<p className={"text text_type_main-medium mt-8"}>
 				идентификатор заказа

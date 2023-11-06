@@ -3,7 +3,7 @@ import { memo, Suspense, useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
 import { routeConfig } from "../config/routeConfig";
 import { PageLoader } from "@/widgets/PageLoader";
-import { ProtectedRoutes } from "./protectedRoutes";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 export const AppRouter = memo(() => {
 	const renderWithWrapper = useCallback((route: AppRoutesProps) => {

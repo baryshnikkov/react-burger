@@ -26,6 +26,9 @@ export const amountIngredientsSlice = createSlice({
 
 			state.amount = currentAmountIngredients;
 		},
+		clearAmountIngredients: (state) => {
+			state.amount = {};
+		},
 	},
 });
 
