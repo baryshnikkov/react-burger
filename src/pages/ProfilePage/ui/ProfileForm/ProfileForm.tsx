@@ -7,9 +7,11 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
 import {
 	getAccessToken,
+	getIsLoadingUser,
 	getProfileData,
 	getUserMail,
 	getUserName,
+	setProfileData,
 } from "@/entities/User";
 import { useSelector } from "react-redux";
 
@@ -21,6 +23,7 @@ export const ProfileForm = () => {
 	const accessToken = useSelector(getAccessToken);
 	const name = useSelector(getUserName);
 	const mail = useSelector(getUserMail);
+	const isLoading = useSelector(getIsLoadingUser);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -41,24 +44,69 @@ export const ProfileForm = () => {
 		}
 	}, [name]);
 
+	const onSave = () => {
+		if (accessToken) {
+			console.log(emailValue);
+			dispatch(
+				setProfileData({
+					accessToken,
+					name: nameValue,
+					email: emailValue,
+					password: passwordValue,
+				})
+			).then((response: any) => {
+				if (response.payload?.success) {
+					setIsChangeValue(false);
+				}
+			});
+		}
+	};
+
+	const onReject = () => {
+		if (name && mail) {
+			setNameValue(name);
+			setEmailValue(mail);
+		}
+		setPasswordValue("");
+		setIsChangeValue(false);
+	};
+
+	const onChangeMail = (value: string) => {
+		setEmailValue(value);
+		setIsChangeValue(true);
+	};
+
+	const onChangeName = (value: string) => {
+		setNameValue(value);
+		setIsChangeValue(true);
+	};
+
+	const onChangePassword = (value: string) => {
+		setPasswordValue(value);
+		setIsChangeValue(true);
+	};
+
 	return (
 		<form className={cls.ProfileForm}>
 			<InputText
 				name="name"
 				value={nameValue}
-				onChange={setNameValue}
+				onChange={onChangeName}
 				placeholder="Имя"
 				isEdit={true}
+				isChangeValue={isChangeValue}
 			/>
 			<InputMail
 				value={emailValue}
-				onChange={setEmailValue}
+				onChange={onChangeMail}
 				isEdit={true}
+				isChangeValue={isChangeValue}
 			/>
 			<InputPassword
 				value={passwordValue}
-				onChange={setPasswordValue}
+				onChange={onChangePassword}
 				isEdit={true}
+				isChangeValue={isChangeValue}
 			/>
 
 			{isChangeValue && (
@@ -67,7 +115,7 @@ export const ProfileForm = () => {
 						htmlType="button"
 						type="secondary"
 						size="medium"
-						onClick={() => console.log("reject")}
+						onClick={onReject}
 					>
 						Отмена
 					</Button>
@@ -76,9 +124,9 @@ export const ProfileForm = () => {
 						type="primary"
 						size="medium"
 						extraClass="ml-2"
-						onClick={() => console.log("save")}
+						onClick={onSave}
 					>
-						Сохранить
+						{isLoading ? "Сохранение..." : "Сохранить"}
 					</Button>
 				</div>
 			)}

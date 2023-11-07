@@ -19,7 +19,7 @@ export const getProfileData = createAsyncThunk<
 	ProfileDataAnswer,
 	ProfileDataProps,
 	{ rejectValue: string }
->("authByMail", async ({ accessToken }: ProfileDataProps, thunkAPI) => {
+>("getProfileData", async ({ accessToken }: ProfileDataProps, thunkAPI) => {
 	try {
 		const response = await axios.get<ProfileDataAnswer>(
 			__API__ + getApiProfileData(),

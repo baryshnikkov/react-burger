@@ -3,6 +3,8 @@ import { User, UserSchema } from "../types/userSchema";
 import { USER_LOCALSTORAGE_KEY } from "@/shared/const/localstorage";
 import { updateAccessToken } from "../services/updateAccessToken";
 import { logoutUser } from "../services/logoutUser";
+import { setProfileData } from "../services/setProfileData";
+import { getProfileData } from "../services/getProfileData";
 
 const initialState: UserSchema = {
 	isAuth: false,
@@ -59,6 +61,28 @@ export const userSlice = createSlice({
 				state.mail = undefined;
 			})
 			.addCase(logoutUser.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(getProfileData.pending, (state) => {
+				state.error = undefined;
+				state.isLoading = true;
+			})
+			.addCase(getProfileData.fulfilled, (state) => {
+				state.isLoading = false;
+			})
+			.addCase(getProfileData.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(setProfileData.pending, (state) => {
+				state.error = undefined;
+				state.isLoading = true;
+			})
+			.addCase(setProfileData.fulfilled, (state) => {
+				state.isLoading = false;
+			})
+			.addCase(setProfileData.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});

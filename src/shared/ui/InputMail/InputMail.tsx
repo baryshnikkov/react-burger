@@ -1,14 +1,15 @@
-import { ChangeEvent, memo, useState } from "react";
+import { ChangeEvent, memo, useEffect, useState } from "react";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface InputMailProps {
 	value: string;
 	onChange: (newValue: string) => void;
 	isEdit?: boolean;
+	isChangeValue?: boolean;
 }
 
 export const InputMail = memo((props: InputMailProps) => {
-	const { value, onChange, isEdit } = props;
+	const { value, onChange, isEdit, isChangeValue } = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(true);
 	const [errorText, setErrorText] = useState<string | undefined>(undefined);
@@ -38,6 +39,12 @@ export const InputMail = memo((props: InputMailProps) => {
 			setErrorText("Неправильный формат email");
 		}
 	};
+
+	useEffect(() => {
+		if (isChangeValue === false) {
+			setIsViewValue(false);
+		}
+	}, [isChangeValue]);
 
 	return (
 		<Input

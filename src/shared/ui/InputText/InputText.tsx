@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useState } from "react";
+import { ChangeEvent, memo, useEffect, useState } from "react";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface InputTextProps {
@@ -7,10 +7,11 @@ interface InputTextProps {
 	placeholder: string;
 	name: string;
 	isEdit?: boolean;
+	isChangeValue?: boolean;
 }
 
 export const InputText = memo((props: InputTextProps) => {
-	const { value, onChange, placeholder, name, isEdit } = props;
+	const { value, onChange, placeholder, name, isEdit, isChangeValue } = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(true);
 	const [errorText, setErrorText] = useState<string | undefined>(undefined);
@@ -41,13 +42,19 @@ export const InputText = memo((props: InputTextProps) => {
 		}
 	};
 
+	useEffect(() => {
+		if (isChangeValue === false) {
+			setIsViewValue(false);
+		}
+	}, [isChangeValue]);
+
 	return (
 		<Input
 			type={"text"}
 			placeholder={placeholder}
 			size={"default"}
 			value={value}
-			onChange={(e) => onChange(e.target.value)}
+			onChange={handleInputChange}
 			onBlur={handleBlur}
 			onFocus={handleFocus}
 			name={name}

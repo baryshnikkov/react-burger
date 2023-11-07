@@ -1,14 +1,15 @@
-import { ChangeEvent, memo, useState } from "react";
+import { ChangeEvent, memo, useEffect, useState } from "react";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface InputPasswordProps {
 	value: string;
 	onChange: (newValue: string) => void;
 	isEdit?: boolean;
+	isChangeValue?: boolean;
 }
 
 export const InputPassword = memo((props: InputPasswordProps) => {
-	const { value, onChange, isEdit } = props;
+	const { value, onChange, isEdit, isChangeValue } = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(true);
 	const [errorText, setErrorText] = useState<string | undefined>(undefined);
@@ -58,6 +59,12 @@ export const InputPassword = memo((props: InputPasswordProps) => {
 			setErrorText("Длина должна быть от 6 до 24 символов");
 		}
 	};
+
+	useEffect(() => {
+		if (isChangeValue === false) {
+			setIsViewValue(false);
+		}
+	}, [isChangeValue]);
 
 	return (
 		<Input
