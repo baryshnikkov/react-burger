@@ -40,7 +40,6 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 		});
 
 		if (accessToken) {
-			console.log(12);
 			const response = dispatch(setOrder({ ingredients, accessToken }));
 		}
 		setIsOpenModal(true);

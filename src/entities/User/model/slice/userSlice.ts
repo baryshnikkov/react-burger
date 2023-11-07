@@ -26,7 +26,10 @@ export const userSlice = createSlice({
 		setAuthData: (state, action: PayloadAction<User>) => {
 			state.name = action.payload.name;
 			state.mail = action.payload.mail;
-			state.accessToken = action.payload.accessToken;
+
+			if (action.payload.accessToken) {
+				state.accessToken = action.payload.accessToken;
+			}
 		},
 		setAccessToken: (state, action: PayloadAction<string>) => {
 			state.accessToken = action.payload;
