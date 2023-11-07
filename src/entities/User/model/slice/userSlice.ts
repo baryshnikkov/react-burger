@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User, UserSchema } from "../types/userSchema";
 import { USER_LOCALSTORAGE_KEY } from "@/shared/const/localstorage";
 import { updateAccessToken } from "../services/updateAccessToken";
+import { logoutUser } from "../services/logoutUser";
 
 const initialState: UserSchema = {
 	isAuth: false,
@@ -17,6 +18,8 @@ export const userSlice = createSlice({
 			const key = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 			if (key) {
 				state.isAuth = true;
+			} else {
+				state.isAuth = false;
 			}
 			state.inited = true;
 		},
@@ -39,6 +42,20 @@ export const userSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(updateAccessToken.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(logoutUser.pending, (state) => {
+				state.error = undefined;
+				state.isLoading = true;
+			})
+			.addCase(logoutUser.fulfilled, (state) => {
+				state.isLoading = false;
+				state.accessToken = undefined;
+				state.name = undefined;
+				state.mail = undefined;
+			})
+			.addCase(logoutUser.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});

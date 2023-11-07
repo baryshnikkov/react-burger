@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { cn } from "@/shared/lib/helpers/classNames";
 import { getRouteProfile, getRouteProfileOrders } from "@/shared/const/router";
 import cls from "./ProfileNavigation.module.css";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
+import { logoutUser } from "@/entities/User";
 
 interface ProfileNavigationProps {
 	path: string;
@@ -10,6 +12,11 @@ interface ProfileNavigationProps {
 export const ProfileNavigation = (props: ProfileNavigationProps) => {
 	const { path } = props;
 	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+
+	const onExit = () => {
+		dispatch(logoutUser());
+	};
 
 	return (
 		<nav className={cn(cls.nav, {}, ["text", "text_type_main-medium"])}>
@@ -39,7 +46,7 @@ export const ProfileNavigation = (props: ProfileNavigationProps) => {
 			</p>
 			<div
 				className={cn(cls.link, {}, ["text_color_inactive"])}
-				onClick={() => console.log("exit")}
+				onClick={onExit}
 			>
 				Выход
 			</div>

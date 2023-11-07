@@ -1,6 +1,7 @@
 import { getAccessToken } from "./model/selectors/getAccessToken";
 import { getInited } from "./model/selectors/getInited";
 import { getIsAuth } from "./model/selectors/getIsAuth";
+import { logoutUser } from "./model/services/logoutUser";
 import { updateAccessToken } from "./model/services/updateAccessToken";
 import { userReducer, userActions } from "./model/slice/userSlice";
 import { UserSchema } from "./model/types/userSchema";
@@ -12,5 +13,6 @@ export {
 	getInited,
 	updateAccessToken,
 	getAccessToken,
+	logoutUser,
 };
 export type { UserSchema };
