@@ -13,8 +13,12 @@ import {
 	getRouteProfile,
 } from "@/shared/const/router";
 import cls from "./Navbar.module.css";
+import { useSelector } from "react-redux";
+import { getIsAuth } from "@/entities/User";
 
 export const Navbar = memo(() => {
+	const isAuth = useSelector(getIsAuth);
+
 	return (
 		<header className={cls.header}>
 			<div className={cls.Navbar}>
@@ -36,7 +40,7 @@ export const Navbar = memo(() => {
 				<NavbarLink
 					className={cls.profile}
 					to={getRouteProfile()}
-					text="Личный кабинет"
+					text={isAuth ? "Личный кабинет" : "Войти"}
 					icon={<ProfileIcon type="primary" />}
 				/>
 			</div>

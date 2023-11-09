@@ -8,10 +8,19 @@ interface InputTextProps {
 	name: string;
 	isEdit?: boolean;
 	isChangeValue?: boolean;
+	maxLength?: number;
 }
 
 export const InputText = memo((props: InputTextProps) => {
-	const { value, onChange, placeholder, name, isEdit, isChangeValue } = props;
+	const {
+		value,
+		onChange,
+		placeholder,
+		name,
+		isEdit,
+		isChangeValue,
+		maxLength = 24,
+	} = props;
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(true);
 	const [errorText, setErrorText] = useState<string | undefined>(undefined);
@@ -36,9 +45,10 @@ export const InputText = memo((props: InputTextProps) => {
 			setIsValid(false);
 			setErrorText("Это обязательное поле");
 		} else {
-			const isValidLength = value.length >= 3 && value.length <= 24;
+			const isValidLength =
+				value.length >= 3 && value.length <= maxLength;
 			setIsValid(isValidLength);
-			setErrorText("Длина должна быть от 3 до 24 символов");
+			setErrorText(`Длина должна быть от 3 до ${maxLength} символов`);
 		}
 	};
 
@@ -60,7 +70,7 @@ export const InputText = memo((props: InputTextProps) => {
 			name={name}
 			error={!isValid && !isFocused}
 			errorText={errorText}
-			maxLength={24}
+			maxLength={maxLength}
 			minLength={3}
 			// @ts-ignore
 			icon={isEdit && (isViewValue ? "CloseIcon" : "EditIcon")}

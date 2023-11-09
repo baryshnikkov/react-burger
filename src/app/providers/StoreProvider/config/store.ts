@@ -6,6 +6,8 @@ import { amountIngredientsReducer } from "@/entities/CardsIngredients";
 import { userReducer } from "@/entities/User";
 import { authUserReducer } from "@/features/AuthUser";
 import { loginUserReducer } from "@/features/LoginUser";
+import { forgotPasswordReducer } from "@/pages/ForgotPasswordPage";
+import { resetPasswordReducer } from "@/pages/ResetPasswordPage";
 
 export function createReduxStore(initialState?: StateSchema) {
 	const rootReducer: ReducersMapObject<StateSchema> = {
@@ -14,6 +16,8 @@ export function createReduxStore(initialState?: StateSchema) {
 		user: userReducer,
 		authUser: authUserReducer,
 		loginUser: loginUserReducer,
+		forgotPassword: forgotPasswordReducer,
+		resetPassword: resetPasswordReducer,
 		[rtkApi.reducerPath]: rtkApi.reducer,
 	};
 

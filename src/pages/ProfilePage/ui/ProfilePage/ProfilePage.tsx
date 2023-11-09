@@ -5,6 +5,7 @@ import { ProfileNavigation } from "../ProfileNavigation/ProfileNavigation";
 import { useLocation } from "react-router-dom";
 import { getRouteProfile } from "@/shared/const/router";
 import { ProfileForm } from "../ProfileForm/ProfileForm";
+import { OrderList } from "../OrderList/OrderList";
 
 const ProfilePage = memo(() => {
 	const pathLocation = useLocation();
@@ -15,7 +16,7 @@ const ProfilePage = memo(() => {
 			{pathLocation.pathname === getRouteProfile() ? (
 				<ProfileForm />
 			) : (
-				<h1>ProfileOrders</h1>
+				<OrderList />
 			)}
 		</Page>
 	);
