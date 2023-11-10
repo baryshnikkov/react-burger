@@ -13,8 +13,10 @@ import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
 import { setOrder } from "../../model/services/setOrder";
 import { getBun } from "../../model/selectors/getBun";
 import { getToppings } from "../../model/selectors/getToppings";
-import { getAccessToken } from "@/entities/User";
+import { getAccessToken, getIsAuth } from "@/entities/User";
 import { getIsLoadingOrder } from "../../model/selectors/getIsLoadingOrder";
+import { useNavigate } from "react-router-dom";
+import { getRouteLogin } from "@/shared/const/router";
 
 interface OrderButtonProps {
 	className?: string;
@@ -30,6 +32,8 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 	const toppings = useSelector(getToppings);
 	const accessToken = useSelector(getAccessToken);
 	const isLoading = useSelector(getIsLoadingOrder);
+	const isAuth = useSelector(getIsAuth);
+	const navigate = useNavigate();
 
 	const onOpenModal = () => {
 		const ingredients: string[] = [];
@@ -49,6 +53,10 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 		setIsOpenModal(false);
 	}, []);
 
+	const onNavigate = (path: string) => () => {
+		navigate(path);
+	};
+
 	return (
 		<>
 			<div className={cn(cls.OrderButton, {}, [className])}>
@@ -62,7 +70,7 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 					htmlType="button"
 					type="primary"
 					size="medium"
-					onClick={onOpenModal}
+					onClick={isAuth ? onOpenModal : onNavigate(getRouteLogin())}
 					disabled={isEmpty}
 				>
 					{isLoading ? "Загрузка..." : "Оформить заказ"}

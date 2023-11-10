@@ -10,6 +10,11 @@
 .link {
     cursor: pointer;
     width: fit-content;
+    transition: all var(--transition-time-hover);
+}
+
+.link:hover {
+    color: var(--text-color-primary);
 }
 
 .description {
