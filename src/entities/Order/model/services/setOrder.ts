@@ -40,6 +40,7 @@ export const setOrder = createAsyncThunk<
 			orderActions.setNumberOrder(response.data.order.number)
 		);
 		thunkAPI.dispatch(orderActions.clearIngredients());
+		thunkAPI.dispatch(orderActions.clearPrice());
 		thunkAPI.dispatch(amountIngredientsActions.clearAmountIngredients());
 
 		return response.data;

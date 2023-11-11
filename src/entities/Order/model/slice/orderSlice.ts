@@ -62,6 +62,9 @@ export const orderSlice = createSlice({
 			state.toppings = [];
 			state.isEmpty = true;
 		},
+		clearPrice: (state) => {
+			state.price = 0;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
