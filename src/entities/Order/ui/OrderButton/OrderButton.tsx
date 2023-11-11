@@ -80,6 +80,3 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 		</>
 	);
 });
-function dispatch(setOrder: any) {
-	throw new Error("Function not implemented.");
-}

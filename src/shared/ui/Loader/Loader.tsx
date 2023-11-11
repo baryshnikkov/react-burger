@@ -4,13 +4,16 @@ import { cn } from "@/shared/lib/helpers/classNames";
 
 interface LoaderProps {
 	className?: string;
+	isCenter?: boolean;
 }
 
 export const Loader = memo((props: LoaderProps) => {
-	const { className } = props;
+	const { className, isCenter = false } = props;
 
 	return (
-		<div className={cn("lds-roller", {}, [className])}>
+		<div
+			className={cn("lds-roller", { ["center"]: isCenter }, [className])}
+		>
 			<div />
 			<div />
 			<div />

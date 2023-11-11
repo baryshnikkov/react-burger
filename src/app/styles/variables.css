@@ -6,7 +6,9 @@
     --text-color-primary: #F2F2F3;
     --text-color-secondary: #8585AD;
     --accent-color: #4C4CFF;
+    --accent-color-secondary: #801ab2;
     --overlay-color: #00000099;
+    --overlay-color-secondary: #F2F2F3;
     
     --width-page: 1280px;
     --navbar-height: 88px;

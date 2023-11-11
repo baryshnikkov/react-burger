@@ -1,0 +1,23 @@
+.OrderList {
+    width: 100%;
+    max-height: calc(100vh - var(--navbar-height));
+    overflow: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+  
+.OrderList::-webkit-scrollbar {
+    width: 8px;
+}
+  
+.OrderList::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: var(--bg-scrollbar-thumb);
+}
+  
+.OrderList::-webkit-scrollbar-track {
+    background-color: var(--bg-scrollbar-track);
+}
+  

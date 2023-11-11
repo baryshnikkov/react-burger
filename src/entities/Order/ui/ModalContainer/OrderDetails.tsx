@@ -1,12 +1,13 @@
 import { cn } from "@/shared/lib/helpers/classNames";
 import { memo } from "react";
-import cls from "./OrderDetails.module.css";
+import { useSelector } from "react-redux";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Loader } from "@/shared/ui/Loader";
 import BGLarge from "@/shared/assets/order-bg-large.svg";
 import BGMedium from "@/shared/assets/order-bg-medium.svg";
 import BGSmall from "@/shared/assets/order-bg-small.svg";
-import { useSelector } from "react-redux";
 import { getNumberOrder } from "../../model/selectors/getNumberOrder";
+import cls from "./OrderDetails.module.css";
 
 export interface OrderDetailsProps {
 	className?: string;
@@ -18,7 +19,9 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 
 	return (
 		<div className={cn(cls.OrderDetails, {}, [className])}>
-			<p className="text text_type_digits-large">{numberOrder}</p>
+			<p className="text text_type_digits-large">
+				{numberOrder ? numberOrder : <Loader />}
+			</p>
 
 			<p className={"text text_type_main-medium mt-8"}>
 				идентификатор заказа
