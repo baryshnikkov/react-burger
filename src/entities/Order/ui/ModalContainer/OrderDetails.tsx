@@ -19,9 +19,11 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 
 	return (
 		<div className={cn(cls.OrderDetails, {}, [className])}>
-			<p className="text text_type_digits-large">
-				{numberOrder ? numberOrder : <Loader />}
-			</p>
+			{numberOrder ? (
+				<p className="text text_type_digits-large">{numberOrder}</p>
+			) : (
+				<Loader />
+			)}
 
 			<p className={"text text_type_main-medium mt-8"}>
 				идентификатор заказа

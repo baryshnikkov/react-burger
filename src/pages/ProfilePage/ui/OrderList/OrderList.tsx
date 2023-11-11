@@ -21,7 +21,7 @@ export const OrderList = memo((props: OrderListProps) => {
 	return (
 		<div className={cls.OrderList}>
 			{/* TODO */}
-			{data.map((el: any) => (
+			{data.reverse().map((el: any) => (
 				<OrderCard
 					key={el._id}
 					number={el.number}

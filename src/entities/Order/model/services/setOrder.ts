@@ -23,13 +23,12 @@ export const setOrder = createAsyncThunk<
 	try {
 		const response = await axios.post<OrderAnswer>(
 			__API__ + getApiOrders(),
+			{ ingredients },
 			{
 				headers: {
 					"Content-Type": "application/json",
 					authorization: accessToken,
 				},
-
-				ingredients,
 			}
 		);
 

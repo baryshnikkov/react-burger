@@ -34,5 +34,5 @@ export const calculatePrice = (
 		price = arrPrice.reduce((a: number, b: number) => a + b);
 	}
 
-	return { images: arrImages.reverse(), price };
+	return { images: arrImages, price };
 };
