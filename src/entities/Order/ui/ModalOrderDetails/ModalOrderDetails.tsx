@@ -13,7 +13,6 @@ interface ModalOrderDetails {
 export const ModalOrderDetails = memo((props: ModalOrderDetails) => {
 	const { className, isOpen, onClose } = props;
 
-	// TODO заменить null
 	if (!isOpen) {
 		return null;
 	}

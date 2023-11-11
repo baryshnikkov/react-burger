@@ -27,8 +27,8 @@ export const BurgerOrder = memo(() => {
 		collect: (monitor) => ({
 			isHover: monitor.isOver(),
 		}),
-		// TODO исправить any
 		drop(item: any) {
+			console.log(item);
 			dispatch(orderActions.addIngredient(item));
 			dispatch(amountIngredientsActions.plusAmountIngredient(item._id));
 		},

@@ -9,7 +9,13 @@ import { useSelector } from "react-redux";
 import { getAmountIngredients } from "../../model/selectors/getAmountIngredients";
 import { amountIngredientsActions } from "../../model/slice/amountIngredientsSlice";
 import { getBun } from "@/entities/Order";
+import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
+interface FilterIngredients {
+	bun: Ingredient[];
+	main: Ingredient[];
+	sauce: Ingredient[];
+}
 interface CardsIngredientsProps {
 	bunsRef: RefObject<HTMLHeadingElement>;
 	mainRef: RefObject<HTMLHeadingElement>;
@@ -31,12 +37,12 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 
 	useEffect(() => {
 		if (ingredients?.data) {
-			const filterIngredients: any = {
+			const filterIngredients: FilterIngredients = {
 				bun: [],
 				main: [],
 				sauce: [],
 			};
-			const filterAmountIngredients: any = {};
+			const filterAmountIngredients: Record<string, number> = {};
 
 			ingredients?.data.map((el) => {
 				filterIngredients[el.type].push(el);
@@ -59,7 +65,23 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 	}
 
 	if (!ingredients?.data) {
-		return null; //TODO заменить null на ошибку
+		return (
+			<div className={cls.error}>
+				<p className="text text_type_main-default">
+					Ошибка сервера. Не удалось получить данные. Попробуйте
+					обновить страницу.
+				</p>
+				<Button
+					htmlType="button"
+					type="primary"
+					size="small"
+					extraClass="ml-2"
+					onClick={() => window.location.reload()}
+				>
+					Обновить страницу
+				</Button>
+			</div>
+		);
 	}
 
 	return (

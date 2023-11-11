@@ -29,7 +29,6 @@ export const ModalIngredientData = memo((props: ModalIngredientDataProps) => {
 		image,
 	} = props;
 
-	// TODO заменить null
 	if (!isOpen) {
 		return null;
 	}

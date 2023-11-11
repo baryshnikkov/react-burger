@@ -2,8 +2,7 @@ import { cn } from "@/shared/lib/helpers/classNames";
 import cls from "./IngredientPictures.module.css";
 
 interface IngredientPicturesProps {
-	// TODO
-	images: any;
+	images: string[];
 }
 
 export const IngredientPictures = (props: IngredientPicturesProps) => {
@@ -11,8 +10,7 @@ export const IngredientPictures = (props: IngredientPicturesProps) => {
 
 	return (
 		<div className={cls.IngredientPictures}>
-			{/* TODO */}
-			{images.slice(0, 6).map((el: any, index: number) => (
+			{images.slice(0, 6).map((el: string, index: number) => (
 				<div className={cls.ingredient} key={index}>
 					<img
 						className={cls.img}

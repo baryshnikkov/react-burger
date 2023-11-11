@@ -2,7 +2,7 @@ import { memo, useMemo } from "react";
 import cls from "./OrderCard.module.css";
 import { calculateDate } from "@/shared/lib/helpers/calculateDate";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useIngredients } from "@/entities/ListIngredients";
+import { Ingredient, useIngredients } from "@/entities/ListIngredients";
 import { calculatePrice } from "@/shared/lib/helpers/calculatePrice";
 import { IngredientPictures } from "../IngredientPictures/IngredientPictures";
 
@@ -11,8 +11,7 @@ interface OrderCardProps {
 	name: string;
 	status: string;
 	createdAt: string;
-	// TODO
-	ingredientsOrder: any;
+	ingredientsOrder: string[];
 }
 
 export const OrderCard = memo((props: OrderCardProps) => {
@@ -28,7 +27,10 @@ export const OrderCard = memo((props: OrderCardProps) => {
 	}, [createdAt]);
 
 	const { images, price } = useMemo(() => {
-		return calculatePrice(ingredientsOrder, ingredientsList?.data);
+		return calculatePrice<Ingredient>({
+			ingredientsOrder,
+			ingredientsList: ingredientsList?.data!,
+		});
 	}, [ingredientsList, ingredientsOrder]);
 
 	return (

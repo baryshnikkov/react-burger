@@ -3,6 +3,7 @@ import { memo } from "react";
 import { OrderCard } from "../OrderCard/OrderCard";
 import cls from "./OrderList.module.css";
 import { Loader } from "@/shared/ui/Loader";
+import { OrderAnswer } from "../../model/types/order";
 
 interface OrderListProps {
 	accessToken: string;
@@ -20,8 +21,7 @@ export const OrderList = memo((props: OrderListProps) => {
 
 	return (
 		<div className={cls.OrderList}>
-			{/* TODO */}
-			{data.reverse().map((el: any) => (
+			{data.reverse().map((el: OrderAnswer) => (
 				<OrderCard
 					key={el._id}
 					number={el.number}

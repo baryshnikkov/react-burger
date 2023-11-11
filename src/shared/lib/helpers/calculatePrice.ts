@@ -1,19 +1,17 @@
-// TODO
-export const calculatePrice = (
-	ingredientsOrder: any,
-	ingredientsList: any = []
-) => {
-	// TODO
-	const arrImages: any = [];
-	// TODO
-	const arrPrice: any = [];
-	// TODO
-	ingredientsList = Array.from(ingredientsList);
+interface CalculatePriceProps<T> {
+	ingredientsOrder: string[];
+	ingredientsList: T[];
+}
+
+export const calculatePrice = <T>(props: CalculatePriceProps<T>) => {
+	const { ingredientsList, ingredientsOrder } = props;
+	const arrImages: string[] = [];
+	const arrPrice: number[] = [];
 
 	let bun: string = "";
 
 	ingredientsList?.forEach((ingredientList: any) => {
-		ingredientsOrder.forEach((ingredientOrder: any) => {
+		ingredientsOrder.forEach((ingredientOrder: string) => {
 			if (ingredientList._id === ingredientOrder) {
 				if (ingredientList.type === "bun") {
 					bun = ingredientList.image;
