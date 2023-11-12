@@ -4,6 +4,7 @@ import { IngredientsPage } from "@/pages/IngredientsPage";
 import { LoginPage } from "@/pages/LoginPage";
 import { MainPage } from "@/pages/MainPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
+import { ProfileOrdersDetailsPage } from "@/pages/ProfileOrdersDetailsPage";
 import { ProfilePage } from "@/pages/ProfilePage";
 import { RegisterPage } from "@/pages/RegisterPage";
 import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
@@ -16,6 +17,7 @@ import {
 	getRouteMain,
 	getRouteNotFound,
 	getRouteProfile,
+	getRouteProfileOrderDetails,
 	getRouteProfileOrders,
 	getRouteRegister,
 	getRouteResetPassword,
@@ -39,6 +41,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.PROFILE_ORDERS]: {
 		path: getRouteProfileOrders(),
 		element: <ProfilePage />,
+		isAuth: true,
+	},
+	[AppRoutes.PROFILE_ORDERS_DETAILS]: {
+		path: getRouteProfileOrderDetails(":id"),
+		element: <ProfileOrdersDetailsPage />,
 		isAuth: true,
 	},
 	[AppRoutes.INGREDIENTS]: {

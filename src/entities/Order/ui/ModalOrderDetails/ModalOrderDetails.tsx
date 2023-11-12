@@ -4,13 +4,13 @@ import { Loader } from "@/shared/ui/Loader";
 import { Modal } from "@/shared/ui/Modal";
 import { OrderDetailsAsync } from "../ModalContainer/OrderDetails.async";
 
-interface ModalOrderDetails {
+interface ModalOrderDetailsProps {
 	className?: string;
 	isOpen: boolean;
 	onClose: () => void;
 }
 
-export const ModalOrderDetails = memo((props: ModalOrderDetails) => {
+export const ModalOrderDetails = memo((props: ModalOrderDetailsProps) => {
 	const { className, isOpen, onClose } = props;
 
 	if (!isOpen) {

@@ -42,6 +42,7 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 		toppings.forEach((ingredient) => {
 			ingredients.push(ingredient._id);
 		});
+		ingredients.push(bun?._id!);
 
 		if (accessToken) {
 			const response = dispatch(setOrder({ ingredients, accessToken }));

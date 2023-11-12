@@ -19,6 +19,8 @@ export const OrderList = memo((props: OrderListProps) => {
 		return <Loader isCenter={true} />;
 	}
 
+	console.log(data);
+
 	return (
 		<div className={cls.OrderList}>
 			{data.reverse().map((el: OrderAnswer) => (
@@ -29,6 +31,7 @@ export const OrderList = memo((props: OrderListProps) => {
 					createdAt={el.createdAt}
 					status={el.status}
 					ingredientsOrder={el.ingredients}
+					id={el._id}
 				/>
 			))}
 		</div>

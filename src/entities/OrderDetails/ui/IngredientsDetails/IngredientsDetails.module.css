@@ -1,0 +1,34 @@
+.ingredient {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-right: 10px;
+}
+  
+.imgBorder {
+    width: 64px;
+    height: 64px;
+    border-radius: 100px;
+    background: linear-gradient(45deg, var(--accent-color-secondary), var(--accent-color));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+}
+  
+.img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    object-position: center;
+    object-fit: cover;
+}
+
+.name {
+    width: 100%;
+}
+  
+.price {
+    display: flex;
+    gap: 9px;
+}
