@@ -5,10 +5,11 @@ import { ProfileNavigation } from "../ProfileNavigation/ProfileNavigation";
 import { useLocation } from "react-router-dom";
 import { getRouteProfile } from "@/shared/const/router";
 import { ProfileForm } from "../ProfileForm/ProfileForm";
-import { OrderList } from "../OrderList/OrderList";
+
 import { useSelector } from "react-redux";
 import { getAccessToken } from "@/entities/User";
 import { Loader } from "@/shared/ui/Loader";
+import { OrderList } from "@/entities/Order";
 
 const ProfilePage = memo(() => {
 	const pathLocation = useLocation();
@@ -16,7 +17,14 @@ const ProfilePage = memo(() => {
 
 	const orderList = () => {
 		if (accessToken) {
-			return <OrderList accessToken={accessToken?.split(" ")[1]} />;
+			return (
+				<OrderList
+					urlWebSocket={`wss://norma.nomoreparties.space/orders?token=${
+						accessToken?.split(" ")[1]
+					}`}
+					isReverse={true}
+				/>
+			);
 		}
 		return <Loader isCenter={true} />;
 	};

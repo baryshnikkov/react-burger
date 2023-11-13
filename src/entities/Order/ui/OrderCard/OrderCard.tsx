@@ -7,6 +7,7 @@ import { getRouteProfileOrderDetails } from "@/shared/const/router";
 import { IngredientPictures } from "../IngredientPictures/IngredientPictures";
 import cls from "./OrderCard.module.css";
 import { ModalOwnOrderDetails } from "@/entities/OrderDetails";
+import { useLocation } from "react-router-dom";
 
 interface OrderCardProps {
 	number: number;
@@ -15,10 +16,12 @@ interface OrderCardProps {
 	createdAt: string;
 	ingredientsOrder: string[];
 	id: string;
+	pathname: string;
 }
 
 export const OrderCard = memo((props: OrderCardProps) => {
-	const { number, name, status, createdAt, ingredientsOrder, id } = props;
+	const { number, name, status, createdAt, ingredientsOrder, id, pathname } =
+		props;
 	const { data: ingredientsList } = useIngredients(null);
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -29,7 +32,7 @@ export const OrderCard = memo((props: OrderCardProps) => {
 
 	const onOpenModal = () => {
 		setIsOpenModal(true);
-		window.history.pushState(null, "", getRouteProfileOrderDetails(id));
+		window.history.pushState(null, "", pathname + "/" + id);
 	};
 
 	const { interval, time, gmt } = useMemo(() => {

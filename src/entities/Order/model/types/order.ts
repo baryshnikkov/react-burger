@@ -7,6 +7,13 @@ interface OrderIngredient {
 	isBun: boolean;
 }
 
+export interface OrderStatistic {
+	total: number;
+	totalToday: number;
+	isReady: string[];
+	isInProcess: string[];
+}
+
 export interface OrderSchema {
 	isEmpty: boolean;
 	bun?: OrderIngredient;
@@ -15,4 +22,14 @@ export interface OrderSchema {
 	isLoading: boolean;
 	error?: string;
 	numberOrder?: number;
+	statistic?: OrderStatistic;
+}
+export interface OrderAnswer {
+	createdAt: string;
+	ingredients: string[];
+	name: string;
+	number: number;
+	status: string;
+	updatedAt: string;
+	_id: string;
 }

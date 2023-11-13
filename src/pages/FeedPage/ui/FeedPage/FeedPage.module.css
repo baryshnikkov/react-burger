@@ -1,0 +1,13 @@
+.FeedPage {
+    width: 100%;
+    box-sizing: border-box;
+}
+  
+.content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 60px;
+    margin-top: 20px;
+    height: calc(100vh - var(--navbar-height) - 120px);
+}

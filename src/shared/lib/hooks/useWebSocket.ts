@@ -20,7 +20,7 @@ export const useWebSocket = (props: UseWebSocketProps) => {
 			if (production) {
 				console.log(`Получено сообщение: ${event.data}`);
 			}
-			setData(JSON.parse(event.data).orders);
+			setData(JSON.parse(event.data));
 		};
 
 		const handleError = (error: any) => {

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { OrderSchema } from "../types/order";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { OrderSchema, OrderStatistic } from "../types/order";
 import { setOrder } from "../services/setOrder";
 
 const initialState: OrderSchema = {
@@ -64,6 +64,9 @@ export const orderSlice = createSlice({
 		},
 		clearPrice: (state) => {
 			state.price = 0;
+		},
+		setStatistic: (state, action: PayloadAction<OrderStatistic>) => {
+			state.statistic = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
