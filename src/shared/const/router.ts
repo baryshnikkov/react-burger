@@ -1,6 +1,7 @@
 export enum AppRoutes {
 	MAIN = "main",
 	FEED = "feed",
+	FEED_DETAILS = "feed_details",
 	PROFILE = "profile",
 	PROFILE_ORDERS = "profile_orders",
 	PROFILE_ORDERS_DETAILS = "profile_orders_details",
@@ -14,6 +15,7 @@ export enum AppRoutes {
 
 export const getRouteMain = () => "/";
 export const getRouteFeed = () => "/feed";
+export const getRouteFeedDetails = (id: string) => `/feed/${id}`;
 export const getRouteProfile = () => "/profile";
 export const getRouteProfileOrders = () => "/profile/orders";
 export const getRouteProfileOrderDetails = (id: string) =>

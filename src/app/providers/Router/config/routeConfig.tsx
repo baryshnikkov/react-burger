@@ -1,3 +1,4 @@
+import { FeedDetailsPage } from "@/pages/FeedDetailsPage";
 import { FeedPage } from "@/pages/FeedPage";
 import { ForgotPasswordPage } from "@/pages/ForgotPasswordPage";
 import { IngredientsPage } from "@/pages/IngredientsPage";
@@ -11,6 +12,7 @@ import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
 import {
 	AppRoutes,
 	getRouteFeed,
+	getRouteFeedDetails,
 	getRouteForgotPassword,
 	getRouteIngredients,
 	getRouteLogin,
@@ -32,6 +34,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.FEED]: {
 		path: getRouteFeed(),
 		element: <FeedPage />,
+	},
+	[AppRoutes.FEED_DETAILS]: {
+		path: getRouteFeedDetails(":id"),
+		element: <FeedDetailsPage />,
 	},
 	[AppRoutes.PROFILE]: {
 		path: getRouteProfile(),

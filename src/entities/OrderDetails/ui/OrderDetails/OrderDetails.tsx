@@ -7,27 +7,26 @@ import { calculatePrice } from "@/shared/lib/helpers/calculatePrice";
 import { OwnOrderDetails } from "@/entities/OrderDetails";
 
 interface OrderDetailsProps {
-	accessToken: string;
+	url: string;
 	id: string;
 	// TODO
 	ingredientsList: any;
 }
 
 const OrderDetails = memo((props: OrderDetailsProps) => {
-	const { accessToken, id, ingredientsList } = props;
+	const { url, id, ingredientsList } = props;
 	// TODO
 	const [ingredientsOrder, setIngredientsOrder] = useState<any>();
 	const [interval, setInterval] = useState<any>();
 	const [time, setTime] = useState<any>();
 	const [gmt, setGmt] = useState<any>();
-	const [images, setImages] = useState<any>();
 	const [price, setPrice] = useState<any>();
 	const data = useWebSocket({
-		url: `wss://norma.nomoreparties.space/orders?token=${accessToken}`,
+		url,
 	});
 
 	useEffect(() => {
-		const order = data?.find((order: any) => {
+		const order = data?.orders?.find((order: any) => {
 			return order._id === id;
 		});
 
@@ -44,12 +43,11 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 			setInterval(interval);
 			setGmt(gmt);
 
-			const { images, price } = calculatePrice<Ingredient>({
+			const { price } = calculatePrice<Ingredient>({
 				ingredientsOrder: ingredientsOrder.ingredients,
 				ingredientsList: ingredientsList,
 			});
 
-			setImages(images);
 			setPrice(price);
 		}
 	}, [ingredientsOrder]);
