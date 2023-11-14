@@ -20,7 +20,6 @@ const ForgotPasswordPage = memo(() => {
 	const onForgotPassword = () => {
 		dispatch(fetchForgotPassword({ email: emailValue })).then(
 			(res: any) => {
-				console.log(res);
 				if (res.payload.success) {
 					navigate(getRouteResetPassword());
 				}

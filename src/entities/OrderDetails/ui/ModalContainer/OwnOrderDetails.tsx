@@ -1,9 +1,22 @@
 import { memo } from "react";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { OwnOrderDetailsProps } from "../../../../pages/ProfilePage/model/types/order";
 import { IngredientsDetails } from "../IngredientsDetails/IngredientsDetails";
 import cls from "./OwnOrderDetails.module.css";
 import { cn } from "@/shared/lib/helpers/classNames";
+import { Ingredient } from "@/entities/ListIngredients";
+
+export interface OwnOrderDetailsProps {
+	number: number;
+	name: string;
+	status: string;
+	interval: string;
+	time: string;
+	gmt: number;
+	price: number;
+	isModal?: boolean;
+	ingredientsList: Ingredient[];
+	ingredientsOrder: string[];
+}
 
 const OwnOrderDetails = memo((props: OwnOrderDetailsProps) => {
 	const {

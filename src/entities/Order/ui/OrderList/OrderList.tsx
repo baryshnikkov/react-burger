@@ -23,10 +23,10 @@ export const OrderList = (props: OrderListProps) => {
 
 	useEffect(() => {
 		if (data) {
-			const isReady: any = [];
-			const isInProcess: any = [];
+			const isReady: number[] = [];
+			const isInProcess: number[] = [];
 
-			data.orders.forEach((order: any) => {
+			data.orders.forEach((order: OrderAnswer) => {
 				if (order.status === "done") {
 					isReady.push(order.number);
 				} else {

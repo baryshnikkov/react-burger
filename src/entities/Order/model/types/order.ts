@@ -10,8 +10,8 @@ interface OrderIngredient {
 export interface OrderStatistic {
 	total: number;
 	totalToday: number;
-	isReady: string[];
-	isInProcess: string[];
+	isReady: number[];
+	isInProcess: number[];
 }
 
 export interface OrderSchema {

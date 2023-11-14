@@ -3,7 +3,7 @@ import { cn } from "@/shared/lib/helpers/classNames";
 import { Loader } from "@/shared/ui/Loader";
 import { Modal } from "@/shared/ui/Modal";
 import { OwnOrderDetailsAsync } from "../ModalContainer/OwnOrderDetails.async";
-import { OwnOrderDetailsProps } from "../../../../pages/ProfilePage/model/types/order";
+import { OwnOrderDetailsProps } from "../ModalContainer/OwnOrderDetails";
 
 interface ModalOwnOrderDetailsProps extends OwnOrderDetailsProps {
 	className?: string;

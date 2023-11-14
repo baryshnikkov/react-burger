@@ -5,28 +5,28 @@ import { Ingredient } from "@/entities/ListIngredients";
 import { calculateDate } from "@/shared/lib/helpers/calculateDate";
 import { calculatePrice } from "@/shared/lib/helpers/calculatePrice";
 import { OwnOrderDetails } from "@/entities/OrderDetails";
+import { OrderAnswer } from "@/entities/Order/model/types/order";
+import { DeepPartial } from "@reduxjs/toolkit";
 
 interface OrderDetailsProps {
 	url: string;
 	id: string;
-	// TODO
-	ingredientsList: any;
+	ingredientsList: Ingredient[];
 }
 
 const OrderDetails = memo((props: OrderDetailsProps) => {
 	const { url, id, ingredientsList } = props;
-	// TODO
-	const [ingredientsOrder, setIngredientsOrder] = useState<any>();
-	const [interval, setInterval] = useState<any>();
-	const [time, setTime] = useState<any>();
-	const [gmt, setGmt] = useState<any>();
-	const [price, setPrice] = useState<any>();
+	const [ingredientsOrder, setIngredientsOrder] = useState<OrderAnswer>();
+	const [interval, setInterval] = useState<string>("");
+	const [time, setTime] = useState<string>("");
+	const [gmt, setGmt] = useState<number>(0);
+	const [price, setPrice] = useState<number>(0);
 	const data = useWebSocket({
 		url,
 	});
 
 	useEffect(() => {
-		const order = data?.orders?.find((order: any) => {
+		const order = data?.orders?.find((order: OrderAnswer) => {
 			return order._id === id;
 		});
 

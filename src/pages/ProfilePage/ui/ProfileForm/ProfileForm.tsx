@@ -46,7 +46,6 @@ export const ProfileForm = () => {
 
 	const onSave = () => {
 		if (accessToken) {
-			console.log(emailValue);
 			dispatch(
 				setProfileData({
 					accessToken,
