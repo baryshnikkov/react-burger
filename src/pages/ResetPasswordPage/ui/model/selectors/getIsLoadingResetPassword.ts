@@ -1,4 +1,4 @@
-import { StateSchema } from "@/app/providers/StoreProvider";
+import { type StateSchema } from '@/app/providers/StoreProvider'
 
 export const getIsLoadingResetPassword = (state: StateSchema) =>
-	state.resetPassword.isLoading;
+	state.resetPassword.isLoading

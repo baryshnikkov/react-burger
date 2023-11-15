@@ -1,3 +1,3 @@
-import { StateSchema } from "@/app/providers/StoreProvider";
+import { type StateSchema } from '@/app/providers/StoreProvider'
 
-export const getBun = (state: StateSchema) => state.order.bun;
+export const getBun = (state: StateSchema) => state.order.bun

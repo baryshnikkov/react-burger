@@ -1,19 +1,11 @@
-import { memo, useCallback, useRef } from "react";
-import { cn } from "@/shared/lib/helpers/classNames";
-import {
-	ConstructorElement,
-	DragIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
-import { orderActions } from "@/entities/Order";
-import cls from "./ToppingCard.module.css";
-import {
-	DragSourceMonitor,
-	DropTargetMonitor,
-	useDrag,
-	useDrop,
-} from "react-dnd";
-import { amountIngredientsActions } from "@/entities/CardsIngredients";
+import { memo, useCallback, useRef } from 'react';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { orderActions } from '@/entities/Order';
+import cls from './ToppingCard.module.css';
+import { type DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
+import { amountIngredientsActions } from '@/entities/CardsIngredients';
 
 interface ToppingCardProps {
 	className?: string;
@@ -35,7 +27,7 @@ export const ToppingCard = memo((props: ToppingCardProps) => {
 	}, []);
 
 	const [{ isDragging }, dragRef] = useDrag({
-		type: "card",
+		type: 'card',
 		item: { index },
 		collect: (monitor) => ({
 			isDragging: monitor.isDragging(),
@@ -43,15 +35,13 @@ export const ToppingCard = memo((props: ToppingCardProps) => {
 	});
 
 	const [_, dropRef] = useDrop({
-		accept: "card",
+		accept: 'card',
 		hover: (card: { index: number }, monitor: DropTargetMonitor) => {
 			const dragIndex = card.index;
 			const hoverIndex = index;
 			const hoverBoundingRect = ref.current?.getBoundingClientRect();
-			const hoverMiddleY =
-				(hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-			const hoverActualY =
-				monitor.getClientOffset()!.y - hoverBoundingRect.top;
+			const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+			const hoverActualY = monitor.getClientOffset()!.y - hoverBoundingRect.top;
 
 			if (dragIndex < hoverIndex && hoverActualY < hoverMiddleY) return;
 			if (dragIndex > hoverIndex && hoverActualY > hoverMiddleY) return;
@@ -69,11 +59,11 @@ export const ToppingCard = memo((props: ToppingCardProps) => {
 	return (
 		<div
 			className={cn(cls.ToppingCard, {}, [className])}
-			// @ts-ignore
+			// @ts-expect-error
 			ref={dragDropRef}
 			style={{ opacity }}
 		>
-			<DragIcon type="primary" />
+			<DragIcon type='primary' />
 			<ConstructorElement
 				text={name}
 				price={price}
@@ -85,3 +75,5 @@ export const ToppingCard = memo((props: ToppingCardProps) => {
 		</div>
 	);
 });
+
+ToppingCard.displayName = 'ToppingCard';

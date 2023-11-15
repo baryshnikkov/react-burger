@@ -1,5 +1,5 @@
-import { lazy } from "react";
+import { lazy } from 'react'
 
 export const ForgotPasswordPageAsync = lazy(
-	() => import("./ForgotPasswordPage")
-);
+	async () => await import('./ForgotPasswordPage'),
+)

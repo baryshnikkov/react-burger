@@ -1,12 +1,11 @@
-import { memo, useEffect, useState } from "react";
-import { useWebSocket } from "@/shared/lib/hooks/useWebSocket";
-import { PageLoader } from "@/widgets/PageLoader";
-import { Ingredient } from "@/entities/ListIngredients";
-import { calculateDate } from "@/shared/lib/helpers/calculateDate";
-import { calculatePrice } from "@/shared/lib/helpers/calculatePrice";
-import { OwnOrderDetails } from "@/entities/OrderDetails";
-import { OrderAnswer } from "@/entities/Order/model/types/order";
-import { DeepPartial } from "@reduxjs/toolkit";
+import { memo, useEffect, useState } from 'react';
+import { useWebSocket } from '@/shared/lib/hooks/useWebSocket';
+import { PageLoader } from '@/widgets/PageLoader';
+import { type Ingredient } from '@/entities/ListIngredients';
+import { calculateDate } from '@/shared/lib/helpers/calculateDate';
+import { calculatePrice } from '@/shared/lib/helpers/calculatePrice';
+import { OwnOrderDetails } from '@/entities/OrderDetails';
+import { type OrderAnswer } from '@/entities/Order/model/types/order';
 
 interface OrderDetailsProps {
 	url: string;
@@ -17,8 +16,8 @@ interface OrderDetailsProps {
 const OrderDetails = memo((props: OrderDetailsProps) => {
 	const { url, id, ingredientsList } = props;
 	const [ingredientsOrder, setIngredientsOrder] = useState<OrderAnswer>();
-	const [interval, setInterval] = useState<string>("");
-	const [time, setTime] = useState<string>("");
+	const [interval, setInterval] = useState<string>('');
+	const [time, setTime] = useState<string>('');
 	const [gmt, setGmt] = useState<number>(0);
 	const [price, setPrice] = useState<number>(0);
 	const data = useWebSocket({
@@ -35,9 +34,7 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 
 	useEffect(() => {
 		if (ingredientsOrder) {
-			const { time, interval, gmt } = calculateDate(
-				ingredientsOrder.createdAt
-			);
+			const { time, interval, gmt } = calculateDate(ingredientsOrder.createdAt);
 
 			setTime(time);
 			setInterval(interval);
@@ -45,7 +42,7 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 
 			const { price } = calculatePrice<Ingredient>({
 				ingredientsOrder: ingredientsOrder.ingredients,
-				ingredientsList: ingredientsList,
+				ingredientsList,
 			});
 
 			setPrice(price);
@@ -73,3 +70,5 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 });
 
 export default OrderDetails;
+
+OrderDetails.displayName = 'OrderDetails';

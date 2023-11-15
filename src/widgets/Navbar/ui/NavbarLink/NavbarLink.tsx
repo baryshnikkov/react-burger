@@ -1,7 +1,7 @@
-import { ReactNode, memo } from "react";
-import { NavLink } from "react-router-dom";
-import { cn } from "@/shared/lib/helpers/classNames";
-import cls from "./NavbarLink.module.css";
+import { type ReactNode, memo } from 'react';
+import { NavLink } from 'react-router-dom';
+import { cn } from '@/shared/lib/helpers/classNames';
+import cls from './NavbarLink.module.css';
 
 interface NavbarLinkProps {
 	icon: ReactNode;
@@ -25,3 +25,5 @@ export const NavbarLink = memo((props: NavbarLinkProps) => {
 		</NavLink>
 	);
 });
+
+NavbarLink.displayName = 'NavbarLink';

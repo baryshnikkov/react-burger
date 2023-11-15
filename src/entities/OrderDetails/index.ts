@@ -1,5 +1,5 @@
-import OwnOrderDetails from "./ui/ModalContainer/OwnOrderDetails";
-import { ModalOwnOrderDetails } from "./ui/ModalOwnOrderDetails/ModalOwnOrderDetails";
-import OrderDetails from "./ui/OrderDetails/OrderDetails";
+import OwnOrderDetails from './ui/ModalContainer/OwnOrderDetails'
+import { ModalOwnOrderDetails } from './ui/ModalOwnOrderDetails/ModalOwnOrderDetails'
+import OrderDetails from './ui/OrderDetails/OrderDetails'
 
-export { ModalOwnOrderDetails, OwnOrderDetails, OrderDetails };
+export { ModalOwnOrderDetails, OwnOrderDetails, OrderDetails }

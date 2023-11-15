@@ -1,6 +1,6 @@
-import { getApiResetPassword } from "@/shared/const/api";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { getApiResetPassword } from '@/shared/const/api'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 interface ResetPasswordAnswer {
 	success: boolean;
@@ -13,26 +13,26 @@ interface ResetPasswordProps {
 }
 
 export const fetchResetPassword = createAsyncThunk<
-	ResetPasswordAnswer,
-	ResetPasswordProps,
-	{ rejectValue: string }
+ResetPasswordAnswer,
+ResetPasswordProps,
+{ rejectValue: string; }
 >(
-	"fetchResetPassword",
+	'fetchResetPassword',
 	async ({ password, token }: ResetPasswordProps, thunkAPI) => {
 		try {
 			const response = await axios.post<ResetPasswordAnswer>(
 				__API__ + getApiResetPassword(),
-				{ password, token }
-			);
+				{ password, token },
+			)
 
 			if (!response.data) {
-				throw new Error();
+				throw new Error()
 			}
 
-			return response.data;
+			return response.data
 		} catch (e) {
-			console.log(e);
-			return thunkAPI.rejectWithValue("error");
+			console.log(e)
+			return thunkAPI.rejectWithValue('error')
 		}
-	}
-);
+	},
+)

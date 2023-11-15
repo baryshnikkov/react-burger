@@ -1,4 +1,4 @@
-import { StateSchema } from "@/app/providers/StoreProvider";
+import { type StateSchema } from '@/app/providers/StoreProvider'
 
 export const getAmountIngredients = (state: StateSchema) =>
-	state.amountIngredients.amount;
+	state.amountIngredients.amount

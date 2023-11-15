@@ -1,3 +1,3 @@
-import { StateSchema } from "@/app/providers/StoreProvider";
+import { type StateSchema } from '@/app/providers/StoreProvider'
 
-export const getUserName = (state: StateSchema) => state.user.name;
+export const getUserName = (state: StateSchema) => state.user.name

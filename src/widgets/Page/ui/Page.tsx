@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import cls from "./Page.module.css";
-import { cn } from "@/shared/lib/helpers/classNames";
+import { type ReactNode } from 'react';
+import cls from './Page.module.css';
+import { cn } from '@/shared/lib/helpers/classNames';
 
 interface PageProps {
 	children: ReactNode;
@@ -12,3 +12,5 @@ export const Page = (props: PageProps) => {
 
 	return <main className={cn(cls.Page, {}, [className])}>{children}</main>;
 };
+
+Page.displayName = 'Page';

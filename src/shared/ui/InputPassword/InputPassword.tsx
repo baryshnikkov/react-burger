@@ -1,5 +1,5 @@
-import { ChangeEvent, memo, useEffect, useState } from "react";
-import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { type ChangeEvent, memo, useEffect, useState } from 'react';
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 
 interface InputPasswordProps {
 	value: string;
@@ -13,21 +13,21 @@ export const InputPassword = memo((props: InputPasswordProps) => {
 	const [isFocused, setIsFocused] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(true);
 	const [errorText, setErrorText] = useState<string | undefined>(undefined);
-	const [isViewPassword, setIsViewPassword] = useState<"password" | "text">(
-		"password"
+	const [isViewPassword, setIsViewPassword] = useState<'password' | 'text'>(
+		'password'
 	);
 	const [isViewValue, setIsViewValue] = useState<boolean>(false);
 
 	const iconPassword =
-		isViewPassword === "password" ? "HideIcon" : "ShowIcon";
+		isViewPassword === 'password' ? 'HideIcon' : 'ShowIcon';
 
-	const iconEdit = isViewValue ? "CloseIcon" : "EditIcon";
+	const iconEdit = isViewValue ? 'CloseIcon' : 'EditIcon';
 
 	const onViewPassword = () => {
-		if (isViewPassword === "password") {
-			setIsViewPassword("text");
+		if (isViewPassword === 'password') {
+			setIsViewPassword('text');
 		} else {
-			setIsViewPassword("password");
+			setIsViewPassword('password');
 		}
 	};
 
@@ -52,11 +52,11 @@ export const InputPassword = memo((props: InputPasswordProps) => {
 	const validateInput = () => {
 		if (!value.trim()) {
 			setIsValid(false);
-			setErrorText("Это обязательное поле");
+			setErrorText('Это обязательное поле');
 		} else {
 			const isValidLength = value.length >= 6 && value.length <= 24;
 			setIsValid(isValidLength);
-			setErrorText("Длина должна быть от 6 до 24 символов");
+			setErrorText('Длина должна быть от 6 до 24 символов');
 		}
 	};
 
@@ -69,14 +69,14 @@ export const InputPassword = memo((props: InputPasswordProps) => {
 	return (
 		<Input
 			type={isViewPassword}
-			placeholder={"Пароль"}
-			size={"default"}
+			placeholder={'Пароль'}
+			size={'default'}
 			value={value}
 			onChange={handleInputChange}
 			icon={isEdit ? iconEdit : iconPassword}
 			onIconClick={isEdit ? onViewValue : onViewPassword}
 			disabled={isEdit && !isViewValue}
-			name={"password"}
+			name={'password'}
 			onBlur={handleBlur}
 			onFocus={handleFocus}
 			error={!isValid && !isFocused}
@@ -87,3 +87,5 @@ export const InputPassword = memo((props: InputPasswordProps) => {
 		/>
 	);
 });
+
+InputPassword.displayName = 'InputPassword';

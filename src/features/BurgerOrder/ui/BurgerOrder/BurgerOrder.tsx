@@ -1,20 +1,14 @@
-import { memo, useCallback } from "react";
-import { useSelector } from "react-redux";
-import { useDrop } from "react-dnd";
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import {
-	OrderButton,
-	getBun,
-	getIsEmpty,
-	getToppings,
-	orderActions,
-} from "@/entities/Order";
-import BurgerIcon from "@/shared/assets/burger.svg";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
-import cls from "./BurgerOrder.module.css";
-import { cn } from "@/shared/lib/helpers/classNames";
-import { ToppingCard } from "../ToppingCard/ToppingCard";
-import { amountIngredientsActions } from "@/entities/CardsIngredients";
+import { memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { useDrop } from 'react-dnd';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import { OrderButton, getBun, getIsEmpty, getToppings, orderActions } from '@/entities/Order';
+import BurgerIcon from '@/shared/assets/burger.svg';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import cls from './BurgerOrder.module.css';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { ToppingCard } from '../ToppingCard/ToppingCard';
+import { amountIngredientsActions } from '@/entities/CardsIngredients';
 
 export const BurgerOrder = memo(() => {
 	const isEmpty = useSelector(getIsEmpty);
@@ -23,11 +17,11 @@ export const BurgerOrder = memo(() => {
 	const dispatch = useAppDispatch();
 
 	const [{ isHover }, dropTarget] = useDrop({
-		accept: "ingredient",
+		accept: 'ingredient',
 		collect: (monitor) => ({
 			isHover: monitor.isOver(),
 		}),
-		drop(item: any) {
+		drop (item: any) {
 			dispatch(orderActions.addIngredient(item));
 			dispatch(amountIngredientsActions.plusAmountIngredient(item._id));
 		},
@@ -46,7 +40,7 @@ export const BurgerOrder = memo(() => {
 	);
 
 	const displayBun = useCallback(
-		(type: "top" | "bottom" | undefined) => {
+		(type: 'top' | 'bottom' | undefined) => {
 			return (
 				bun && (
 					<div className={cls.widthIngredient}>
@@ -68,9 +62,7 @@ export const BurgerOrder = memo(() => {
 		return (
 			<div className={cls.BurgerOrder} ref={dropTarget}>
 				<div className={cls.ingredients}>
-					<p className="text text_type_main-medium">
-						Поместите ингредиенты сюда...
-					</p>
+					<p className='text text_type_main-medium'>Поместите ингредиенты сюда...</p>
 					<BurgerIcon />
 				</div>
 				<OrderButton className={cls.price} />
@@ -80,10 +72,8 @@ export const BurgerOrder = memo(() => {
 
 	return (
 		<div className={cn(cls.BurgerOrder, {}, [cls.cards])} ref={dropTarget}>
-			<div
-				className={cn(cls.ingredients, { [cls.isHover]: isHover }, [])}
-			>
-				{displayBun("top")}
+			<div className={cn(cls.ingredients, { [cls.isHover]: isHover }, [])}>
+				{displayBun('top')}
 				<div className={cls.toppings}>
 					{toppings.map((el, index) => (
 						<ToppingCard
@@ -97,9 +87,11 @@ export const BurgerOrder = memo(() => {
 						/>
 					))}
 				</div>
-				{displayBun("bottom")}
+				{displayBun('bottom')}
 			</div>
 			<OrderButton className={cls.price} />
 		</div>
 	);
 });
+
+BurgerOrder.displayName = 'BurgerOrder';

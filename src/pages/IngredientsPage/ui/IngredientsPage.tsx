@@ -1,9 +1,9 @@
-import { memo, useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { IngredientDetails } from "@/entities/CardsIngredients";
-import { Ingredient, useIngredients } from "@/entities/ListIngredients";
-import { Page } from "@/widgets/Page";
-import { PageLoader } from "@/widgets/PageLoader";
+import { memo, useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { IngredientDetails } from '@/entities/CardsIngredients';
+import { type Ingredient, useIngredients } from '@/entities/ListIngredients';
+import { Page } from '@/widgets/Page';
+import { PageLoader } from '@/widgets/PageLoader';
 
 const IngredientsPage = memo(() => {
 	const { data: ingredients, isLoading } = useIngredients(null);
@@ -40,3 +40,5 @@ const IngredientsPage = memo(() => {
 });
 
 export default IngredientsPage;
+
+IngredientsPage.displayName = 'IngredientsPage';

@@ -1,22 +1,22 @@
-import "webpack-dev-server";
-import { Configuration } from "webpack";
-import { BuildOptions } from "./types/config";
-import { buildDevServer } from "./buildDevServer";
-import { buildPlugins } from "./buildPlugins";
-import { buildLoaders } from "./buildLoaders";
-import { buildResolvers } from "./buildResolvers";
+import 'webpack-dev-server'
+import { type Configuration } from 'webpack'
+import { type BuildOptions } from './types/config'
+import { buildDevServer } from './buildDevServer'
+import { buildPlugins } from './buildPlugins'
+import { buildLoaders } from './buildLoaders'
+import { buildResolvers } from './buildResolvers'
 
-export function buildWebpackConfig(options: BuildOptions): Configuration {
-	const { mode, paths, isDev } = options;
+export function buildWebpackConfig (options: BuildOptions): Configuration {
+	const { mode, paths, isDev } = options
 
 	return {
 		mode,
 		entry: paths.entry,
 		output: {
-			filename: "[name].[contenthash].js",
+			filename: '[name].[contenthash].js',
 			path: paths.output,
 			clean: true,
-			publicPath: "/",
+			publicPath: '/',
 		},
 		plugins: buildPlugins(options),
 		module: {
@@ -24,6 +24,6 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
 		},
 		resolve: buildResolvers(options),
 		devServer: buildDevServer(options),
-		devtool: isDev ? "eval-cheap-module-source-map" : undefined,
-	};
+		devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
+	}
 }

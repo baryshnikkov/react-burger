@@ -1,20 +1,20 @@
-import { memo, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Page } from "@/widgets/Page";
-import { InputPassword } from "@/shared/ui/InputPassword";
-import { InputText } from "@/shared/ui/InputText";
-import { getRouteLogin } from "@/shared/const/router";
-import cls from "@/shared/const/styles/FormPage.module.css";
-import { cn } from "@/shared/lib/helpers/classNames";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
-import { useSelector } from "react-redux";
-import { getIsLoadingResetPassword } from "./model/selectors/getIsLoadingResetPassword";
-import { fetchResetPassword } from "./model/services/fetchResetPassword";
+import { memo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Page } from '@/widgets/Page';
+import { InputPassword } from '@/shared/ui/InputPassword';
+import { InputText } from '@/shared/ui/InputText';
+import { getRouteLogin } from '@/shared/const/router';
+import cls from '@/shared/const/styles/FormPage.module.css';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useSelector } from 'react-redux';
+import { getIsLoadingResetPassword } from './model/selectors/getIsLoadingResetPassword';
+import { fetchResetPassword } from './model/services/fetchResetPassword';
 
 const ResetPasswordPage = memo(() => {
-	const [passwordValue, setPasswordValue] = useState("");
-	const [tokenValue, setTokenValue] = useState("");
+	const [passwordValue, setPasswordValue] = useState('');
+	const [tokenValue, setTokenValue] = useState('');
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const isLoading = useSelector(getIsLoadingResetPassword);
@@ -37,7 +37,7 @@ const ResetPasswordPage = memo(() => {
 	};
 
 	return (
-		<Page className={cn(cls.container, {}, ["mt-30"])}>
+		<Page className={cn(cls.container, {}, ['mt-30'])}>
 			<p className="text text_type_main-medium">Восстановление пароля</p>
 
 			<form className={cls.form}>
@@ -58,12 +58,12 @@ const ResetPasswordPage = memo(() => {
 					size="medium"
 					onClick={onResetPassword}
 				>
-					{isLoading ? "Загрузка..." : "Сохранить"}
+					{isLoading ? 'Загрузка...' : 'Сохранить'}
 				</Button>
 			</form>
 
 			<p className="text text_type_main-default text_color_inactive">
-				Вспомнили пароль?{" "}
+				Вспомнили пароль?{' '}
 				<span
 					className={cls.link}
 					onClick={onNavigate(getRouteLogin())}
@@ -76,3 +76,5 @@ const ResetPasswordPage = memo(() => {
 });
 
 export default ResetPasswordPage;
+
+ResetPasswordPage.displayName = 'ResetPasswordPage';

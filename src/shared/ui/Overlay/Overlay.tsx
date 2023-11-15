@@ -1,6 +1,6 @@
-import { memo } from "react";
-import { cn } from "@/shared/lib/helpers/classNames";
-import cls from "./Overlay.module.css";
+import { memo } from 'react';
+import { cn } from '@/shared/lib/helpers/classNames';
+import cls from './Overlay.module.css';
 
 interface OverlayProps {
 	className?: string;
@@ -14,3 +14,5 @@ export const Overlay = memo((props: OverlayProps) => {
 		<div onClick={onClick} className={cn(cls.Overlay, {}, [className])} />
 	);
 });
+
+Overlay.displayName = 'Overlay';

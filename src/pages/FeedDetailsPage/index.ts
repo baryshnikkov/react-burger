@@ -1,3 +1,3 @@
-import { FeedDetailsPageAsync as FeedDetailsPage } from "./ui/FeedDetailsPage.async";
+import { FeedDetailsPageAsync as FeedDetailsPage } from './ui/FeedDetailsPage.async'
 
-export { FeedDetailsPage };
+export { FeedDetailsPage }

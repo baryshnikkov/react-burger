@@ -1,7 +1,7 @@
-export function buildTsLoader() {
+export function buildTsLoader () {
 	return {
 		test: /\.tsx?$/,
-		use: "ts-loader",
+		use: 'ts-loader',
 		exclude: /node_modules/,
-	};
+	}
 }

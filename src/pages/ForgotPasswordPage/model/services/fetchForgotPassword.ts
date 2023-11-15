@@ -1,6 +1,6 @@
-import { getApiForgotPassword } from "@/shared/const/api";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { getApiForgotPassword } from '@/shared/const/api'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 interface ForgotPasswordAnswer {
 	success: boolean;
@@ -12,23 +12,23 @@ interface ForgotPasswordProps {
 }
 
 export const fetchForgotPassword = createAsyncThunk<
-	ForgotPasswordAnswer,
-	ForgotPasswordProps,
-	{ rejectValue: string }
->("getProfileData", async ({ email }: ForgotPasswordProps, thunkAPI) => {
+ForgotPasswordAnswer,
+ForgotPasswordProps,
+{ rejectValue: string; }
+>('getProfileData', async ({ email }: ForgotPasswordProps, thunkAPI) => {
 	try {
 		const response = await axios.post<ForgotPasswordAnswer>(
 			__API__ + getApiForgotPassword(),
-			{ email }
-		);
+			{ email },
+		)
 
 		if (!response.data) {
-			throw new Error();
+			throw new Error()
 		}
 
-		return response.data;
+		return response.data
 	} catch (e) {
-		console.log(e);
-		return thunkAPI.rejectWithValue("error");
+		console.log(e)
+		return thunkAPI.rejectWithValue('error')
 	}
-});
+})

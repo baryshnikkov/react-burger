@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { InputText } from "@/shared/ui/InputText";
-import { InputMail } from "@/shared/ui/InputMail";
-import { InputPassword } from "@/shared/ui/InputPassword";
-import cls from "./ProfileForm.module.css";
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
+import { useEffect, useState } from 'react'
+import { InputText } from '@/shared/ui/InputText'
+import { InputMail } from '@/shared/ui/InputMail'
+import { InputPassword } from '@/shared/ui/InputPassword'
+import cls from './ProfileForm.module.css'
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
 import {
 	getAccessToken,
 	getIsLoadingUser,
@@ -12,37 +12,37 @@ import {
 	getUserMail,
 	getUserName,
 	setProfileData,
-} from "@/entities/User";
-import { useSelector } from "react-redux";
+} from '@/entities/User'
+import { useSelector } from 'react-redux'
 
 export const ProfileForm = () => {
-	const [nameValue, setNameValue] = useState<string>("");
-	const [emailValue, setEmailValue] = useState<string>("");
-	const [passwordValue, setPasswordValue] = useState<string>("");
-	const [isChangeValue, setIsChangeValue] = useState(false);
-	const accessToken = useSelector(getAccessToken);
-	const name = useSelector(getUserName);
-	const mail = useSelector(getUserMail);
-	const isLoading = useSelector(getIsLoadingUser);
-	const dispatch = useAppDispatch();
+	const [nameValue, setNameValue] = useState<string>('')
+	const [emailValue, setEmailValue] = useState<string>('')
+	const [passwordValue, setPasswordValue] = useState<string>('')
+	const [isChangeValue, setIsChangeValue] = useState(false)
+	const accessToken = useSelector(getAccessToken)
+	const name = useSelector(getUserName)
+	const mail = useSelector(getUserMail)
+	const isLoading = useSelector(getIsLoadingUser)
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		if (accessToken && !name && !mail) {
-			dispatch(getProfileData({ accessToken }));
+			dispatch(getProfileData({ accessToken }))
 		}
-	}, [accessToken, name, mail]);
+	}, [accessToken, name, mail])
 
 	useEffect(() => {
 		if (name) {
-			setNameValue(name);
+			setNameValue(name)
 		}
-	}, [name]);
+	}, [name])
 
 	useEffect(() => {
 		if (mail) {
-			setEmailValue(mail);
+			setEmailValue(mail)
 		}
-	}, [name]);
+	}, [name])
 
 	const onSave = () => {
 		if (accessToken) {
@@ -52,38 +52,38 @@ export const ProfileForm = () => {
 					name: nameValue,
 					email: emailValue,
 					password: passwordValue,
-				})
+				}),
 			).then((response: any) => {
 				if (response.payload?.success) {
-					setIsChangeValue(false);
+					setIsChangeValue(false)
 				}
-			});
+			})
 		}
-	};
+	}
 
 	const onReject = () => {
 		if (name && mail) {
-			setNameValue(name);
-			setEmailValue(mail);
+			setNameValue(name)
+			setEmailValue(mail)
 		}
-		setPasswordValue("");
-		setIsChangeValue(false);
-	};
+		setPasswordValue('')
+		setIsChangeValue(false)
+	}
 
 	const onChangeMail = (value: string) => {
-		setEmailValue(value);
-		setIsChangeValue(true);
-	};
+		setEmailValue(value)
+		setIsChangeValue(true)
+	}
 
 	const onChangeName = (value: string) => {
-		setNameValue(value);
-		setIsChangeValue(true);
-	};
+		setNameValue(value)
+		setIsChangeValue(true)
+	}
 
 	const onChangePassword = (value: string) => {
-		setPasswordValue(value);
-		setIsChangeValue(true);
-	};
+		setPasswordValue(value)
+		setIsChangeValue(true)
+	}
 
 	return (
 		<form className={cls.ProfileForm}>
@@ -125,10 +125,10 @@ export const ProfileForm = () => {
 						extraClass="ml-2"
 						onClick={onSave}
 					>
-						{isLoading ? "Сохранение..." : "Сохранить"}
+						{isLoading ? 'Сохранение...' : 'Сохранить'}
 					</Button>
 				</div>
 			)}
 		</form>
-	);
-};
+	)
+}

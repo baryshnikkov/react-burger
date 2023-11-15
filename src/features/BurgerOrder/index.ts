@@ -1,3 +1,3 @@
-import { BurgerOrder } from "./ui/BurgerOrder/BurgerOrder";
+import { BurgerOrder } from './ui/BurgerOrder/BurgerOrder'
 
-export { BurgerOrder };
+export { BurgerOrder }

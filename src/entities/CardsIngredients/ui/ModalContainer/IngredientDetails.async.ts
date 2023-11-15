@@ -1,6 +1,6 @@
-import { FC, lazy } from "react";
-import { IngredientDetailsProps } from "./IngredientDetails";
+import { type FC, lazy } from 'react'
+import { type IngredientDetailsProps } from './IngredientDetails'
 
 export const IngredientDetailsAsync = lazy<FC<IngredientDetailsProps>>(
-	() => import("./IngredientDetails")
-);
+	async () => await import('./IngredientDetails'),
+)

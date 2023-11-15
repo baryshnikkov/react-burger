@@ -1,8 +1,8 @@
-import { memo, Suspense } from "react";
-import { cn } from "@/shared/lib/helpers/classNames";
-import { Loader } from "@/shared/ui/Loader";
-import { Modal } from "@/shared/ui/Modal";
-import { IngredientDetailsAsync } from "../ModalContainer/IngredientDetails.async";
+import { memo, Suspense } from 'react';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { Loader } from '@/shared/ui/Loader';
+import { Modal } from '@/shared/ui/Modal';
+import { IngredientDetailsAsync } from '../ModalContainer/IngredientDetails.async';
 
 interface ModalIngredientDataProps {
 	className?: string;
@@ -17,29 +17,14 @@ interface ModalIngredientDataProps {
 }
 
 export const ModalIngredientData = memo((props: ModalIngredientDataProps) => {
-	const {
-		className,
-		isOpen,
-		onClose,
-		calories,
-		carbohydrates,
-		fat,
-		proteins,
-		name,
-		image,
-	} = props;
+	const { className, isOpen, onClose, calories, carbohydrates, fat, proteins, name, image } = props;
 
 	if (!isOpen) {
 		return null;
 	}
 
 	return (
-		<Modal
-			className={cn("", {}, [className])}
-			isOpen={isOpen}
-			onClose={onClose}
-			lazy
-		>
+		<Modal className={cn('', {}, [className])} isOpen={isOpen} onClose={onClose} lazy>
 			<Suspense fallback={<Loader />}>
 				<IngredientDetailsAsync
 					calories={calories}
@@ -53,3 +38,5 @@ export const ModalIngredientData = memo((props: ModalIngredientDataProps) => {
 		</Modal>
 	);
 });
+
+ModalIngredientData.displayName = 'ModalIngredientData';

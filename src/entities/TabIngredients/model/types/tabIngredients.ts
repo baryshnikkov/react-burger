@@ -1,1 +1,1 @@
-export type TabIngredientVariants = "buns" | "sauces" | "main";
+export type TabIngredientVariants = 'buns' | 'sauces' | 'main'

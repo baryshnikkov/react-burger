@@ -1,3 +1,3 @@
-import { IngredientsPageAsync as IngredientsPage } from "./ui/IngredientsPage.async";
+import { IngredientsPageAsync as IngredientsPage } from './ui/IngredientsPage.async'
 
-export { IngredientsPage };
+export { IngredientsPage }

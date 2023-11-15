@@ -1,5 +1,5 @@
-import { ChangeEvent, memo, useEffect, useState } from "react";
-import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { type ChangeEvent, memo, useEffect, useState } from 'react';
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 
 interface InputTextProps {
 	value: string;
@@ -43,7 +43,7 @@ export const InputText = memo((props: InputTextProps) => {
 	const validateInput = () => {
 		if (!value.trim()) {
 			setIsValid(false);
-			setErrorText("Это обязательное поле");
+			setErrorText('Это обязательное поле');
 		} else {
 			const isValidLength =
 				value.length >= 3 && value.length <= maxLength;
@@ -60,9 +60,9 @@ export const InputText = memo((props: InputTextProps) => {
 
 	return (
 		<Input
-			type={"text"}
+			type={'text'}
 			placeholder={placeholder}
-			size={"default"}
+			size={'default'}
 			value={value}
 			onChange={handleInputChange}
 			onBlur={handleBlur}
@@ -72,10 +72,14 @@ export const InputText = memo((props: InputTextProps) => {
 			errorText={errorText}
 			maxLength={maxLength}
 			minLength={3}
-			// @ts-ignore
-			icon={isEdit && (isViewValue ? "CloseIcon" : "EditIcon")}
-			onIconClick={() => setIsViewValue((prev) => !prev)}
+			// @ts-expect-error
+			icon={isEdit && (isViewValue ? 'CloseIcon' : 'EditIcon')}
+			onIconClick={() => {
+				setIsViewValue((prev) => !prev);
+			}}
 			disabled={isEdit && !isViewValue}
 		/>
 	);
 });
+
+InputText.displayName = 'InputText';

@@ -1,4 +1,4 @@
-import { StateSchema } from "@/app/providers/StoreProvider";
+import { type StateSchema } from '@/app/providers/StoreProvider'
 
 export const getIsLoadingAuthByMail = (state: StateSchema) =>
-	state.authUser.isLoading;
+	state.authUser.isLoading

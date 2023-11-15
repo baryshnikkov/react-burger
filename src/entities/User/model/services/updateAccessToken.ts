@@ -1,8 +1,8 @@
-import { userActions } from "@/entities/User";
-import { getApiToken } from "@/shared/const/api";
-import { USER_LOCALSTORAGE_KEY } from "@/shared/const/localstorage";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { userActions } from '@/entities/User'
+import { getApiToken } from '@/shared/const/api'
+import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 interface AccessTokenAnswer {
 	success: boolean;
@@ -15,38 +15,38 @@ interface AccessTokenProps {
 }
 
 export const updateAccessToken = createAsyncThunk<
-	AccessTokenAnswer,
-	AccessTokenProps,
-	{ rejectValue: string }
->("authByMail", async ({ token }: AccessTokenProps, thunkAPI) => {
+AccessTokenAnswer,
+AccessTokenProps,
+{ rejectValue: string; }
+>('authByMail', async ({ token }: AccessTokenProps, thunkAPI) => {
 	try {
 		const response = await axios.post<AccessTokenAnswer>(
 			__API__ + getApiToken(),
 			{
 				headers: {
-					"Content-Type": "application/json",
+					'Content-Type': 'application/json',
 				},
 
-				token: token,
-			}
-		);
+				token,
+			},
+		)
 
 		if (!response.data) {
-			throw new Error();
+			throw new Error()
 		}
 
 		localStorage.setItem(
 			USER_LOCALSTORAGE_KEY,
-			JSON.stringify(response.data.refreshToken)
-		);
+			JSON.stringify(response.data.refreshToken),
+		)
 		thunkAPI.dispatch(
-			userActions.setAccessToken(response.data.accessToken)
-		);
-		thunkAPI.dispatch(userActions.initAuth());
+			userActions.setAccessToken(response.data.accessToken),
+		)
+		thunkAPI.dispatch(userActions.initAuth())
 
-		return response.data;
+		return response.data
 	} catch (e) {
-		console.log(e);
-		return thunkAPI.rejectWithValue("error");
+		console.log(e)
+		return thunkAPI.rejectWithValue('error')
 	}
-});
+})

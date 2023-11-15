@@ -1,14 +1,14 @@
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./app/App";
-import { StoreProvider } from "./app/providers/StoreProvider";
-import { ErrorBoundary } from "./app/providers/ErrorBoundary";
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './app/App';
+import { StoreProvider } from './app/providers/StoreProvider';
+import { ErrorBoundary } from './app/providers/ErrorBoundary';
 
-const container = document.getElementById("root");
+const container = document.getElementById('root');
 
 if (!container) {
 	throw new Error(
-		"Контейнер root не найден, не удалось вмонтировать react приложение"
+		'Контейнер root не найден, не удалось вмонтировать react приложение',
 	);
 }
 
@@ -21,5 +21,5 @@ root.render(
 				<App />
 			</ErrorBoundary>
 		</BrowserRouter>
-	</StoreProvider>
+	</StoreProvider>,
 );

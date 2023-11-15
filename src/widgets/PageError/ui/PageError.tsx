@@ -1,7 +1,7 @@
-import { memo } from "react";
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { cn } from "@/shared/lib/helpers/classNames";
-import cls from "./PageError.module.css";
+import { memo } from 'react';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { cn } from '@/shared/lib/helpers/classNames';
+import cls from './PageError.module.css';
 
 interface PageErrorProps {
 	className?: string;
@@ -30,3 +30,5 @@ export const PageError = memo((props: PageErrorProps) => {
 		</div>
 	);
 });
+
+PageError.displayName = 'PageError';

@@ -1,9 +1,9 @@
-import { memo, Suspense } from "react";
-import { cn } from "@/shared/lib/helpers/classNames";
-import { Loader } from "@/shared/ui/Loader";
-import { Modal } from "@/shared/ui/Modal";
-import { OwnOrderDetailsAsync } from "../ModalContainer/OwnOrderDetails.async";
-import { OwnOrderDetailsProps } from "../ModalContainer/OwnOrderDetails";
+import { memo, Suspense } from 'react';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { Loader } from '@/shared/ui/Loader';
+import { Modal } from '@/shared/ui/Modal';
+import { OwnOrderDetailsAsync } from '../ModalContainer/OwnOrderDetails.async';
+import { type OwnOrderDetailsProps } from '../ModalContainer/OwnOrderDetails';
 
 interface ModalOwnOrderDetailsProps extends OwnOrderDetailsProps {
 	className?: string;
@@ -32,12 +32,7 @@ export const ModalOwnOrderDetails = memo((props: ModalOwnOrderDetailsProps) => {
 	}
 
 	return (
-		<Modal
-			className={cn("", {}, [className])}
-			isOpen={isOpen}
-			onClose={onClose}
-			lazy
-		>
+		<Modal className={cn('', {}, [className])} isOpen={isOpen} onClose={onClose} lazy>
 			<Suspense fallback={<Loader />}>
 				<OwnOrderDetailsAsync
 					number={number}
@@ -54,3 +49,5 @@ export const ModalOwnOrderDetails = memo((props: ModalOwnOrderDetailsProps) => {
 		</Modal>
 	);
 });
+
+ModalOwnOrderDetails.displayName = 'ModalOwnOrderDetails';

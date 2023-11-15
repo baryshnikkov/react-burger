@@ -1,3 +1,3 @@
-import { BugButton } from "./BugButton";
+import { BugButton } from './BugButton'
 
-export { BugButton };
+export { BugButton }

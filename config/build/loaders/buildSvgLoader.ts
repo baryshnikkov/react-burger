@@ -1,7 +1,7 @@
-export function buildSvgLoader() {
+export function buildSvgLoader () {
 	return {
 		test: /\.svg$/,
 		exclude: /node_modules/,
-		use: ["@svgr/webpack"],
-	};
+		use: ['@svgr/webpack'],
+	}
 }

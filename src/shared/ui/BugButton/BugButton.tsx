@@ -1,10 +1,12 @@
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { memo, useEffect, useState } from "react";
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { memo, useEffect, useState } from 'react';
 
 export const BugButton = memo(() => {
 	const [error, setError] = useState(false);
 
-	const onThrowError = () => setError(true);
+	const onThrowError = () => {
+		setError(true);
+	};
 
 	useEffect(() => {
 		if (error) {
@@ -23,3 +25,5 @@ export const BugButton = memo(() => {
 		</Button>
 	);
 });
+
+BugButton.displayName = 'BugButton';

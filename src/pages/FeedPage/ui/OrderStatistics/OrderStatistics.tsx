@@ -1,4 +1,4 @@
-import cls from "./OrderStatistics.module.css";
+import cls from './OrderStatistics.module.css'
 
 interface OrderStatisticsProps {
 	total: number;
@@ -8,13 +8,13 @@ interface OrderStatisticsProps {
 }
 
 export const OrderStatistics = (props: OrderStatisticsProps) => {
-	const { total, totalToday, isReady, isInProcess } = props;
+	const { total, totalToday, isReady, isInProcess } = props
 	return (
 		<div className={cls.OrderStatistics}>
 			<div className={cls.orderNumbers}>
 				<div className={cls.numbersBlock}>
 					<p className="text text_type_main-medium">Готовы:</p>
-					<div className={cls.numbersList} style={{ color: "#0CC" }}>
+					<div className={cls.numbersList} style={{ color: '#0CC' }}>
 						{isReady.map((el: number) => (
 							<p
 								className="text text_type_digits-default"
@@ -48,5 +48,5 @@ export const OrderStatistics = (props: OrderStatisticsProps) => {
 				<p className="text text_type_digits-large">{totalToday}</p>
 			</div>
 		</div>
-	);
-};
+	)
+}

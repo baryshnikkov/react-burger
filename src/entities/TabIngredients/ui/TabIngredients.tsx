@@ -1,7 +1,7 @@
-import { RefObject, memo } from "react";
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { TabIngredientVariants } from "../model/types/tabIngredients";
-import cls from "./TabIngredients.module.css";
+import { type RefObject, memo } from 'react';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { type TabIngredientVariants } from '../model/types/tabIngredients';
+import cls from './TabIngredients.module.css';
 
 interface TabIngredientsProps {
 	currentTab: string;
@@ -15,17 +15,13 @@ const additionalElementHeight = 245;
 const animationSpeed = 1000;
 const animationDuration = 1000;
 
-const scrollToTypeIngredient = (
-	targetRef: RefObject<HTMLHeadingElement>,
-	containerRef: RefObject<HTMLDivElement>
-) => {
+const scrollToTypeIngredient = (targetRef: RefObject<HTMLHeadingElement>, containerRef: RefObject<HTMLDivElement>) => {
 	if (containerRef.current && targetRef.current) {
 		const container = containerRef.current;
 		const target = targetRef.current;
 		const targetOffsetTop = target.offsetTop;
 		const containerScrollTop = container.scrollTop;
-		const distance =
-			targetOffsetTop - containerScrollTop - additionalElementHeight;
+		const distance = targetOffsetTop - containerScrollTop - additionalElementHeight;
 		const speed = animationSpeed;
 
 		const duration = (Math.abs(distance) / speed) * animationDuration;
@@ -49,8 +45,7 @@ const scrollToTypeIngredient = (
 };
 
 export const TabIngredients = memo((props: TabIngredientsProps) => {
-	const { currentTab, bunsRef, mainRef, saucesRef, ingredientsListRef } =
-		props;
+	const { currentTab, bunsRef, mainRef, saucesRef, ingredientsListRef } = props;
 
 	const onTab = (value: TabIngredientVariants) => () => {
 		const dataRefs = {
@@ -64,27 +59,17 @@ export const TabIngredients = memo((props: TabIngredientsProps) => {
 
 	return (
 		<div className={cls.tabs}>
-			<Tab
-				value="buns"
-				active={currentTab === "buns"}
-				onClick={onTab("buns")}
-			>
+			<Tab value='buns' active={currentTab === 'buns'} onClick={onTab('buns')}>
 				Булки
 			</Tab>
-			<Tab
-				value="sauces"
-				active={currentTab === "sauces"}
-				onClick={onTab("sauces")}
-			>
+			<Tab value='sauces' active={currentTab === 'sauces'} onClick={onTab('sauces')}>
 				Соусы
 			</Tab>
-			<Tab
-				value="main"
-				active={currentTab === "main"}
-				onClick={onTab("main")}
-			>
+			<Tab value='main' active={currentTab === 'main'} onClick={onTab('main')}>
 				Начинки
 			</Tab>
 		</div>
 	);
 });
+
+TabIngredients.displayName = 'TabIngredients';

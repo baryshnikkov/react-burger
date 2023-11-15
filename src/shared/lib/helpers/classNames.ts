@@ -1,9 +1,9 @@
-export type Mods = Record<string, boolean | string | undefined>;
+export type Mods = Record<string, boolean | string | undefined>
 
-export function cn(
+export function cn (
 	cls: string,
 	mods: Mods = {},
-	additional: Array<string | undefined> = []
+	additional: Array<string | undefined> = [],
 ): string {
 	return [
 		cls,
@@ -11,5 +11,5 @@ export function cn(
 		...Object.entries(mods)
 			.filter(([, value]) => Boolean(value))
 			.map(([className]) => className),
-	].join(" ");
+	].join(' ')
 }

@@ -1,15 +1,15 @@
-import { ReducersMapObject, configureStore } from "@reduxjs/toolkit";
-import { StateSchema } from "./StateSchema";
-import { rtkApi } from "@/shared/api/rtkApi";
-import { orderReducer } from "@/entities/Order";
-import { amountIngredientsReducer } from "@/entities/CardsIngredients";
-import { userReducer } from "@/entities/User";
-import { authUserReducer } from "@/features/AuthUser";
-import { loginUserReducer } from "@/features/LoginUser";
-import { forgotPasswordReducer } from "@/pages/ForgotPasswordPage";
-import { resetPasswordReducer } from "@/pages/ResetPasswordPage";
+import { type ReducersMapObject, configureStore } from '@reduxjs/toolkit'
+import { type StateSchema } from './StateSchema'
+import { rtkApi } from '@/shared/api/rtkApi'
+import { orderReducer } from '@/entities/Order'
+import { amountIngredientsReducer } from '@/entities/CardsIngredients'
+import { userReducer } from '@/entities/User'
+import { authUserReducer } from '@/features/AuthUser'
+import { loginUserReducer } from '@/features/LoginUser'
+import { forgotPasswordReducer } from '@/pages/ForgotPasswordPage'
+import { resetPasswordReducer } from '@/pages/ResetPasswordPage'
 
-export function createReduxStore(initialState?: StateSchema) {
+export function createReduxStore (initialState?: StateSchema) {
 	const rootReducer: ReducersMapObject<StateSchema> = {
 		order: orderReducer,
 		amountIngredients: amountIngredientsReducer,
@@ -19,7 +19,7 @@ export function createReduxStore(initialState?: StateSchema) {
 		forgotPassword: forgotPasswordReducer,
 		resetPassword: resetPasswordReducer,
 		[rtkApi.reducerPath]: rtkApi.reducer,
-	};
+	}
 
 	const store = configureStore({
 		reducer: rootReducer,
@@ -27,9 +27,9 @@ export function createReduxStore(initialState?: StateSchema) {
 		preloadedState: initialState,
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware({}).concat(rtkApi.middleware),
-	});
+	})
 
-	return store;
+	return store
 }
 
-export type AppDispatch = ReturnType<typeof createReduxStore>["dispatch"];
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']

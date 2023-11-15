@@ -1,6 +1,6 @@
-import "./Loader.css";
-import { memo } from "react";
-import { cn } from "@/shared/lib/helpers/classNames";
+import './Loader.css';
+import { memo } from 'react';
+import { cn } from '@/shared/lib/helpers/classNames';
 
 interface LoaderProps {
 	className?: string;
@@ -11,9 +11,7 @@ export const Loader = memo((props: LoaderProps) => {
 	const { className, isCenter = false } = props;
 
 	return (
-		<div
-			className={cn("lds-roller", { ["center"]: isCenter }, [className])}
-		>
+		<div className={cn('lds-roller', { center: isCenter }, [className])}>
 			<div />
 			<div />
 			<div />
@@ -25,3 +23,5 @@ export const Loader = memo((props: LoaderProps) => {
 		</div>
 	);
 });
+
+Loader.displayName = 'Loader';

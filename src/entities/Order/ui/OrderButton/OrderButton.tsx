@@ -1,22 +1,19 @@
-import { memo, useCallback, useState } from "react";
-import {
-	Button,
-	CurrencyIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-import cls from "./OrderButton.module.css";
-import { cn } from "@/shared/lib/helpers/classNames";
-import { useSelector } from "react-redux";
-import { getPrice } from "../../model/selectors/getPrice";
-import { getIsEmpty } from "../../model/selectors/getIsEmpty";
-import { ModalOrderDetails } from "../ModalOrderDetails/ModalOrderDetails";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
-import { setOrder } from "../../model/services/setOrder";
-import { getBun } from "../../model/selectors/getBun";
-import { getToppings } from "../../model/selectors/getToppings";
-import { getAccessToken, getIsAuth } from "@/entities/User";
-import { getIsLoadingOrder } from "../../model/selectors/getIsLoadingOrder";
-import { useNavigate } from "react-router-dom";
-import { getRouteLogin } from "@/shared/const/router";
+import { memo, useCallback, useState } from 'react';
+import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import cls from './OrderButton.module.css';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { useSelector } from 'react-redux';
+import { getPrice } from '../../model/selectors/getPrice';
+import { getIsEmpty } from '../../model/selectors/getIsEmpty';
+import { ModalOrderDetails } from '../ModalOrderDetails/ModalOrderDetails';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { setOrder } from '../../model/services/setOrder';
+import { getBun } from '../../model/selectors/getBun';
+import { getToppings } from '../../model/selectors/getToppings';
+import { getAccessToken, getIsAuth } from '@/entities/User';
+import { getIsLoadingOrder } from '../../model/selectors/getIsLoadingOrder';
+import { useNavigate } from 'react-router-dom';
+import { getRouteLogin } from '@/shared/const/router';
 
 interface OrderButtonProps {
 	className?: string;
@@ -45,7 +42,7 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 		ingredients.push(bun?._id!);
 
 		if (accessToken) {
-			const response = dispatch(setOrder({ ingredients, accessToken }));
+			dispatch(setOrder({ ingredients, accessToken }));
 		}
 		setIsOpenModal(true);
 	};
@@ -62,22 +59,24 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 		<>
 			<div className={cn(cls.OrderButton, {}, [className])}>
 				<div className={cls.price}>
-					<p className="text text_type_digits-medium">{price}</p>
-					<CurrencyIcon type="primary" />
+					<p className='text text_type_digits-medium'>{price}</p>
+					<CurrencyIcon type='primary' />
 				</div>
 
 				<Button
-					id="checkout"
-					htmlType="button"
-					type="primary"
-					size="medium"
+					id='checkout'
+					htmlType='button'
+					type='primary'
+					size='medium'
 					onClick={isAuth ? onOpenModal : onNavigate(getRouteLogin())}
 					disabled={isEmpty}
 				>
-					{isLoading ? "Загрузка..." : "Оформить заказ"}
+					{isLoading ? 'Загрузка...' : 'Оформить заказ'}
 				</Button>
 			</div>
 			<ModalOrderDetails isOpen={isOpenModal} onClose={onCloseModal} />
 		</>
 	);
 });
+
+OrderButton.displayName = 'OrderButton';

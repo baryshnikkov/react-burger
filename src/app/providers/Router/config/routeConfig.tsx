@@ -1,14 +1,14 @@
-import { FeedDetailsPage } from "@/pages/FeedDetailsPage";
-import { FeedPage } from "@/pages/FeedPage";
-import { ForgotPasswordPage } from "@/pages/ForgotPasswordPage";
-import { IngredientsPage } from "@/pages/IngredientsPage";
-import { LoginPage } from "@/pages/LoginPage";
-import { MainPage } from "@/pages/MainPage";
-import { NotFoundPage } from "@/pages/NotFoundPage";
-import { ProfileOrdersDetailsPage } from "@/pages/ProfileOrdersDetailsPage";
-import { ProfilePage } from "@/pages/ProfilePage";
-import { RegisterPage } from "@/pages/RegisterPage";
-import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
+import { FeedDetailsPage } from '@/pages/FeedDetailsPage'
+import { FeedPage } from '@/pages/FeedPage'
+import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage'
+import { IngredientsPage } from '@/pages/IngredientsPage'
+import { LoginPage } from '@/pages/LoginPage'
+import { MainPage } from '@/pages/MainPage'
+import { NotFoundPage } from '@/pages/NotFoundPage'
+import { ProfileOrdersDetailsPage } from '@/pages/ProfileOrdersDetailsPage'
+import { ProfilePage } from '@/pages/ProfilePage'
+import { RegisterPage } from '@/pages/RegisterPage'
+import { ResetPasswordPage } from '@/pages/ResetPasswordPage'
 import {
 	AppRoutes,
 	getRouteFeed,
@@ -23,8 +23,8 @@ import {
 	getRouteProfileOrders,
 	getRouteRegister,
 	getRouteResetPassword,
-} from "@/shared/const/router";
-import { AppRoutesProps } from "@/shared/types/router";
+} from '@/shared/const/router'
+import { type AppRoutesProps } from '@/shared/types/router'
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.MAIN]: {
@@ -36,7 +36,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		element: <FeedPage />,
 	},
 	[AppRoutes.FEED_DETAILS]: {
-		path: getRouteFeedDetails(":id"),
+		path: getRouteFeedDetails(':id'),
 		element: <FeedDetailsPage />,
 	},
 	[AppRoutes.PROFILE]: {
@@ -50,12 +50,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		isAuth: true,
 	},
 	[AppRoutes.PROFILE_ORDERS_DETAILS]: {
-		path: getRouteProfileOrderDetails(":id"),
+		path: getRouteProfileOrderDetails(':id'),
 		element: <ProfileOrdersDetailsPage />,
 		isAuth: true,
 	},
 	[AppRoutes.INGREDIENTS]: {
-		path: getRouteIngredients(":id"),
+		path: getRouteIngredients(':id'),
 		element: <IngredientsPage />,
 	},
 	[AppRoutes.LOGIN]: {
@@ -82,4 +82,4 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		path: getRouteNotFound(),
 		element: <NotFoundPage />,
 	},
-};
+}

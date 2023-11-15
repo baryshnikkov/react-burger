@@ -1,5 +1,5 @@
-import { useIngredients } from "./api/listIngredientsApi";
-import { Ingredient } from "./model/types/listIngredients";
+import { useIngredients } from './api/listIngredientsApi'
+import { type Ingredient } from './model/types/listIngredients'
 
-export { useIngredients };
-export type { Ingredient };
+export { useIngredients }
+export type { Ingredient }

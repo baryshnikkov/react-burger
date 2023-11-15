@@ -1,15 +1,15 @@
-import { RefObject, memo, useEffect, useState } from "react";
-import { CardIngredient } from "../CardIngredient/CardIngredient";
-import { Ingredient, useIngredients } from "@/entities/ListIngredients";
-import cls from "./CardsIngredients.module.css";
-import { cn } from "@/shared/lib/helpers/classNames";
-import { PageLoader } from "@/widgets/PageLoader";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch";
-import { useSelector } from "react-redux";
-import { getAmountIngredients } from "../../model/selectors/getAmountIngredients";
-import { amountIngredientsActions } from "../../model/slice/amountIngredientsSlice";
-import { getBun } from "@/entities/Order";
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { type RefObject, memo, useEffect, useState } from 'react';
+import { CardIngredient } from '../CardIngredient/CardIngredient';
+import { type Ingredient, useIngredients } from '@/entities/ListIngredients';
+import cls from './CardsIngredients.module.css';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { PageLoader } from '@/widgets/PageLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useSelector } from 'react-redux';
+import { getAmountIngredients } from '../../model/selectors/getAmountIngredients';
+import { amountIngredientsActions } from '../../model/slice/amountIngredientsSlice';
+import { getBun } from '@/entities/Order';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 interface FilterIngredients {
 	bun: Ingredient[];
@@ -25,8 +25,7 @@ interface CardsIngredientsProps {
 }
 
 export const CardsIngredients = memo((props: CardsIngredientsProps) => {
-	const { bunsRef, mainRef, saucesRef, ingredientsListRef, handleScroll } =
-		props;
+	const { bunsRef, mainRef, saucesRef, ingredientsListRef, handleScroll } = props;
 	const { data: ingredients, isLoading } = useIngredients(null);
 	const amountIngredients = useSelector(getAmountIngredients);
 	const selectedBun = useSelector(getBun);
@@ -52,11 +51,7 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 			setBuns(filterIngredients.bun);
 			setMain(filterIngredients.main);
 			setSauces(filterIngredients.sauce);
-			dispatch(
-				amountIngredientsActions.initAmountIngredients(
-					filterAmountIngredients
-				)
-			);
+			dispatch(amountIngredientsActions.initAmountIngredients(filterAmountIngredients));
 		}
 	}, [ingredients]);
 
@@ -67,16 +62,17 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 	if (!ingredients?.data) {
 		return (
 			<div className={cls.error}>
-				<p className="text text_type_main-default">
-					Ошибка сервера. Не удалось получить данные. Попробуйте
-					обновить страницу.
+				<p className='text text_type_main-default'>
+					Ошибка сервера. Не удалось получить данные. Попробуйте обновить страницу.
 				</p>
 				<Button
-					htmlType="button"
-					type="primary"
-					size="small"
-					extraClass="ml-2"
-					onClick={() => window.location.reload()}
+					htmlType='button'
+					type='primary'
+					size='small'
+					extraClass='ml-2'
+					onClick={() => {
+						window.location.reload();
+					}}
 				>
 					Обновить страницу
 				</Button>
@@ -85,15 +81,8 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 	}
 
 	return (
-		<div
-			className={cls.CardsIngredients}
-			ref={ingredientsListRef}
-			onScroll={handleScroll}
-		>
-			<h2
-				className={cn(cls.title, {}, ["text", "text_type_main-medium"])}
-				ref={bunsRef}
-			>
+		<div className={cls.CardsIngredients} ref={ingredientsListRef} onScroll={handleScroll}>
+			<h2 className={cn(cls.title, {}, ['text', 'text_type_main-medium'])} ref={bunsRef}>
 				Булки
 			</h2>
 			<div className={cls.cards}>
@@ -113,10 +102,7 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 					/>
 				))}
 			</div>
-			<h2
-				className={cn(cls.title, {}, ["text", "text_type_main-medium"])}
-				ref={saucesRef}
-			>
+			<h2 className={cn(cls.title, {}, ['text', 'text_type_main-medium'])} ref={saucesRef}>
 				Соусы
 			</h2>
 			<div className={cls.cards}>
@@ -135,10 +121,7 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 					/>
 				))}
 			</div>
-			<h2
-				className={cn(cls.title, {}, ["text", "text_type_main-medium"])}
-				ref={mainRef}
-			>
+			<h2 className={cn(cls.title, {}, ['text', 'text_type_main-medium'])} ref={mainRef}>
 				Начинки
 			</h2>
 			<div className={cls.cards}>
@@ -160,3 +143,5 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 		</div>
 	);
 });
+
+CardsIngredients.displayName = 'CardsIngredients';

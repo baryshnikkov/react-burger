@@ -1,3 +1,3 @@
-import { ProfileOrdersDetailsPageAsync as ProfileOrdersDetailsPage } from "./ui/ProfileOrdersDetailsPage.async";
+import { ProfileOrdersDetailsPageAsync as ProfileOrdersDetailsPage } from './ui/ProfileOrdersDetailsPage.async'
 
-export { ProfileOrdersDetailsPage };
+export { ProfileOrdersDetailsPage }

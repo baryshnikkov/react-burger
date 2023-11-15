@@ -1,20 +1,20 @@
-import { memo } from "react";
-import { NavLink } from "react-router-dom";
+import { memo } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
 	BurgerIcon,
 	ListIcon,
 	Logo,
 	ProfileIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-import { NavbarLink } from "../NavbarLink/NavbarLink";
+} from '@ya.praktikum/react-developer-burger-ui-components';
+import { NavbarLink } from '../NavbarLink/NavbarLink';
 import {
 	getRouteFeed,
 	getRouteMain,
 	getRouteProfile,
-} from "@/shared/const/router";
-import cls from "./Navbar.module.css";
-import { useSelector } from "react-redux";
-import { getIsAuth } from "@/entities/User";
+} from '@/shared/const/router';
+import cls from './Navbar.module.css';
+import { useSelector } from 'react-redux';
+import { getIsAuth } from '@/entities/User';
 
 export const Navbar = memo(() => {
 	const isAuth = useSelector(getIsAuth);
@@ -40,10 +40,12 @@ export const Navbar = memo(() => {
 				<NavbarLink
 					className={cls.profile}
 					to={getRouteProfile()}
-					text={isAuth ? "Личный кабинет" : "Войти"}
+					text={isAuth ? 'Личный кабинет' : 'Войти'}
 					icon={<ProfileIcon type="primary" />}
 				/>
 			</div>
 		</header>
 	);
 });
+
+Navbar.displayName = 'Navbar';

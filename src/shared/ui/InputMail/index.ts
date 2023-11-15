@@ -1,3 +1,3 @@
-import { InputMail } from "./InputMail";
+import { InputMail } from './InputMail'
 
-export { InputMail };
+export { InputMail }

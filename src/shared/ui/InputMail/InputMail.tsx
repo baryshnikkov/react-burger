@@ -1,5 +1,5 @@
-import { ChangeEvent, memo, useEffect, useState } from "react";
-import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { type ChangeEvent, memo, useEffect, useState } from 'react';
+import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 
 interface InputMailProps {
 	value: string;
@@ -32,11 +32,11 @@ export const InputMail = memo((props: InputMailProps) => {
 	const validateInput = () => {
 		if (!value.trim()) {
 			setIsValid(false);
-			setErrorText("Это обязательное поле");
+			setErrorText('Это обязательное поле');
 		} else {
 			const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 			setIsValid(mailFormat.test(value));
-			setErrorText("Неправильный формат email");
+			setErrorText('Неправильный формат email');
 		}
 	};
 
@@ -48,21 +48,25 @@ export const InputMail = memo((props: InputMailProps) => {
 
 	return (
 		<Input
-			type={"email"}
-			placeholder={"E-mail"}
-			size={"default"}
+			type={'email'}
+			placeholder={'E-mail'}
+			size={'default'}
 			value={value}
 			onChange={handleInputChange}
 			onBlur={handleBlur}
 			onFocus={handleFocus}
-			name={"email"}
+			name={'email'}
 			error={!isValid && !isFocused}
 			errorText={errorText}
 			autoComplete="email"
-			// @ts-ignore
-			icon={isEdit && (isViewValue ? "CloseIcon" : "EditIcon")}
-			onIconClick={() => setIsViewValue((prev) => !prev)}
+			// @ts-expect-error
+			icon={isEdit && (isViewValue ? 'CloseIcon' : 'EditIcon')}
+			onIconClick={() => {
+				setIsViewValue((prev) => !prev);
+			}}
 			disabled={isEdit && !isViewValue}
 		/>
 	);
 });
+
+InputMail.displayName = 'InputMail';

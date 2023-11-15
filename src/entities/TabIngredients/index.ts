@@ -1,3 +1,3 @@
-import { TabIngredients } from "./ui/TabIngredients";
+import { TabIngredients } from './ui/TabIngredients'
 
-export { TabIngredients };
+export { TabIngredients }

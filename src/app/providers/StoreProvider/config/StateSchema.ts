@@ -1,11 +1,11 @@
-import { AmountIngredientsSchema } from "@/entities/CardsIngredients";
-import { OrderSchema } from "@/entities/Order";
-import { UserSchema } from "@/entities/User";
-import { AuthUserSchema } from "@/features/AuthUser";
-import { LoginUserSchema } from "@/features/LoginUser";
-import { ForgotPasswordSchema } from "@/pages/ForgotPasswordPage";
-import { ResetPasswordSchema } from "@/pages/ResetPasswordPage";
-import { rtkApi } from "@/shared/api/rtkApi";
+import { type AmountIngredientsSchema } from '@/entities/CardsIngredients'
+import { type OrderSchema } from '@/entities/Order'
+import { type UserSchema } from '@/entities/User'
+import { type AuthUserSchema } from '@/features/AuthUser'
+import { type LoginUserSchema } from '@/features/LoginUser'
+import { type ForgotPasswordSchema } from '@/pages/ForgotPasswordPage'
+import { type ResetPasswordSchema } from '@/pages/ResetPasswordPage'
+import { type rtkApi } from '@/shared/api/rtkApi'
 
 export interface StateSchema {
 	order: OrderSchema;

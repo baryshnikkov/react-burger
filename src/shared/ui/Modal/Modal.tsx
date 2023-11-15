@@ -1,10 +1,10 @@
-import { ReactNode, useEffect, useMemo, useState } from "react";
-import { useModal } from "@/shared/lib/hooks/useModal";
-import { Mods, cn } from "@/shared/lib/helpers/classNames";
-import { Overlay } from "../Overlay/Overlay";
-import { Portal } from "../Portal/Portal";
-import cls from "./Modal.module.css";
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { type ReactNode, useMemo } from 'react';
+import { useModal } from '@/shared/lib/hooks/useModal';
+import { type Mods, cn } from '@/shared/lib/helpers/classNames';
+import { Overlay } from '../Overlay/Overlay';
+import { Portal } from '../Portal/Portal';
+import cls from './Modal.module.css';
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 interface ModalProps {
 	className?: string;
@@ -41,7 +41,7 @@ export const Modal = (props: ModalProps) => {
 	}
 
 	return (
-		<Portal element={document.getElementById("app") ?? document.body}>
+		<Portal element={document.getElementById('app') ?? document.body}>
 			<div className={cn(cls.Modal, modsModal, [className])}>
 				<div className={cn(cls.content, modsContent, [])}>
 					<div className={cls.close} onClick={close}>

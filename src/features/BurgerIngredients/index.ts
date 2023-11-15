@@ -1,3 +1,3 @@
-import { BurgerIngredients } from "./ui/BurgerIngredients";
+import { BurgerIngredients } from './ui/BurgerIngredients'
 
-export { BurgerIngredients };
+export { BurgerIngredients }
