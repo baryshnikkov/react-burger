@@ -33,7 +33,6 @@
 
 .widthIngredient {
     box-sizing: border-box;
-    width: 600px;
     display: flex;
     justify-content: flex-end;
     width: 558px;

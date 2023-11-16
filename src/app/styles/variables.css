@@ -7,16 +7,13 @@
     --text-color-secondary: #8585AD;
     --accent-color: #4C4CFF;
     --accent-color-secondary: #801ab2;
-    --overlay-color: #00000099;
+    --overlay-color: #0009;
     --overlay-color-secondary: #F2F2F3;
-    
     --width-page: 1280px;
     --navbar-height: 88px;
-
     --hidden-modal-z-index: -1;
     --modal-z-index: 10;
     --overlay-z-index: 2;
-
     --opacity-hover: 0.7;
     --opacity-text: 0.5;
     --transition-time-hover: 0.2s;

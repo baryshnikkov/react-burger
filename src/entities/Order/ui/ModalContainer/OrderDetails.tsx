@@ -24,9 +24,9 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 			<p className={'text text_type_main-medium mt-8'}>идентификатор заказа</p>
 
 			<div className={cls.wrapper}>
-				<BGLarge className={cn(cls.icon, {}, [cls.icon_large])} />
-				<BGMedium className={cn(cls.icon, {}, [cls.icon_medium])} />
-				<BGSmall className={cn(cls.icon, {}, [cls.icon_small])} />
+				<BGLarge className={cn(cls.icon, {}, [cls.iconLarge])} />
+				<BGMedium className={cn(cls.icon, {}, [cls.iconMedium])} />
+				<BGSmall className={cn(cls.icon, {}, [cls.iconSmall])} />
 				<CheckMarkIcon type={'primary'} />
 			</div>
 

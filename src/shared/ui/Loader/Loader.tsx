@@ -11,7 +11,7 @@ export const Loader = memo((props: LoaderProps) => {
 	const { className, isCenter = false } = props;
 
 	return (
-		<div className={cn('lds-roller', { center: isCenter }, [className])}>
+		<div className={cn('loader', { center: isCenter }, [className])}>
 			<div />
 			<div />
 			<div />

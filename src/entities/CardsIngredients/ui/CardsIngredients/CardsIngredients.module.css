@@ -1,7 +1,6 @@
 .CardsIngredients {
     height: calc(100vh - var(--navbar-height) - 180px);
     overflow-y: scroll;
-    overflow: overlay;
 }
 
 .CardsIngredients::-webkit-scrollbar {
