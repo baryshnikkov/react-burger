@@ -1,9 +1,11 @@
 import { memo, useRef, useState } from 'react';
-import { TabIngredients } from '@/entities/TabIngredients';
+
 import { CardsIngredients } from '@/entities/CardsIngredients';
-import cls from './BurgerIngredients.module.css';
-import { type TabIngredientVariants } from '@/entities/TabIngredients/model/types/tabIngredients';
+import { type TabIngredientVariants, TabIngredients } from '@/entities/TabIngredients';
+
 import { useThrottle } from '@/shared/lib/hooks/useThrottle';
+
+import cls from './BurgerIngredients.module.css';
 
 const throttleDelay = 50;
 const additionalElementHeight = 160;

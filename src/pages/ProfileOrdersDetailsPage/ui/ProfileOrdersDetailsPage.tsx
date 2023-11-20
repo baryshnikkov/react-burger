@@ -1,12 +1,15 @@
-import { getAccessToken } from '@/entities/User';
-import { Page } from '@/widgets/Page';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { PageLoader } from '@/widgets/PageLoader';
 import { useParams } from 'react-router-dom';
+
+import { Page } from '@/widgets/Page';
+import { PageLoader } from '@/widgets/PageLoader';
+
 import { useIngredients } from '@/entities/ListIngredients';
-import cls from './ProfileOrdersDetailsPage.module.css';
 import { OrderDetails } from '@/entities/OrderDetails';
+import { getAccessToken } from '@/entities/User';
+
+import cls from './ProfileOrdersDetailsPage.module.css';
 
 const ProfileOrdersDetailsPage = memo(() => {
 	const accessToken = useSelector(getAccessToken);

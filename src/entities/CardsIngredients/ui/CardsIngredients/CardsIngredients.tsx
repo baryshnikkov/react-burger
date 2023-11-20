@@ -1,15 +1,20 @@
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { type RefObject, memo, useEffect, useState } from 'react';
-import { CardIngredient } from '../CardIngredient/CardIngredient';
-import { type Ingredient, useIngredients } from '@/entities/ListIngredients';
-import cls from './CardsIngredients.module.css';
-import { cn } from '@/shared/lib/helpers/classNames';
-import { PageLoader } from '@/widgets/PageLoader';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { useSelector } from 'react-redux';
+
+import { PageLoader } from '@/widgets/PageLoader';
+
+import { type Ingredient, useIngredients } from '@/entities/ListIngredients';
+
+import { cn } from '@/shared/lib/helpers/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+
 import { getAmountIngredients } from '../../model/selectors/getAmountIngredients';
 import { amountIngredientsActions } from '../../model/slice/amountIngredientsSlice';
+import { CardIngredient } from '../CardIngredient/CardIngredient';
+
+import cls from './CardsIngredients.module.css';
 // import { getBun } from '@/entities/Order';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 interface FilterIngredients {
 	bun: Ingredient[];

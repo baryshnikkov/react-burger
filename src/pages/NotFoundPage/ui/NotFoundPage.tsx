@@ -1,8 +1,10 @@
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ImageError404 from '../assets/error404.svg';
-import cls from './NotFoundPage.module.css';
+
+import ImageError404 from '@/shared/assets/error404.svg';
 import { getRouteMain } from '@/shared/const/router';
+
+import cls from './NotFoundPage.module.css';
 
 const NotFoundPage = memo(() => {
 	const navigate = useNavigate();

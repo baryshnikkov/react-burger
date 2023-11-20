@@ -1,5 +1,7 @@
-import { cn } from '@/shared/lib/helpers/classNames';
 import { memo } from 'react';
+
+import { cn } from '@/shared/lib/helpers/classNames';
+
 import cls from './IngredientDetails.module.css';
 
 export interface IngredientDetailsProps {

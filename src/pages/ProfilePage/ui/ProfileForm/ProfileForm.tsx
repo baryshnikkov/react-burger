@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react'
-import { InputText } from '@/shared/ui/InputText'
-import { InputMail } from '@/shared/ui/InputMail'
-import { InputPassword } from '@/shared/ui/InputPassword'
-import cls from './ProfileForm.module.css'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+
 import {
 	getAccessToken,
 	getIsLoadingUser,
@@ -13,7 +10,13 @@ import {
 	getUserName,
 	setProfileData,
 } from '@/entities/User'
-import { useSelector } from 'react-redux'
+
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
+import { InputMail } from '@/shared/ui/InputMail'
+import { InputPassword } from '@/shared/ui/InputPassword'
+import { InputText } from '@/shared/ui/InputText'
+
+import cls from './ProfileForm.module.css'
 
 export const ProfileForm = () => {
 	const [nameValue, setNameValue] = useState<string>('')

@@ -1,4 +1,5 @@
 import { cn } from '@/shared/lib/helpers/classNames';
+
 import cls from './IngredientPictures.module.css';
 
 interface IngredientPicturesProps {

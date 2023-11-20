@@ -1,14 +1,17 @@
-import { memo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { memo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { Page } from '@/widgets/Page';
-import { InputPassword } from '@/shared/ui/InputPassword';
-import { InputText } from '@/shared/ui/InputText';
+
 import { getRouteLogin } from '@/shared/const/router';
 import cls from '@/shared/const/styles/FormPage.module.css';
 import { cn } from '@/shared/lib/helpers/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { useSelector } from 'react-redux';
+import { InputPassword } from '@/shared/ui/InputPassword';
+import { InputText } from '@/shared/ui/InputText';
+
 import { getIsLoadingResetPassword } from './model/selectors/getIsLoadingResetPassword';
 import { fetchResetPassword } from './model/services/fetchResetPassword';
 

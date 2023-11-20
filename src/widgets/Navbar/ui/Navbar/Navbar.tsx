@@ -1,20 +1,24 @@
-import { memo } from 'react';
-import { NavLink } from 'react-router-dom';
 import {
 	BurgerIcon,
 	ListIcon,
 	Logo,
 	ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { NavbarLink } from '../NavbarLink/NavbarLink';
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+import { getIsAuth } from '@/entities/User';
+
 import {
 	getRouteFeed,
 	getRouteMain,
 	getRouteProfile,
 } from '@/shared/const/router';
+
+import { NavbarLink } from '../NavbarLink/NavbarLink';
+
 import cls from './Navbar.module.css';
-import { useSelector } from 'react-redux';
-import { getIsAuth } from '@/entities/User';
 
 export const Navbar = memo(() => {
 	const isAuth = useSelector(getIsAuth);

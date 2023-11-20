@@ -1,7 +1,9 @@
 import { memo, Suspense } from 'react';
+
 import { cn } from '@/shared/lib/helpers/classNames';
 import { Loader } from '@/shared/ui/Loader';
 import { Modal } from '@/shared/ui/Modal';
+
 import { OrderDetailsAsync } from '../ModalContainer/OrderDetails.async';
 
 interface ModalOrderDetailsProps {

@@ -1,11 +1,14 @@
-import { memo, useCallback, useRef } from 'react';
-import { cn } from '@/shared/lib/helpers/classNames';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { orderActions } from '@/entities/Order';
-import cls from './ToppingCard.module.css';
+import { memo, useCallback, useRef } from 'react';
 import { type DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
+
 import { amountIngredientsActions } from '@/entities/CardsIngredients';
+import { orderActions } from '@/entities/Order';
+
+import { cn } from '@/shared/lib/helpers/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+
+import cls from './ToppingCard.module.css';
 
 interface ToppingCardProps {
 	className?: string;

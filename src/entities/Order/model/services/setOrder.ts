@@ -1,6 +1,7 @@
-import { getApiOrders } from '@/shared/const/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+import { getApiOrders } from '@/shared/const/api';
 
 interface OrderProps {
 	ingredients: string[];

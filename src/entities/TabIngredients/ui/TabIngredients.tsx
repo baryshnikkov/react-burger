@@ -1,6 +1,8 @@
-import { type RefObject, memo } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { type RefObject, memo } from 'react';
+
 import { type TabIngredientVariants } from '../model/types/tabIngredients';
+
 import cls from './TabIngredients.module.css';
 
 interface TabIngredientsProps {

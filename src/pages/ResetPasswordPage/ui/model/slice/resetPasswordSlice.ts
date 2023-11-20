@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { type ResetPasswordSchema } from '../types/resetPassword'
+
 import { fetchResetPassword } from '../services/fetchResetPassword'
+import { type ResetPasswordSchema } from '../types/resetPassword'
 
 const initialState: ResetPasswordSchema = {
 	isLoading: false,

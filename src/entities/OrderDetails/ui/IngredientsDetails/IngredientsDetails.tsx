@@ -1,7 +1,9 @@
-import { memo } from 'react';
-import cls from './IngredientsDetails.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { memo } from 'react';
+
 import { type Ingredient } from '@/entities/ListIngredients';
+
+import cls from './IngredientsDetails.module.css';
 
 interface CalculateOrderDetailsProps {
 	ingredientsList: Ingredient[];

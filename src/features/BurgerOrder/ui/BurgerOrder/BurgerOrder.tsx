@@ -1,14 +1,18 @@
-import { memo, useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { useDrop } from 'react-dnd';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import { OrderButton, getBun, getIsEmpty, getToppings, orderActions } from '@/entities/Order';
-import BurgerIcon from '@/shared/assets/burger.svg';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import cls from './BurgerOrder.module.css';
-import { cn } from '@/shared/lib/helpers/classNames';
-import { ToppingCard } from '../ToppingCard/ToppingCard';
+import { memo, useCallback } from 'react';
+import { useDrop } from 'react-dnd';
+import { useSelector } from 'react-redux';
+
 import { amountIngredientsActions } from '@/entities/CardsIngredients';
+import { OrderButton, getBun, getIsEmpty, getToppings, orderActions } from '@/entities/Order';
+
+import BurgerIcon from '@/shared/assets/burger.svg';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+
+import { ToppingCard } from '../ToppingCard/ToppingCard';
+
+import cls from './BurgerOrder.module.css';
 
 export const BurgerOrder = memo(() => {
 	const isEmpty = useSelector(getIsEmpty);

@@ -1,5 +1,5 @@
-import { type ChangeEvent, memo, useEffect, useState } from 'react';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
+import { type ChangeEvent, memo, useEffect, useState } from 'react';
 
 interface InputPasswordProps {
 	value: string;

@@ -1,7 +1,8 @@
-import { getApiLogout } from '@/shared/const/api';
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+import { getApiLogout } from '@/shared/const/api';
+import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 interface LogoutUserAnswer {
 	success: boolean;

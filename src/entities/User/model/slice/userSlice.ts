@@ -1,10 +1,12 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type User, type UserSchema } from '../types/userSchema';
+
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
-import { updateAccessToken } from '../services/updateAccessToken';
+
+import { getProfileData } from '../services/getProfileData';
 import { logoutUser } from '../services/logoutUser';
 import { setProfileData } from '../services/setProfileData';
-import { getProfileData } from '../services/getProfileData';
+import { updateAccessToken } from '../services/updateAccessToken';
+import { type User, type UserSchema } from '../types/userSchema';
 
 const initialState: UserSchema = {
 	isAuth: false,

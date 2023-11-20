@@ -1,6 +1,8 @@
-import { Navigate, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Navigate, useLocation } from 'react-router-dom'
+
 import { getIsAuth } from '@/entities/User'
+
 import { getRouteLogin, getRouteMain } from '@/shared/const/router'
 
 interface RequireAuthProps {

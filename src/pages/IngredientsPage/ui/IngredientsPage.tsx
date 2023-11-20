@@ -1,9 +1,11 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { IngredientDetails } from '@/entities/CardsIngredients';
-import { type Ingredient, useIngredients } from '@/entities/ListIngredients';
+
 import { Page } from '@/widgets/Page';
 import { PageLoader } from '@/widgets/PageLoader';
+
+import { IngredientDetails } from '@/entities/CardsIngredients';
+import { type Ingredient, useIngredients } from '@/entities/ListIngredients';
 
 const IngredientsPage = memo(() => {
 	const { data: ingredients, isLoading } = useIngredients(null);

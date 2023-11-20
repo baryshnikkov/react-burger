@@ -1,12 +1,15 @@
-import { cn } from '@/shared/lib/helpers/classNames';
+import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Loader } from '@/shared/ui/Loader';
+
 import BGLarge from '@/shared/assets/order-bg-large.svg';
 import BGMedium from '@/shared/assets/order-bg-medium.svg';
 import BGSmall from '@/shared/assets/order-bg-small.svg';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { Loader } from '@/shared/ui/Loader';
+
 import { getNumberOrder } from '../../model/selectors/getNumberOrder';
+
 import cls from './OrderDetails.module.css';
 
 export interface OrderDetailsProps {

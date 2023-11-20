@@ -1,6 +1,8 @@
 import { type ReactNode } from 'react';
-import cls from './Page.module.css';
+
 import { cn } from '@/shared/lib/helpers/classNames';
+
+import cls from './Page.module.css';
 
 interface PageProps {
 	children: ReactNode;

@@ -1,14 +1,17 @@
-import { Page } from '@/widgets/Page';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { memo, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { Page } from '@/widgets/Page';
+
+import { getIsLoadingLoginUser, loginUser } from '@/features/LoginUser';
+
+import { getRouteForgotPassword, getRouteRegister } from '@/shared/const/router';
+import cls from '@/shared/const/styles/FormPage.module.css';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { InputMail } from '@/shared/ui/InputMail';
 import { InputPassword } from '@/shared/ui/InputPassword';
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import cls from '@/shared/const/styles/FormPage.module.css';
-import { getRouteForgotPassword, getRouteRegister } from '@/shared/const/router';
-import { useSelector } from 'react-redux';
-import { getIsLoadingLoginUser, loginUser } from '@/features/LoginUser';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 
 const LoginPage = memo(() => {
 	const [emailValue, setEmailValue] = useState('');

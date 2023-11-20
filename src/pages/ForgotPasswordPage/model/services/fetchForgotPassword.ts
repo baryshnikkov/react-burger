@@ -1,6 +1,7 @@
-import { getApiForgotPassword } from '@/shared/const/api'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+
+import { getApiForgotPassword } from '@/shared/const/api'
 
 interface ForgotPasswordAnswer {
 	success: boolean;

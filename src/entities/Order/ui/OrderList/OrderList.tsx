@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { useWebSocket } from '@/shared/lib/hooks/useWebSocket';
-import cls from './OrderList.module.css';
 import { Loader } from '@/shared/ui/Loader';
+
+import { orderActions } from '../../model/slice/orderSlice';
 import { type OrderAnswer } from '../../model/types/order';
 import { OrderCard } from '../OrderCard/OrderCard';
-import { useEffect } from 'react';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { orderActions } from '../../model/slice/orderSlice';
+
+import cls from './OrderList.module.css';
 
 interface OrderListProps {
 	urlWebSocket: string;

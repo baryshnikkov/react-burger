@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { cn } from '@/shared/lib/helpers/classNames';
-import { getRouteProfile, getRouteProfileOrders } from '@/shared/const/router';
-import cls from './ProfileNavigation.module.css';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { logoutUser } from '@/entities/User';
 import { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { logoutUser } from '@/entities/User';
+
+import { getRouteProfile, getRouteProfileOrders } from '@/shared/const/router';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+
+import cls from './ProfileNavigation.module.css';
 
 interface ProfileNavigationProps {
 	path: string;

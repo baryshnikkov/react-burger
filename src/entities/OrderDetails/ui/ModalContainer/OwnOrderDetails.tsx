@@ -1,9 +1,13 @@
-import { memo } from 'react';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { IngredientsDetails } from '../IngredientsDetails/IngredientsDetails';
-import cls from './OwnOrderDetails.module.css';
-import { cn } from '@/shared/lib/helpers/classNames';
+import { memo } from 'react';
+
 import { type Ingredient } from '@/entities/ListIngredients';
+
+import { cn } from '@/shared/lib/helpers/classNames';
+
+import { IngredientsDetails } from '../IngredientsDetails/IngredientsDetails';
+
+import cls from './OwnOrderDetails.module.css';
 
 export interface OwnOrderDetailsProps {
 	number: number;

@@ -1,10 +1,13 @@
+import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { memo, useCallback, useState } from 'react';
 import { useDrag } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
-import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import cls from './CardIngredient.module.css';
-import { ModalIngredientData } from '../ModalIngredientData/ModalIngredientData';
+
 import { getRouteIngredients } from '@/shared/const/router';
+
+import { ModalIngredientData } from '../ModalIngredientData/ModalIngredientData';
+
+import cls from './CardIngredient.module.css';
 
 interface CardIngredientProps {
 	image: string;

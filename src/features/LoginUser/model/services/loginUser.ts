@@ -1,8 +1,10 @@
-import { userActions } from '@/entities/User';
-import { getApiLogin } from '@/shared/const/api';
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+import { userActions } from '@/entities/User';
+
+import { getApiLogin } from '@/shared/const/api';
+import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 interface LoginUserProps {
 	password: string;

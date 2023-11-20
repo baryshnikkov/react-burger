@@ -1,8 +1,9 @@
-import { DefinePlugin, ProgressPlugin, type WebpackPluginInstance } from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { DefinePlugin, ProgressPlugin, type WebpackPluginInstance } from 'webpack';
+
 import { type BuildOptions } from './types/config';
 
 export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {

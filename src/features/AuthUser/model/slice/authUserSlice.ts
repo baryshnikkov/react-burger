@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { type AuthUserSchema } from '../types/authUserSchema'
+
 import { authByMail } from '../services/authByMail'
+import { type AuthUserSchema } from '../types/authUserSchema'
 
 const initialState: AuthUserSchema = {
 	isLoading: false,

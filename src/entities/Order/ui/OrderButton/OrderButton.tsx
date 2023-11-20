@@ -1,20 +1,24 @@
-import { memo, useCallback, useState } from 'react';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import cls from './OrderButton.module.css';
-import { cn } from '@/shared/lib/helpers/classNames';
+import { memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getPrice } from '../../model/selectors/getPrice';
-import { getIsEmpty } from '../../model/selectors/getIsEmpty';
-import { ModalOrderDetails } from '../ModalOrderDetails/ModalOrderDetails';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { setOrder } from '../../model/services/setOrder';
-import { getBun } from '../../model/selectors/getBun';
-import { getToppings } from '../../model/selectors/getToppings';
-import { getAccessToken, getIsAuth } from '@/entities/User';
-import { getIsLoadingOrder } from '../../model/selectors/getIsLoadingOrder';
 import { useNavigate } from 'react-router-dom';
-import { getRouteLogin } from '@/shared/const/router';
+
 import { amountIngredientsActions } from '@/entities/CardsIngredients';
+import { getAccessToken, getIsAuth } from '@/entities/User';
+
+import { getRouteLogin } from '@/shared/const/router';
+import { cn } from '@/shared/lib/helpers/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+
+import { getBun } from '../../model/selectors/getBun';
+import { getIsEmpty } from '../../model/selectors/getIsEmpty';
+import { getIsLoadingOrder } from '../../model/selectors/getIsLoadingOrder';
+import { getPrice } from '../../model/selectors/getPrice';
+import { getToppings } from '../../model/selectors/getToppings';
+import { setOrder } from '../../model/services/setOrder';
+import { ModalOrderDetails } from '../ModalOrderDetails/ModalOrderDetails';
+
+import cls from './OrderButton.module.css';
 
 interface OrderButtonProps {
 	className?: string;

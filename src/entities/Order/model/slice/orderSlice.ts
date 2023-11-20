@@ -1,6 +1,7 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { type OrderSchema, type OrderStatistic } from '../types/order';
+
 import { setOrder } from '../services/setOrder';
+import { type OrderSchema, type OrderStatistic } from '../types/order';
 
 const initialState: OrderSchema = {
 	toppings: [],

@@ -1,10 +1,13 @@
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { type ReactNode, useMemo } from 'react';
-import { useModal } from '@/shared/lib/hooks/useModal';
+
 import { type Mods, cn } from '@/shared/lib/helpers/classNames';
+import { useModal } from '@/shared/lib/hooks/useModal';
+
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
+
 import cls from './Modal.module.css';
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 interface ModalProps {
 	className?: string;

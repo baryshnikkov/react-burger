@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import { type AmountIngredientsSchema } from '../types/types'
 
 const initialState: AmountIngredientsSchema = {

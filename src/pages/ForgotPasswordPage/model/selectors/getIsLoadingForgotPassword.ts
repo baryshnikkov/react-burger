@@ -1,4 +1,3 @@
-import { type StateSchema } from '@/app/providers/StoreProvider'
+import type { StateSchema } from '@/shared/types/StateSchema';
 
-export const getIsLoadingForgotPassword = (state: StateSchema) =>
-	state.forgotPassword.isLoading
+export const getIsLoadingForgotPassword = (state: StateSchema) => state.forgotPassword.isLoading;

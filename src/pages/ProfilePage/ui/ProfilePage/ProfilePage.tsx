@@ -1,13 +1,18 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+
 import { Page } from '@/widgets/Page';
+
 import { OrderList } from '@/entities/Order';
 import { getAccessToken } from '@/entities/User';
+
 import { getRouteProfile } from '@/shared/const/router';
 import { Loader } from '@/shared/ui/Loader';
-import { ProfileNavigation } from '../ProfileNavigation/ProfileNavigation';
+
 import { ProfileForm } from '../ProfileForm/ProfileForm';
+import { ProfileNavigation } from '../ProfileNavigation/ProfileNavigation';
+
 import cls from './ProfilePage.module.css';
 
 const ProfilePage = memo(() => {

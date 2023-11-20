@@ -1,4 +1,3 @@
-import { type StateSchema } from '@/app/providers/StoreProvider'
+import type { StateSchema } from '@/shared/types/StateSchema';
 
-export const getIsLoadingLoginUser = (state: StateSchema) =>
-	state.loginUser.isLoading
+export const getIsLoadingLoginUser = (state: StateSchema) => state.loginUser.isLoading;

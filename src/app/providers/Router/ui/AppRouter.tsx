@@ -1,8 +1,12 @@
-import { type AppRoutesProps } from '@/shared/types/router';
 import { memo, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { routeConfig } from '../config/routeConfig';
+
 import { PageLoader } from '@/widgets/PageLoader';
+
+import { type AppRoutesProps } from '@/shared/types/router';
+
+import { routeConfig } from '../config/routeConfig';
+
 import { ProtectedRoutes } from './ProtectedRoutes';
 
 export const AppRouter = memo(() => {

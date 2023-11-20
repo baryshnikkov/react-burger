@@ -1,6 +1,8 @@
-import { getApiProfileData } from '@/shared/const/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+import { getApiProfileData } from '@/shared/const/api';
+
 import { userActions } from '../slice/userSlice';
 
 interface ProfileDataAnswer {

@@ -1,9 +1,11 @@
 import { memo, Suspense } from 'react';
+
 import { cn } from '@/shared/lib/helpers/classNames';
 import { Loader } from '@/shared/ui/Loader';
 import { Modal } from '@/shared/ui/Modal';
-import { OwnOrderDetailsAsync } from '../ModalContainer/OwnOrderDetails.async';
+
 import { type OwnOrderDetailsProps } from '../ModalContainer/OwnOrderDetails';
+import { OwnOrderDetailsAsync } from '../ModalContainer/OwnOrderDetails.async';
 
 interface ModalOwnOrderDetailsProps extends OwnOrderDetailsProps {
 	className?: string;

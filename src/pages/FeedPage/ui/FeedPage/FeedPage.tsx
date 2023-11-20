@@ -1,10 +1,15 @@
 import { memo } from 'react';
-import cls from './FeedPage.module.css';
-import { Page } from '@/widgets/Page';
-import { OrderList, getStatistic } from '@/entities/Order';
-import { OrderStatistics } from '../OrderStatistics/OrderStatistics';
 import { useSelector } from 'react-redux';
+
+import { Page } from '@/widgets/Page';
+
+import { OrderList, getStatistic } from '@/entities/Order';
+
 import { Loader } from '@/shared/ui/Loader';
+
+import { OrderStatistics } from '../OrderStatistics/OrderStatistics';
+
+import cls from './FeedPage.module.css';
 
 const FeedPage = memo(() => {
 	const statisticData = useSelector(getStatistic);

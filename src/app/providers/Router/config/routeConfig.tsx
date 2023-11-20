@@ -9,6 +9,7 @@ import { ProfileOrdersDetailsPage } from '@/pages/ProfileOrdersDetailsPage'
 import { ProfilePage } from '@/pages/ProfilePage'
 import { RegisterPage } from '@/pages/RegisterPage'
 import { ResetPasswordPage } from '@/pages/ResetPasswordPage'
+
 import {
 	AppRoutes,
 	getRouteFeed,

@@ -1,11 +1,15 @@
-import { memo, useCallback, useMemo, useState } from 'react';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { memo, useCallback, useMemo, useState } from 'react';
+
 import { type Ingredient, useIngredients } from '@/entities/ListIngredients';
+import { ModalOwnOrderDetails } from '@/entities/OrderDetails';
+
 import { calculateDate } from '@/shared/lib/helpers/calculateDate';
 import { calculatePrice } from '@/shared/lib/helpers/calculatePrice';
+
 import { IngredientPictures } from '../IngredientPictures/IngredientPictures';
+
 import cls from './OrderCard.module.css';
-import { ModalOwnOrderDetails } from '@/entities/OrderDetails';
 
 interface OrderCardProps {
 	number: number;

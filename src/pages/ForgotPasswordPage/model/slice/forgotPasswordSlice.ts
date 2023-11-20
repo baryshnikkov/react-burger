@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import { fetchForgotPassword } from '../services/fetchForgotPassword'
 import { type ForgotPasswordSchema } from '../types/forgotPassword'
 

@@ -1,10 +1,14 @@
 import { memo, useEffect, useState } from 'react';
-import { useWebSocket } from '@/shared/lib/hooks/useWebSocket';
+
 import { PageLoader } from '@/widgets/PageLoader';
+
 import { type Ingredient } from '@/entities/ListIngredients';
+import { type OrderAnswer } from '@/entities/Order';
+
 import { calculateDate } from '@/shared/lib/helpers/calculateDate';
 import { calculatePrice } from '@/shared/lib/helpers/calculatePrice';
-import { type OrderAnswer } from '@/entities/Order/model/types/order';
+import { useWebSocket } from '@/shared/lib/hooks/useWebSocket';
+
 import OwnOrderDetails from '../ModalContainer/OwnOrderDetails';
 
 interface OrderDetailsProps {

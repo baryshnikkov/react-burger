@@ -1,3 +1,3 @@
-import { type StateSchema } from '@/app/providers/StoreProvider'
+import { type StateSchema } from '@/shared/types/StateSchema';
 
-export const getNumberOrder = (state: StateSchema) => state.order.numberOrder
+export const getNumberOrder = (state: StateSchema) => state.order.numberOrder;

@@ -1,4 +1,5 @@
 import { rtkApi } from '@/shared/api/rtkApi'
+
 import { type ListIngredientsSchema } from '../model/types/listIngredients'
 
 const listIngredientsApi = rtkApi.injectEndpoints({
