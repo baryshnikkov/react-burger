@@ -1,8 +1,6 @@
 import { getApiOrders } from '@/shared/const/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { orderActions } from '../slice/orderSlice';
-import { amountIngredientsActions } from '@/entities/CardsIngredients';
 
 interface OrderProps {
 	ingredients: string[];
