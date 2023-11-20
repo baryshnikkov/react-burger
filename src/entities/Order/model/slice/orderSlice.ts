@@ -52,17 +52,6 @@ export const orderSlice = createSlice({
 		updateToppings: (state, action) => {
 			state.toppings = action.payload;
 		},
-		setNumberOrder: (state, action) => {
-			state.numberOrder = action.payload;
-		},
-		clearIngredients: (state) => {
-			state.bun = undefined;
-			state.toppings = [];
-			state.isEmpty = true;
-		},
-		clearPrice: (state) => {
-			state.price = 0;
-		},
 		setStatistic: (state, action: PayloadAction<OrderStatistic>) => {
 			state.statistic = action.payload;
 		},
