@@ -1,7 +1,6 @@
-import { getApiProfileData } from '@/shared/const/api'
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { userActions } from '../slice/userSlice'
+import { getApiProfileData } from '@/shared/const/api';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 interface ProfileDataAnswer {
 	success: boolean;
@@ -18,16 +17,9 @@ interface ProfileDataProps {
 	password: string;
 }
 
-export const setProfileData = createAsyncThunk<
-ProfileDataAnswer,
-ProfileDataProps,
-{ rejectValue: string; }
->(
+export const setProfileData = createAsyncThunk<ProfileDataAnswer, ProfileDataProps, { rejectValue: string }>(
 	'setProfileData',
-	async (
-		{ accessToken, name, email, password }: ProfileDataProps,
-		thunkAPI,
-	) => {
+	async ({ accessToken, name, email, password }: ProfileDataProps, thunkAPI) => {
 		try {
 			const response = await axios.patch<ProfileDataAnswer>(
 				__API__ + getApiProfileData(),
@@ -37,24 +29,17 @@ ProfileDataProps,
 						'Content-Type': 'application/json',
 						authorization: accessToken,
 					},
-				},
-			)
+				}
+			);
 
 			if (!response.data) {
-				throw new Error()
+				throw new Error();
 			}
 
-			thunkAPI.dispatch(
-				userActions.setAuthData({
-					name: response.data.user.name,
-					mail: response.data.user.email,
-				}),
-			)
-
-			return response.data
+			return response.data;
 		} catch (e) {
-			console.log(e)
-			return thunkAPI.rejectWithValue('error')
+			console.log(e);
+			return thunkAPI.rejectWithValue('error');
 		}
-	},
-)
+	}
+);

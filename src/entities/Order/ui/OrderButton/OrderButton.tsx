@@ -14,6 +14,7 @@ import { getAccessToken, getIsAuth } from '@/entities/User';
 import { getIsLoadingOrder } from '../../model/selectors/getIsLoadingOrder';
 import { useNavigate } from 'react-router-dom';
 import { getRouteLogin } from '@/shared/const/router';
+import { amountIngredientsActions } from '@/entities/CardsIngredients';
 
 interface OrderButtonProps {
 	className?: string;
@@ -43,6 +44,7 @@ export const OrderButton = memo((props: OrderButtonProps) => {
 
 		if (accessToken) {
 			dispatch(setOrder({ ingredients, accessToken }));
+			dispatch(amountIngredientsActions.clearAmountIngredients());
 		}
 		setIsOpenModal(true);
 	};

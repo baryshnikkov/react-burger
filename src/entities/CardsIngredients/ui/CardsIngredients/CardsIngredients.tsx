@@ -8,7 +8,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getAmountIngredients } from '../../model/selectors/getAmountIngredients';
 import { amountIngredientsActions } from '../../model/slice/amountIngredientsSlice';
-import { getBun } from '@/entities/Order';
+// import { getBun } from '@/entities/Order';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 interface FilterIngredients {
@@ -28,7 +28,7 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 	const { bunsRef, mainRef, saucesRef, ingredientsListRef, handleScroll } = props;
 	const { data: ingredients, isLoading } = useIngredients(null);
 	const amountIngredients = useSelector(getAmountIngredients);
-	const selectedBun = useSelector(getBun);
+	// const selectedBun = useSelector(getBun);
 	const [buns, setBuns] = useState<Ingredient[]>([]);
 	const [main, setMain] = useState<Ingredient[]>([]);
 	const [sauces, setSauces] = useState<Ingredient[]>([]);
@@ -98,7 +98,8 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 						fat={el.fat}
 						proteins={el.proteins}
 						isBun={true}
-						count={selectedBun?._id === el._id ? 2 : 0}
+						// count={selectedBun?._id === el._id ? 2 : 0}
+						count={0}
 					/>
 				))}
 			</div>
@@ -136,7 +137,8 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 						carbohydrates={el.carbohydrates}
 						fat={el.fat}
 						proteins={el.proteins}
-						count={selectedBun?._id === el._id ? 2 : 0}
+						// count={selectedBun?._id === el._id ? 2 : 0}
+						count={0}
 					/>
 				))}
 			</div>

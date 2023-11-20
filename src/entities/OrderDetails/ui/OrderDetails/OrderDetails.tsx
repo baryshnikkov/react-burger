@@ -4,8 +4,8 @@ import { PageLoader } from '@/widgets/PageLoader';
 import { type Ingredient } from '@/entities/ListIngredients';
 import { calculateDate } from '@/shared/lib/helpers/calculateDate';
 import { calculatePrice } from '@/shared/lib/helpers/calculatePrice';
-import { OwnOrderDetails } from '@/entities/OrderDetails';
 import { type OrderAnswer } from '@/entities/Order/model/types/order';
+import OwnOrderDetails from '../ModalContainer/OwnOrderDetails';
 
 interface OrderDetailsProps {
 	url: string;
