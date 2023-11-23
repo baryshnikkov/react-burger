@@ -6,9 +6,19 @@
 	"settings": {
 		"react": {
 			"version": "detect"
+		},
+		"import/resolver": {
+			"typescript": {
+				"alwaysTryTypes": true
+			}
 		}
 	},
-	"extends": ["plugin:react/recommended", "standard-with-typescript", "@feature-sliced"],
+	"extends": [
+		"plugin:react/recommended",
+		"standard-with-typescript",
+		"plugin:boundaries/recommended",
+		"@feature-sliced"
+	],
 	"overrides": [],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
@@ -18,7 +28,7 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["react", "@typescript-eslint"],
+	"plugins": ["react", "@typescript-eslint", "boundaries"],
 	"rules": {
 		"react/react-in-jsx-scope": "off",
 		"@typescript-eslint/semi": "off",
@@ -26,23 +36,10 @@
 		"no-tabs": "off",
 		"@typescript-eslint/indent": ["error", "tab"],
 		"@typescript-eslint/comma-dangle": "off",
-		"@typescript-eslint/member-delimiter-style": [
-			"error",
-			{
-				"multiline": {
-					"delimiter": "semi",
-					"requireLast": true
-				},
-				"singleline": {
-					"delimiter": "semi",
-					"requireLast": true
-				}
-			}
-		],
+		"@typescript-eslint/member-delimiter-style": "off",
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/ban-ts-comment": "off",
 		"@typescript-eslint/no-floating-promises": "off",
-		"@typescript-eslint/member-delimiter-style": "off",
 		"@typescript-eslint/no-non-null-assertion": "warn",
 		"@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
 		"@typescript-eslint/naming-convention": "warn",
@@ -51,6 +48,7 @@
 		"array-callback-return": "off",
 		"n/handle-callback-err": "off",
 		"@typescript-eslint/space-before-function-paren": "off",
+		"import/no-internal-modules": "off",
 		"import/order": [
 			"error",
 			{
@@ -90,96 +88,6 @@
 				],
 				"pathGroupsExcludedImportTypes": ["builtin"],
 				"groups": ["builtin", "external", "internal", "parent", "sibling", "index"]
-			}
-		],
-		"no-restricted-imports": [
-			"error",
-			{
-				"patterns": [
-					{
-						"message": "Private imports are prohibited, use public imports instead",
-						"group": ["@/app/**"]
-					},
-					{
-						"message": "Private imports are prohibited, use public imports instead",
-						"group": ["@/processes/*/**"]
-					},
-					{
-						"message": "Private imports are prohibited, use public imports instead",
-						"group": ["@/pages/*/**"]
-					},
-					{
-						"message": "Private imports are prohibited, use public imports instead",
-						"group": ["@/widgets/*/**"]
-					},
-					{
-						"message": "Private imports are prohibited, use public imports instead",
-						"group": ["@/features/*/**"]
-					},
-					{
-						"message": "Private imports are prohibited, use public imports instead",
-						"group": ["@/entities/*/**"]
-					},
-					// {
-					// 	"message": "Private imports are prohibited, use public imports instead",
-					// 	"group": ["@/shared/*/*/**"]
-					// },
-					{
-						"message": "Prefer absolute imports instead of relatives (for root modules)",
-						"group": ["../**/app"]
-					},
-					{
-						"message": "Prefer absolute imports instead of relatives (for root modules)",
-						"group": ["../**/processes"]
-					},
-					{
-						"message": "Prefer absolute imports instead of relatives (for root modules)",
-						"group": ["../**/pages"]
-					},
-					{
-						"message": "Prefer absolute imports instead of relatives (for root modules)",
-						"group": ["../**/widgets"]
-					},
-					{
-						"message": "Prefer absolute imports instead of relatives (for root modules)",
-						"group": ["../**/features"]
-					},
-					{
-						"message": "Prefer absolute imports instead of relatives (for root modules)",
-						"group": ["../**/entities"]
-					},
-					{
-						"message": "Prefer absolute imports instead of relatives (for root modules)",
-						"group": ["../**/shared"]
-					}
-				]
-			}
-		],
-		"boundaries/element-types": [
-			"warn",
-			{
-				"default": "disallow",
-				"rules": [
-					{
-						"from": "app",
-						"allow": ["processes", "pages", "widgets", "features", "entities", "shared"]
-					},
-					{
-						"from": "processes",
-						"allow": ["pages", "widgets", "features", "entities", "shared"]
-					},
-					{
-						"from": "pages",
-						"allow": ["widgets", "features", "entities", "shared"]
-					},
-					{
-						"from": "widgets",
-						"allow": ["features", "entities", "shared"]
-					},
-					{ "from": "features", "allow": ["entities", "shared"] },
-					{ "from": "entities", "allow": ["shared"] },
-					{ "from": "shared", "allow": ["shared"] }
-				]
 			}
 		]
 	}
