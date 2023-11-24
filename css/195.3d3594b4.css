@@ -1,0 +1,11 @@
+.g23eWnm8 {
+    width: var(--width-page);
+    height: calc(100vh - var(--navbar-height));
+    margin: auto;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+.y2ZqYX3E {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,31 @@
+.g23eWnm8 {
+    width: var(--width-page);
+    height: calc(100vh - var(--navbar-height));
+    margin: auto;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+.IcFVZaAE {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
+.JCTCLDAy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin: 24px 0 80px;
+}
+  
+.Sikh8BLV {
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: all var(--transition-time-hover) linear;
+}
+  
+.Sikh8BLV:hover {
+    opacity: var(--opacity-hover);
+}
