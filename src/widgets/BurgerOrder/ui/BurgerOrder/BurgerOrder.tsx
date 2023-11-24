@@ -40,7 +40,7 @@ export const BurgerOrder = memo(() => {
 			updatedToppings[hoverIndex] = dragCard;
 			dispatch(orderActions.updateToppings(updatedToppings));
 		},
-		[toppings]
+		[dispatch, toppings]
 	);
 
 	const displayBun = useCallback(
@@ -64,7 +64,7 @@ export const BurgerOrder = memo(() => {
 
 	const clearAmountIngredients = useCallback(() => {
 		dispatch(amountIngredientsActions.clearAmountIngredients());
-	}, []);
+	}, [dispatch]);
 
 	if (isEmpty) {
 		return (

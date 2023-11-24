@@ -29,7 +29,7 @@ export const CardIngredient = memo((props: CardIngredientProps) => {
 	const onOpenModal = useCallback(() => {
 		setIsOpenModal(true);
 		window.history.pushState(null, '', getRouteIngredients(id));
-	}, []);
+	}, [id]);
 
 	const onCloseModal = useCallback(() => {
 		setIsOpenModal(false);

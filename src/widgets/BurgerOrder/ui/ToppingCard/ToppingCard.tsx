@@ -24,10 +24,13 @@ export const ToppingCard = memo((props: ToppingCardProps) => {
 	const { image, name, price, className, _id, index, moveCard } = props;
 	const dispatch = useAppDispatch();
 
-	const deleteIngredient = useCallback((id: string) => {
-		dispatch(orderActions.deleteIngredient(id));
-		dispatch(amountIngredientsActions.minusAmountIngredient(id));
-	}, []);
+	const deleteIngredient = useCallback(
+		(id: string) => {
+			dispatch(orderActions.deleteIngredient(id));
+			dispatch(amountIngredientsActions.minusAmountIngredient(id));
+		},
+		[dispatch]
+	);
 
 	const [{ isDragging }, dragRef] = useDrag({
 		type: 'card',

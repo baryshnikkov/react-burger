@@ -33,7 +33,7 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 		});
 
 		setIngredientsOrder(order);
-	}, [data]);
+	}, [data, id]);
 
 	useEffect(() => {
 		if (ingredientsOrder) {
@@ -50,7 +50,7 @@ const OrderDetails = memo((props: OrderDetailsProps) => {
 
 			setPrice(price);
 		}
-	}, [ingredientsOrder]);
+	}, [ingredientsList, ingredientsOrder]);
 
 	if (!data || !ingredientsOrder) {
 		return <Loader isCenter={true} />;

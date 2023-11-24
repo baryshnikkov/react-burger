@@ -46,7 +46,7 @@ export const OrderList = (props: OrderListProps) => {
 				})
 			);
 		}
-	}, [data]);
+	}, [data, dispatch]);
 
 	if (!data?.success || !pathname) {
 		return <Loader isCenter={true} />;

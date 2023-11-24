@@ -56,7 +56,7 @@ export const CardsIngredients = memo((props: CardsIngredientsProps) => {
 			setSauces(filterIngredients.sauce);
 			dispatch(amountIngredientsActions.initAmountIngredients(filterAmountIngredients));
 		}
-	}, [ingredients]);
+	}, [dispatch, ingredients]);
 
 	if (isLoading) {
 		return <Loader isCenter={true} />;

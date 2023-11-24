@@ -21,7 +21,7 @@ const IngredientsPage = memo(() => {
 
 	useEffect(() => {
 		setIngredient(getIngredient());
-	}, [id, ingredients]);
+	}, [getIngredient, id, ingredients]);
 
 	if (isLoading || !ingredient) {
 		return <PageLoader />;

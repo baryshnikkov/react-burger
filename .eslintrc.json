@@ -17,6 +17,7 @@
 		"plugin:react/recommended",
 		"standard-with-typescript",
 		"plugin:boundaries/recommended",
+		"plugin:react-hooks/recommended",
 		"@feature-sliced"
 	],
 	"overrides": [],
@@ -89,6 +90,7 @@
 				"pathGroupsExcludedImportTypes": ["builtin"],
 				"groups": ["builtin", "external", "internal", "parent", "sibling", "index"]
 			}
-		]
+		],
+		"react-hooks/exhaustive-deps": "error"
 	}
 }

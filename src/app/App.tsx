@@ -19,7 +19,7 @@ function App() {
 		if (!inited) {
 			dispatch(userActions.initAuth());
 		}
-	}, [dispatch]);
+	}, [dispatch, inited]);
 
 	useEffect(() => {
 		const token = localStorage.getItem(USER_LOCALSTORAGE_KEY);
