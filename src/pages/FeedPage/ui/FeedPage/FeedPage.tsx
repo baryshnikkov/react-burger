@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { Page } from '@/widgets/Page';
 
-import { OrderList, getStatistic } from '@/entities/Order';
+import { OrderList, getStatistic } from '@/features/Order';
 
 import { Loader } from '@/shared/ui/Loader';
 

@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import { Page } from '@/widgets/Page';
 import { PageLoader } from '@/widgets/PageLoader';
 
-import { IngredientDetails } from '@/entities/CardsIngredients';
+import { IngredientDetails } from '@/features/CardsIngredients';
+
 import { type Ingredient, useIngredients } from '@/entities/ListIngredients';
 
 const IngredientsPage = memo(() => {

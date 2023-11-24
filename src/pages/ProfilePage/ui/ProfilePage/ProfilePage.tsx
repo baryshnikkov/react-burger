@@ -4,7 +4,8 @@ import { useLocation } from 'react-router-dom';
 
 import { Page } from '@/widgets/Page';
 
-import { OrderList } from '@/entities/Order';
+import { OrderList } from '@/features/Order';
+
 import { getAccessToken } from '@/entities/User';
 
 import { getRouteProfile } from '@/shared/const/router';

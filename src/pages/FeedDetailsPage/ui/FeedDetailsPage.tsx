@@ -4,8 +4,9 @@ import { useParams } from 'react-router-dom';
 import { Page } from '@/widgets/Page';
 import { PageLoader } from '@/widgets/PageLoader';
 
+import { OrderDetails } from '@/features/Order';
+
 import { useIngredients } from '@/entities/ListIngredients';
-import { OrderDetails } from '@/entities/OrderDetails';
 
 import cls from './FeedDetailsPage.module.css';
 

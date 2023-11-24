@@ -4,14 +4,15 @@ import { forgotPasswordReducer } from '@/pages/ForgotPasswordPage';
 import { resetPasswordReducer } from '@/pages/ResetPasswordPage';
 
 import { authUserReducer } from '@/features/AuthUser';
+import { amountIngredientsReducer } from '@/features/CardsIngredients';
 import { loginUserReducer } from '@/features/LoginUser';
+import { orderReducer } from '@/features/Order';
 
-import { amountIngredientsReducer } from '@/entities/CardsIngredients';
-import { orderReducer } from '@/entities/Order';
 import { userReducer } from '@/entities/User';
 
 import { rtkApi } from '@/shared/api/rtkApi';
-import { type StateSchema } from '@/shared/types/StateSchema';
+
+import type { StateSchema } from './StateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {
 	const rootReducer: ReducersMapObject<StateSchema> = {
